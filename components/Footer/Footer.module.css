@@ -1,0 +1,90 @@
+.section {
+  background-color: var(--color-scheme-6-background);
+}
+.containerFooter {
+  padding: 48px 20px;
+}
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+.navigationList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.navigation {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
+.subscribeContainer {
+  margin-bottom: 40px;
+}
+.subscribe {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+
+  margin-bottom: 16px;
+}
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  margin-bottom: 24px;
+}
+.containerSubscribe {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 8px;
+  width: 195px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0);
+}
+.input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgba(0, 0, 0, 0.6);
+}
+.button {
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 100px;
+  padding: 6px 12px;
+  width: 124px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+}
+.socials {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding-top: 32px;
+}
+.rights {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  margin-bottom: 16px;
+}
+.socialContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 18px;
+}
