@@ -2,3 +2,11 @@
     padding-top: 56px;
     padding-bottom: 112px;
 }
+
+.title {
+    font-family: var(--second-family);
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+}

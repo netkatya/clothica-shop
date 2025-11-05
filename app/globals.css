@@ -64,7 +64,7 @@
   --color-red: #9d0000;
 
   --font-inter: 'Inter', sans-serif;
-  --font-nunito-sans: 'Nunito Sans', sans-serif;
+  --second-family: 'Nunito Sans', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
