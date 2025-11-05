@@ -3,8 +3,8 @@ import css from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <section className={css.section}>
-      <div className={`container ${css.containerFooter}`}>
+    <footer className={css.section}>
+      <div className="container">
         <div className={css.containerWrap}>
           <div className={css.linksContainer}>
             <a href="" aria-label="На головну" className={css.logo}>
@@ -104,6 +104,6 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }
