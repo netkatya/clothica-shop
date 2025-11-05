@@ -4,65 +4,84 @@ import css from "./Reviews.module.css";
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Keyboard, A11y } from "swiper/modules";
+import { Navigation, Keyboard, A11y, Autoplay } from "swiper/modules";
 import { AiFillStar } from "react-icons/ai";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
 const reviewsData = [
   {
     name: "Олена Коваль",
-    text: "Футболки Clothica - це справжня знахідка для мене! Я в захваті від якості та дизайну.",
+    text: '"Футболки Clothica - це справжня знахідка для мене! Я в захваті від якості та дизайну."',
     product: "Базова футболка",
     rating: 5,
   },
   {
     name: "Ігор Петров",
-    text: "Я завжди отримую компліменти, коли ношу їх футболки! Вони стильні і зручні.",
+    text: '"Я завжди отримую компліменти, коли ношу їх футболки! Вони стильні і зручні."',
     product: "Худі з капюшоном",
     rating: 5,
   },
   {
     name: "Ігор Шевченко",
-    text: "Дуже приємні та якісні матеріали",
+    text: '"Матеріали якісні, футболка тримає форму і виглядає чудово після прання."',
     product: "Джинсові шорти",
     rating: 5,
   },
   {
     name: "Марія Бондар",
-    text: "Розміри відповідають заявленим, сів ідеально!",
+    text: '"Розмір підійшов ідеально, носиться комфортно і не втрачає форму."',
     product: "Лонгслів",
     rating: 5,
   },
   {
     name: "Андрій Данилюк",
-    text: "Вартість повністю відповідає якості. Дуже задоволений покупкою.",
+    text: '"Вартість повністю відповідає якості, тканина приємна та міцна."',
     product: "Спортивні штани",
     rating: 5,
   },
   {
     name: "Діана Мельник",
-    text: "Стильно, зручно і під будь-який образ!",
+    text: '"Стильно, зручно і під будь-який образ, тканина дихає і не мнеться."',
     product: "Футболка оверсайз",
     rating: 5,
   },
   {
     name: "Владислав Кравець",
-    text: "Купував у подарунок — вгадати з розміром було легко!",
+    text: '"Купував у подарунок, підійшло чудово і тканина приємна на дотик."',
     product: "Толстовка",
     rating: 5,
   },
   {
     name: "Катерина Гордієнко",
-    text: "Після прання ні колір, ні форма не змінюються 👌",
+    text: '"Після прання колір та форма не змінюються, якість на висоті."',
     product: "Світшот",
     rating: 5,
   },
   {
     name: "Олексій Романюк",
-    text: "Замовляв уже кілька разів — сервіс на висоті!",
+    text: '"Замовляв кілька разів, сервіс чудовий і доставка швидка."',
     product: "Класична футболка",
+    rating: 5,
+  },
+  {
+    name: "Анна Савченко",
+    text: '"Матеріал приємний, шви акуратні, дизайн виглядає стильно і дорого."',
+    product: "Футболка з принтом",
+    rating: 5,
+  },
+  {
+    name: "Максим Коваленко",
+    text: '"Худі комфортне, тканина м’яка і дихає, носити зручно цілий день."',
+    product: "Худі на блискавці",
+    rating: 5,
+  },
+  {
+    name: "Ірина Петренко",
+    text: '"Лонгслів якісний, колір залишається яскравим, тканина міцна."',
+    product: "Лонгслів базовий",
     rating: 5,
   },
 ];
@@ -81,43 +100,51 @@ export default function Reviews() {
   return (
     <section className={css.section}>
       <div className="container">
-        <h2 className={css.title}>Останні відгуки</h2>
-
+        <h2 className={css.title}>Останні відгуки</h2>;
         <Swiper
-          modules={[Navigation, Keyboard, A11y]}
+          modules={[Navigation, Keyboard, A11y, Autoplay]}
           navigation={{
             nextEl: `.${css.btnNext}`,
             prevEl: `.${css.btnPrev}`,
           }}
           keyboard={{ enabled: true }}
-          spaceBetween={20}
+          spaceBetween={34}
           slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+          slidesPerGroup={1}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
           }}
-          onSlideNextTransitionEnd={loadMore}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              slidesPerGroup: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+            },
+          }}
           className={css.swiper}
           a11y={{ enabled: true }}
         >
-          <ul className={css.list}>
-            {visibleReviews.map((item, index) => (
-              <SwiperSlide tag="li" key={index} className={css.item}>
-                <div className={css.stars}>
-                  {Array(item.rating)
-                    .fill(0)
-                    .map((_, i) => (
-                      <AiFillStar key={i} className={css.star} />
-                    ))}
-                </div>
-                <p className={css.text}>{item.text}</p>
+          {visibleReviews.map((item, index) => (
+            <SwiperSlide key={index} className={css.item}>
+              <div className={css.stars}>
+                {Array(item.rating)
+                  .fill(0)
+                  .map((_, i) => (
+                    <AiFillStar key={i} className={css.star} />
+                  ))}
+              </div>
+              <p className={css.text}>{item.text}</p>
+              <div className={css.nameproduct}>
                 <p className={css.name}>{item.name}</p>
                 <p className={css.product}>{item.product}</p>
-              </SwiperSlide>
-            ))}
-          </ul>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
-
         <div className={css.controls}>
           <button
             type="button"
@@ -125,7 +152,7 @@ export default function Reviews() {
             aria-label="Попередній слайд"
             disabled={visibleReviews.length === 0}
           >
-            ◀
+            <LuArrowLeft size={24} />
           </button>
 
           <button
@@ -135,7 +162,7 @@ export default function Reviews() {
             disabled={!hasMore}
             onClick={loadMore}
           >
-            ▶
+            <LuArrowRight size={24} />
           </button>
         </div>
       </div>
