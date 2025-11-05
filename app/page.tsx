@@ -1,7 +1,9 @@
+import Reviews from "@/components/Reviews/Reviews";
+
 export default function Home() {
   return (
-    <div>
-      <p>Main page</p>
-    </div>
+    <main>
+      <Reviews />
+    </main>
   );
 }

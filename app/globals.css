@@ -62,6 +62,9 @@
   --color-scheme-6-accent: var(--color-neutral-darkest);
   --color-scheme-6-foreground: var(--color-deco-dark);
   --color-red: #9d0000;
+
+  --font-inter: 'Inter', sans-serif;
+  --font-nunito-sans: 'Nunito Sans', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -81,6 +84,7 @@ body {
 body {
   color: var(--color-scheme-4-text);
   background: var(--color-scheme-4-background);
+  font-family: var(--font-inter);
 }
 
 * {
