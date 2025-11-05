@@ -1,8 +1,6 @@
 .section {
   background-color: var(--color-scheme-6-background);
-}
-.containerFooter {
-  padding: 48px 20px;
+  padding: 48px 0px;
 }
 .logo {
   margin-bottom: 40px;
@@ -72,7 +70,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 16px;
   padding: 8px;
-  width: 195px;
+  width: 124px;
   height: 40px;
   background: rgba(0, 0, 0, 0.05);
   font-weight: 500;
@@ -98,8 +96,8 @@
   gap: 18px;
 }
 @media screen and (min-width: 768px) {
-  .containerFooter {
-    padding: 48px 32px;
+  .section {
+    padding: 48px 0px;
   }
   .containerWrap {
     display: flex;
@@ -116,9 +114,11 @@
   }
   .navigation {
     font-size: 12px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .navigation:hover {
-    font-weight: 600;
+  .navigation:hover,
+  .navigation:active {
+    color: #3b4331;
   }
   .navigationList {
     align-items: flex-start;
@@ -175,8 +175,8 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .containerFooter {
-    padding: 80px 64px;
+  .section {
+    padding: 80px 0px;
   }
   .containerWrap {
     justify-content: space-between;
