@@ -41,16 +41,6 @@ const categoriesData = [
 ];
 
 export default function PopularCategories() {
-  const [visibleCount, setVisibleCount] = useState(3);
-  const visibleCatetegories = categoriesData.slice(0, visibleCount);
-  const hasMore = visibleCount < categoriesData.length;
-
-  const loadMore = () => {
-    if (hasMore) {
-      setVisibleCount(prev => prev + 1);
-    }
-  };
-
   return (
     <section className={css.section}>
       <div className="container">
@@ -60,66 +50,47 @@ export default function PopularCategories() {
             Всі категорії
           </Link>
         </div>
-        <Swiper
-          modules={[Navigation, Keyboard, A11y]}
-          navigation={{
-            nextEl: `.${css.btnNext}`,
-            prevEl: `.${css.btnPrev}`,
-          }}
-          keyboard={{ enabled: true }}
-          spaceBetween={34}
-          slidesPerView={1}
-          slidesPerGroup={1}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              slidesPerGroup: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
-            },
-          }}
-          className={css.swiper}
-          a11y={{ enabled: true }}
-        >
-          {visibleCatetegories.map((item, index) => (
-            <SwiperSlide key={index} className={css.item}>
-              <Image
-                src={item.img}
-                alt={item.category}
-                width={416}
-                height={277}
-                className={css.image}
-              ></Image>
 
-              <p className={css.name}>{item.category}</p>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className={css.controls}>
-          <button
-            type="button"
-            className={css.btnPrev}
-            aria-label="Попередній слайд"
-            disabled={visibleCatetegories.length === 0}
+        <div className={css.sliderContainer}>
+          <Swiper
+            modules={[Navigation, Keyboard, A11y]}
+            navigation={{
+              nextEl: `.${css.btnNext}`,
+              prevEl: `.${css.btnPrev}`,
+            }}
+            keyboard={{ enabled: true }}
+            spaceBetween={34}
+            slidesPerView={1}
+            slidesPerGroup={1}
+            breakpoints={{
+              768: { slidesPerView: 2, slidesPerGroup: 1 },
+              1024: { slidesPerView: 3, slidesPerGroup: 1 },
+            }}
+            className={css.swiper}
+            a11y={{ enabled: true }}
           >
-            <LuArrowLeft size={24} />
-          </button>
+            {categoriesData.map((item, index) => (
+              <SwiperSlide key={index} className={css.item}>
+                <Image
+                  src={item.img}
+                  alt={item.category}
+                  width={416}
+                  height={277}
+                  className={css.image}
+                />
+                <p className={css.name}>{item.category}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          <button
-            type="button"
-            className={css.btnNext}
-            aria-label="Наступний слайд"
-            disabled={!hasMore}
-            onClick={loadMore}
-          >
-            <LuArrowRight size={24} />
-          </button>
+          <div className={css.controls}>
+            <button type="button" className={css.btnPrev} aria-label="Prev">
+              <LuArrowLeft size={24} />
+            </button>
+            <button type="button" className={css.btnNext} aria-label="Next">
+              <LuArrowRight size={24} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
