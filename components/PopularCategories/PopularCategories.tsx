@@ -1,42 +1,42 @@
-"use client";
+'use client';
 
-import css from "./PopularCategories.module.css";
+import css from './PopularCategories.module.css';
 
-import Link from "next/link";
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Keyboard, A11y, Autoplay } from "swiper/modules";
-import { useState } from "react";
-import Image from "next/image";
+import Link from 'next/link';
+import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Keyboard, A11y } from 'swiper/modules';
+import { useState } from 'react';
+import Image from 'next/image';
 
 const categoriesData = [
   {
-    img: "/img/categiries/t-shirts.png",
-    category: "Футболки",
+    img: '/img/categiries/t-shirts.png',
+    category: 'Футболки',
   },
   {
-    img: "/img/categiries/hoodies.png",
-    category: "Худі та світшоти",
+    img: '/img/categiries/hoodies.png',
+    category: 'Худі та світшоти',
   },
   {
-    img: "/img/categiries/trousers.png",
-    category: "Джинси та штани",
+    img: '/img/categiries/trousers.png',
+    category: 'Джинси та штани',
   },
   {
-    img: "/img/categiries/dresses.png",
-    category: "Сукні та спідниці",
+    img: '/img/categiries/dresses.png',
+    category: 'Сукні та спідниці',
   },
   {
-    img: "/img/categiries/coats.png",
-    category: "Куртки та верхній одяг",
+    img: '/img/categiries/coats.png',
+    category: 'Куртки та верхній одяг',
   },
   {
-    img: "/img/categiries/homewear.png",
-    category: "Домашній та спортивний одяг",
+    img: '/img/categiries/homewear.png',
+    category: 'Домашній та спортивний одяг',
   },
   {
-    img: "/img/categiries/tops.png",
-    category: "Топи та майки",
+    img: '/img/categiries/tops.png',
+    category: 'Топи та майки',
   },
 ];
 
@@ -47,19 +47,21 @@ export default function PopularCategories() {
 
   const loadMore = () => {
     if (hasMore) {
-      setVisibleCount((prev) => prev + 1);
+      setVisibleCount(prev => prev + 1);
     }
   };
 
   return (
-    <section>
+    <section className={css.section}>
       <div className="container">
-        <div>
-          <h2>Популярні категорії</h2>
-          <Link href="/categories">Всі категорії</Link>
+        <div className={css.title_button}>
+          <h2 className={css.title}>Популярні категорії</h2>
+          <Link href="/categories" className={css.button}>
+            Всі категорії
+          </Link>
         </div>
         <Swiper
-          modules={[Navigation, Keyboard, A11y, Autoplay]}
+          modules={[Navigation, Keyboard, A11y]}
           navigation={{
             nextEl: `.${css.btnNext}`,
             prevEl: `.${css.btnPrev}`,
