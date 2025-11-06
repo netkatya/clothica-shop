@@ -1,0 +1,21 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.link_primary {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-scheme-1-accent);
+    padding: 6px 12px;
+    width: 100%;
+    border-radius: 100px;
+    text-decoration: none;
+}
+
+.link_secondary {
+    color: var(--color-scheme-1-foreground);
+    text-decoration: none;
+}
