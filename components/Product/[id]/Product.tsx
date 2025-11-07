@@ -1,6 +1,8 @@
-import css from "./Product.module.css";
-import Image from "next/image";
-import tShirtImg from "../../../public/img/Placeholder Image.png";
+import css from './Product.module.css';
+import Image from 'next/image';
+import tShirtImg from '../../../public/img/Placeholder Image.png';
+import Stars from '@/components/Stars/Stars';
+
 export default function Product() {
   return (
     <section className={css.section}>
@@ -22,8 +24,8 @@ export default function Product() {
               <div className={css.details}>
                 <p className={css.price}>750 грн</p>
                 <span>|</span>
-                <div>★★★★⯨ (4.5)</div>
-                <span className={css.reviews}>• 10 відгуків</span>
+                <Stars rating={4.5} />
+                <span className={css.reviews}> (4.5) • 10 відгуків</span>
               </div>
 
               <p className={css.text}>
@@ -56,7 +58,7 @@ export default function Product() {
                 Базова футболка Clothica — це ідеальний вибір для тих, хто цінує
                 комфорт, якість та універсальність. Виготовлена зі 100%
                 натуральної бавовни, вона приємна до тіла, добре пропускає
-                повітря та підходить для щоденного носіння у будь-яку пору року.{" "}
+                повітря та підходить для щоденного носіння у будь-яку пору року.{' '}
                 <br />
                 <br />
                 Лаконічний дизайн без зайвих деталей робить футболку
