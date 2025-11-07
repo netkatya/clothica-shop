@@ -19,3 +19,12 @@ export interface UserLogin {
   phone: string;
   password: string;
 }
+
+// profilePage
+export interface UserProfile {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  city: string;
+  npOffice: string;
+}
