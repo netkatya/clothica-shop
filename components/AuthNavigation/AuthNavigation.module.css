@@ -1,0 +1,45 @@
+.navigationItem {
+  list-style: none;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.authButton {
+  display: block;
+  width: 100%;
+  max-width: 335px;
+  margin: 0 auto;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--color-deco);
+}
+.authButton:hover,
+.authButton:focus {
+  background-color: var(--color-scheme-6-foreground);
+}
+@media (min-width: 768px) {
+  .navigationItem {
+    display: inline-block;
+    margin: 0;
+  }
+  .authButton {
+    width: auto;
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+@media (min-width: 1440px) {
+
+  .authButton {
+    font-size: 16px;
+  }
+}
