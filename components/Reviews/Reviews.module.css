@@ -31,6 +31,7 @@
     line-height: 140%;
     letter-spacing: -0.01em;
     margin-bottom: 32px;
+    min-height: 75px;
 }
 
 .name {
@@ -68,6 +69,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background 250ms ease-in-out;
 }
 
 .btnPrev:hover,
@@ -87,8 +89,8 @@
 
 @media screen and (min-width: 1440px) {
     .section {
-            padding-top: 56px;
-            padding-bottom: 112px;
+        padding-top: 56px;
+        padding-bottom: 112px;
     }
 
     .title {
@@ -96,12 +98,8 @@
     }
 
     .text {
-        font-family: var(--second-family);
-        font-weight: 400;
         font-size: 20px;
-        line-height: 140%;
-        letter-spacing: -0.01em;
-        margin-bottom: 32px;
+        min-height: 56px;
     }
 }
 
