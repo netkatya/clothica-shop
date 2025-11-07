@@ -1,87 +1,87 @@
-"use client";
+'use client';
 
-import css from "./Reviews.module.css";
+import css from './Reviews.module.css';
 
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Keyboard, A11y, Autoplay } from "swiper/modules";
-import { AiFillStar } from "react-icons/ai";
+import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Keyboard, A11y, Autoplay } from 'swiper/modules';
 
-import "swiper/css";
-import "swiper/css/navigation";
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import Stars from '../Stars/Stars';
 
 const reviewsData = [
   {
-    name: "Олена Коваль",
+    name: 'Олена Коваль',
     text: '"Футболки Clothica - це справжня знахідка для мене! Я в захваті від якості та дизайну."',
-    product: "Базова футболка",
-    rating: 5,
+    product: 'Базова футболка',
+    rating: 4.5,
   },
   {
-    name: "Ігор Петров",
+    name: 'Ігор Петров',
     text: '"Я завжди отримую компліменти, коли ношу їх футболки! Вони стильні і зручні."',
-    product: "Худі з капюшоном",
+    product: 'Худі з капюшоном',
     rating: 5,
   },
   {
-    name: "Ігор Шевченко",
+    name: 'Ігор Шевченко',
     text: '"Матеріали якісні, футболка тримає форму і виглядає чудово після прання."',
-    product: "Джинсові шорти",
+    product: 'Джинсові шорти',
     rating: 5,
   },
   {
-    name: "Марія Бондар",
+    name: 'Марія Бондар',
     text: '"Розмір підійшов ідеально, носиться комфортно і не втрачає форму."',
-    product: "Лонгслів",
+    product: 'Лонгслів',
     rating: 5,
   },
   {
-    name: "Андрій Данилюк",
+    name: 'Андрій Данилюк',
     text: '"Вартість повністю відповідає якості, тканина приємна та міцна."',
-    product: "Спортивні штани",
+    product: 'Спортивні штани',
     rating: 5,
   },
   {
-    name: "Діана Мельник",
+    name: 'Діана Мельник',
     text: '"Стильно, зручно і під будь-який образ, тканина дихає і не мнеться."',
-    product: "Футболка оверсайз",
+    product: 'Футболка оверсайз',
     rating: 5,
   },
   {
-    name: "Владислав Кравець",
+    name: 'Владислав Кравець',
     text: '"Купував у подарунок, підійшло чудово і тканина приємна на дотик."',
-    product: "Толстовка",
+    product: 'Толстовка',
     rating: 5,
   },
   {
-    name: "Катерина Гордієнко",
+    name: 'Катерина Гордієнко',
     text: '"Після прання колір та форма не змінюються, якість на висоті."',
-    product: "Світшот",
+    product: 'Світшот',
     rating: 5,
   },
   {
-    name: "Олексій Романюк",
+    name: 'Олексій Романюк',
     text: '"Замовляв кілька разів, сервіс чудовий і доставка швидка."',
-    product: "Класична футболка",
+    product: 'Класична футболка',
     rating: 5,
   },
   {
-    name: "Анна Савченко",
+    name: 'Анна Савченко',
     text: '"Матеріал приємний, шви акуратні, дизайн виглядає стильно і дорого."',
-    product: "Футболка з принтом",
+    product: 'Футболка з принтом',
     rating: 5,
   },
   {
-    name: "Максим Коваленко",
+    name: 'Максим Коваленко',
     text: '"Худі комфортне, тканина м’яка і дихає, носити зручно цілий день."',
-    product: "Худі на блискавці",
+    product: 'Худі на блискавці',
     rating: 5,
   },
   {
-    name: "Ірина Петренко",
+    name: 'Ірина Петренко',
     text: '"Лонгслів якісний, колір залишається яскравим, тканина міцна."',
-    product: "Лонгслів базовий",
+    product: 'Лонгслів базовий',
     rating: 5,
   },
 ];
@@ -93,14 +93,17 @@ export default function Reviews() {
 
   const loadMore = () => {
     if (hasMore) {
-      setVisibleCount((prev) => prev + 3);
+      setVisibleCount(prev => prev + 3);
     }
   };
 
   return (
     <section className={css.section}>
       <div className="container">
-        <h2 className={css.title}>Останні відгуки</h2>
+        <div>
+          <h2 className={css.title}>Останні відгуки</h2>
+          <button></button>
+        </div>
         <Swiper
           modules={[Navigation, Keyboard, A11y, Autoplay]}
           navigation={{
@@ -131,11 +134,7 @@ export default function Reviews() {
           {visibleReviews.map((item, index) => (
             <SwiperSlide key={index} className={css.item}>
               <div className={css.stars}>
-                {Array(item.rating)
-                  .fill(0)
-                  .map((_, i) => (
-                    <AiFillStar key={i} className={css.star} />
-                  ))}
+                <Stars rating={item.rating} />
               </div>
               <p className={css.text}>{item.text}</p>
 
