@@ -102,7 +102,6 @@ export default function Reviews() {
       <div className="container">
         <div>
           <h2 className={css.title}>Останні відгуки</h2>
-          <button></button>
         </div>
         <Swiper
           modules={[Navigation, Keyboard, A11y, Autoplay]}
