@@ -100,7 +100,7 @@ export default function Reviews() {
   return (
     <section className={css.section}>
       <div className="container">
-        <h2 className={css.title}>Останні відгуки</h2>;
+        <h2 className={css.title}>Останні відгуки</h2>
         <Swiper
           modules={[Navigation, Keyboard, A11y, Autoplay]}
           navigation={{
@@ -138,10 +138,9 @@ export default function Reviews() {
                   ))}
               </div>
               <p className={css.text}>{item.text}</p>
-              <div className={css.nameproduct}>
-                <p className={css.name}>{item.name}</p>
-                <p className={css.product}>{item.product}</p>
-              </div>
+
+              <p className={css.name}>{item.name}</p>
+              <p className={css.product}>{item.product}</p>
             </SwiperSlide>
           ))}
         </Swiper>
