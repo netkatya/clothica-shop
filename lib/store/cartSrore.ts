@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export type CartItem = {
   goodId: string;
@@ -17,12 +18,16 @@ interface ShopStore {
   clearCart: () => void;
 }
 
-export const useShopStore = create<ShopStore>(set => ({
+export const useShopStore = create<ShopStore>()(persist(set => ({
   cartItems: [],
   addToCart: item => set(state => ({ cartItems: [...state.cartItems, item] })),
   removeFromCart: goodId =>
     set(state => ({
       cartItems: state.cartItems.filter(i => i.goodId !== goodId),
     })),
-  clearCart: () => set({ cartItems: [] }),
-}));
+  clearCart: () => set({ cartItems: [] }), }),
+  {
+    name: 'shop-cart',
+    partialize: state => ({ cartItems: state.cartItems }),
+  }
+),);
