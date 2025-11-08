@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 
 // import { register, RegisterRequest } from '@/lib/api/clientApi';
 // import { ApiError } from '@/app/api/api';
-// import { useAuthStore } from '@/lib/store/authStore';
+import { useAuthStore } from '@/lib/store/authStore';
 
 import css from './RegistrationForm.module.css';
 import Link from 'next/link';
