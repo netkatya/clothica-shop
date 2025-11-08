@@ -86,6 +86,10 @@ export default function Product() {
             </div>
           </div>
         </div>
+        <div className={css.goodsReviews}>
+          <p className={css.titleReviews}>Відгуки клієнтів</p>
+          <button className={css.addReviews}>Залишити відгук</button>
+        </div>
       </div>
     </section>
   );
