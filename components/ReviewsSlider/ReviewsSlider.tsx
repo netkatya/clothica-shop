@@ -86,7 +86,15 @@ const reviewsData = [
   },
 ];
 
-export default function ReviewsSlider() {
+type ReviewsSliderProps = {
+  hasProductText?: boolean;
+  hasCenteredButtons?: boolean;
+};
+
+export default function ReviewsSlider({
+  hasProductText = true,
+  hasCenteredButtons = false,
+}: ReviewsSliderProps) {
   const [visibleCount, setVisibleCount] = useState(3);
   const visibleReviews = reviewsData.slice(0, visibleCount);
   const hasMore = visibleCount < reviewsData.length;
@@ -134,11 +142,11 @@ export default function ReviewsSlider() {
             <p className={css.text}>{item.text}</p>
 
             <p className={css.name}>{item.name}</p>
-            <p className={css.product}>{item.product}</p>
+            {hasProductText && <p className={css.product}>{item.product}</p>}
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={css.controls}>
+      <div className={hasCenteredButtons ? css.centeredControls : css.controls}>
         <button
           type="button"
           className={css.btnPrev}

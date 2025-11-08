@@ -2,7 +2,9 @@
   padding-top: 64px;
   padding-bottom: 64px;
 }
-
+.content {
+  margin-bottom: 176px;
+}
 .image {
   border-radius: 16px;
   margin-bottom: 48px;
@@ -146,29 +148,6 @@
 
 .listDisc li {
   list-style-type: disc;
-}
-.goodsReviews {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.titleReviews {
-  font-family: var(--second-family);
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 120%;
-  letter-spacing: -0.01em;
-  color: var(--color-scheme-4-text);
-  margin-bottom: 24px;
-}
-.addReviews {
-  border: 1px solid var(--color-deco);
-  border-radius: 100px;
-  padding: 6px 12px;
-  width: 156px;
-  height: 36px;
-  background: var(--color-deco);
-  margin-bottom: 40px;
 }
 
 @media screen and (min-width: 768px) {

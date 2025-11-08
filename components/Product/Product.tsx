@@ -1,9 +1,13 @@
 import css from './Product.module.css';
 import Image from 'next/image';
-import tShirtImg from '../../../public/img/Placeholder Image.png';
+import tShirtImg from '../../public/img/PlaceholderImage.png';
 import Stars from '@/components/Stars/Stars';
 
-export default function Product() {
+interface ProductProps {
+  goodId: string;
+}
+
+export default function Product({ goodId }: ProductProps) {
   return (
     <section className={css.section}>
       <div className="container">
@@ -85,10 +89,6 @@ export default function Product() {
               </ul>
             </div>
           </div>
-        </div>
-        <div className={css.goodsReviews}>
-          <p className={css.titleReviews}>Відгуки клієнтів</p>
-          <button className={css.addReviews}>Залишити відгук</button>
         </div>
       </div>
     </section>
