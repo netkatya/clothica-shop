@@ -17,12 +17,12 @@
   text-decoration: none;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  background-color: var(--color-deco);
+  transition: background-color 0.3s ease-in-out;
+  background-color: var(--color-scheme-5-foreground);
 }
 .authButton:hover,
 .authButton:focus {
-  background-color: var(--color-scheme-6-foreground);
+  background-color: var(--color-deco-dark);
 }
 @media (min-width: 768px) {
   .navigationItem {
@@ -38,7 +38,6 @@
   }
 }
 @media (min-width: 1440px) {
-
   .authButton {
     font-size: 16px;
   }

@@ -7,6 +7,7 @@ import AuthNavigation from '../AuthNavigation/AuthNavigation';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [count, setCount] = useState(0);
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
@@ -62,52 +63,60 @@ export default function Header() {
                 </svg>
               </button>
 
-              <Link
-                href="/basket"
-                aria-label="Basket"
-                className={css.basketBtn}
-              >
-                <svg width="20" height="21" className={css.basketButtonSvg}>
-                  <use href="/symbol-defs.svg#icon-basket"></use>
-                </svg>
-              </Link>
+              <div className={css.basketWrapper}>
+                <Link
+                  href="/basket"
+                  aria-label="Basket"
+                  className={css.basketBtn}
+                >
+                  <svg width="20" height="21" className={css.basketButtonSvg}>
+                    <use href="/symbol-defs.svg#icon-basket"></use>
+                  </svg>
+
+                  {count > 0 && <span className={css.badge}>{count}</span>}
+                </Link>
+              </div>
             </div>
           ) : (
             <div className={css.navContainer}>
-            <nav aria-label="Main Navigation" className={css.navigationList}>
-              <ul className={css.navigation}>
-                <li className={css.navigationItem}>
-                  <Link href="/" className={css.navigationLink}>
-                    Головна
-                  </Link>
-                </li>
-                <li className={css.navigationItem}>
-                  <Link href="/products" className={css.navigationLink}>
-                    Товари
-                  </Link>
-                </li>
-                <li className={css.navigationItem}>
-                  <Link href="/categories" className={css.navigationLink}>
-                    Категорії
-                  </Link>
-                </li>
-              </ul>
+              <nav aria-label="Main Navigation" className={css.navigationList}>
+                <ul className={css.navigation}>
+                  <li className={css.navigationItem}>
+                    <Link href="/" className={css.navigationLink}>
+                      Головна
+                    </Link>
+                  </li>
+                  <li className={css.navigationItem}>
+                    <Link href="/products" className={css.navigationLink}>
+                      Товари
+                    </Link>
+                  </li>
+                  <li className={css.navigationItem}>
+                    <Link href="/categories" className={css.navigationLink}>
+                      Категорії
+                    </Link>
+                  </li>
+                </ul>
 
-              <ul className={css.authNavigation}>
-                <AuthNavigation />
-                <li className={css.navigationItem}>
-                  <Link
-                    href="/basket"
-                    aria-label="Basket"
-                    className={css.basketBtn}
-                  >
-                    <svg width="20" height="21" className={css.basketButtonSvg}>
-                      <use href="/symbol-defs.svg#icon-basket"></use>
-                    </svg>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+                <ul className={css.authNavigation}>
+                  <AuthNavigation />
+                  <li className={css.navigationItem}>
+                    <Link
+                      href="/basket"
+                      aria-label="Basket"
+                      className={css.basketBtn}
+                    >
+                      <svg
+                        width="20"
+                        height="21"
+                        className={css.basketButtonSvg}
+                      >
+                        <use href="/symbol-defs.svg#icon-basket"></use>
+                      </svg>
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </div>
           )}
         </div>
@@ -117,26 +126,17 @@ export default function Header() {
             <nav aria-label="Mobile Navigation">
               <ul className={css.navigationMobile}>
                 <li>
-                  <Link
-                    href="/"
-                    className={css.navigationItemMobile}
-                  >
+                  <Link href="/" className={css.navigationItemMobile}>
                     Головна
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/products"
-                    className={css.navigationItemMobile}
-                  >
+                  <Link href="/products" className={css.navigationItemMobile}>
                     Товари
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/categories"
-                    className={css.navigationItemMobile}
-                  >
+                  <Link href="/categories" className={css.navigationItemMobile}>
                     Категорії
                   </Link>
                 </li>
