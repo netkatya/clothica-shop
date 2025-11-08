@@ -1,0 +1,59 @@
+.profilePage {
+    padding: 32px 40px;
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.logoutButton {
+    display: block;
+    margin: 32px auto 0 auto;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 100px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.logoutButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+    .profilePage {
+        padding: 20px;
+    }
+
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+.profilePage h1 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+    margin-bottom: 32px;
+}
+
+.profilePage h2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #000;
+    text-align: center;
+    margin-bottom: 16px;
+}

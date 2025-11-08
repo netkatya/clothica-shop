@@ -1,0 +1,78 @@
+.formWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+    max-width: 768px;
+    margin-top: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fullWidthField {
+    grid-column: span 2;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+
+.input {
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #f3f9ed;;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.input:focus {
+    border-color: #9bbb8e;
+}
+
+.saveButton {
+    grid-column: span 2;
+    justify-self: center;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: #c5e1a5;
+    border: 1px solid #c5e1a5;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.saveButton:hover {
+    background: #b7ce9f;
+    border-color: #b7ce9f;
+}
+
+@media (max-width: 768px) {
+    .formWrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .fullWidthField {
+        grid-column: span 1;
+    }
+
+    .saveButton {
+        grid-column: span 1;
+        justify-self: stretch;
+    }
+}
