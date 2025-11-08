@@ -1,6 +1,7 @@
-import PopularCategories from "@/components/PopularCategories/PopularCategories";
-import Reviews from "@/components/Reviews/Reviews";
-import Style from "@/components/Style/Style";
+import Filters from '@/components/Filters/Filters';
+import PopularCategories from '@/components/PopularCategories/PopularCategories';
+import Reviews from '@/components/Reviews/Reviews';
+import Style from '@/components/Style/Style';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Style />
       <PopularCategories />
       <Reviews />
+      <Filters></Filters>
     </main>
   );
 }
