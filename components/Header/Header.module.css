@@ -1,22 +1,19 @@
 .section {
-  padding: 18px 0;
-  background-color: var(--color-deco-light);
+    padding: 18px 0;
+    background-color: var(--color-deco-light);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-}
-.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: var(--color-deco-light);
-  z-index: 1000;
-  
-}
 .burgerButton {
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 100px;

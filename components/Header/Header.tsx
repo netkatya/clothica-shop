@@ -10,19 +10,19 @@ export default function Header() {
   const [count, setCount] = useState(0);
 
   // Заборона скролу, коли меню відкрите
- useEffect(() => {
-  if (menuOpen) {
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-  } else {
-    const scrollY = document.body.style.top;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  }
-}, [menuOpen]);
+  useEffect(() => {
+    if (menuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }, [menuOpen]);
 
   // Функція для перевірки ширини вікна
   const checkScreenSize = () => {
@@ -40,22 +40,15 @@ export default function Header() {
     };
   }, []);
 
-// липки хедер 
-useEffect(() => {
-  const onScroll = () => {
-    const section = document.querySelector(`.${css.section}`);
-    if (!section) return;
+  useEffect(() => {
+    const onScroll = () => {
+      const section = document.querySelector(`.${css.section}`);
+      if (!section) return;
+    };
 
-    if (window.scrollY > 50) {
-      section.classList.add(css.sticky);
-    } else {
-      section.classList.remove(css.sticky);
-    }
-  };
-
-  window.addEventListener('scroll', onScroll);
-  return () => window.removeEventListener('scroll', onScroll);
-}, []);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <header className={css.section}>

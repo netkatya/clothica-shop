@@ -76,6 +76,7 @@
 
 html,
 body {
+  padding-top: 37px;
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
