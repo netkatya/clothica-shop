@@ -14,3 +14,16 @@ export function mergeById<T extends { _id: string }, U extends { _id: string }>(
     return { ...item, ...rest } as T & Omit<Partial<U>, '_id'>;
   });
 }
+
+export function getCurrentDate() {
+  const locale =
+    typeof navigator !== 'undefined' ? navigator.language : 'en-US';
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const dateString = new Date()
+    .toLocaleDateString(locale, { timeZone })
+    .replace(/\//g, '.')
+    .replace(/^(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4})$/, '$3.$2.$1');
+
+  return dateString;
+}
