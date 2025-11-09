@@ -2,18 +2,19 @@
 
 import { useRouter } from 'next/navigation';
 
+import Link from 'next/link';
+import clsx from 'clsx';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import type { FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
-// import { register, RegisterRequest } from '@/lib/api/clientApi';
-// import { ApiError } from '@/app/api/api';
-// import { useAuthStore } from '@/lib/store/authStore';
+import { login } from '@/lib/api/clientApi';
+import { ApiError } from '@/types/auth';
+import { useAuthStore } from '@/lib/store/authStore';
+import { UserLogin } from '@/types/user';
 
 import css from './LoginForm.module.css';
-import Link from 'next/link';
-import clsx from 'clsx';
-import { UserLogin } from '@/types/user';
 
 const initialFormValues: UserLogin = {
   phone: '',
@@ -32,15 +33,34 @@ const UserSchema = Yup.object().shape({
 
 const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
   const router = useRouter();
-
-  // const setUser = useAuthStore((state) => state.setUser);
+  const [error, setError] = useState('');
+  const setUser = useAuthStore(state => state.setUser);
 
   const handleSubmit = async (
     values: UserLogin,
     formikHelpers: FormikHelpers<UserLogin>
   ) => {
-    //зберегти дані на бек, якщо все ок, то переадресувати на кабінет користувача
-    router.push('/profile');
+    try {
+      const res = await login(values);
+      if (res) {
+        setUser(res);
+        router.push('/profile');
+      } else {
+        setError('Invalid phone or password');
+      }
+    } catch (err) {
+      const errorAPI = err as ApiError;
+      if (errorAPI.response?.status === 400) {
+        setError('User with this phone already exists');
+      } else {
+        setError(
+          errorAPI.response?.data?.error ??
+            errorAPI.message ??
+            'Oops... some error'
+        );
+      }
+    }
+
     formikHelpers.resetForm();
   };
 
@@ -113,9 +133,11 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
               />
             </div>
 
+            {error && <p className={css.apiErrorMessage}>{error}</p>}
+
             <div className={css.actions}>
               <button type="submit" className={css.submitButton}>
-                Зареєструватися
+                Увійти
               </button>
             </div>
           </Form>

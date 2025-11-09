@@ -1,21 +1,27 @@
 export interface User {
-  email: string;
   phone: string;
+  email: string;
   name: string;
   avatar: string;
-  telegramChatId: string | null;
-  telegramLinked: boolean;
-  id: string;
 }
 
 export interface UserPost {
-  email?: string;
   phone: string;
-  name?: string;
   password: string;
+  name?: string;
 }
 
 export interface UserLogin {
   phone: string;
   password: string;
+}
+
+export interface UserProfile {
+  name: string;
+  lastname: string;
+  phone: string;
+  city: string;
+  branchnum_np: string;
+  email: string;
+  avatar: string;
 }

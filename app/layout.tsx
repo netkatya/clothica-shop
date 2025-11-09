@@ -18,6 +18,32 @@ export const metadata: Metadata = {
   title: 'Clothica',
   description:
     'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
+  openGraph: {
+    type: 'website',
+    //change adress
+    url: 'https://online-shop-chi-flame.vercel.app',
+    title: 'Clothica',
+    description:
+      'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
+    images: [
+      {
+        //change
+        url: 'https://online-shop-chi-flame.vercel.app/img/main-page.png',
+        width: 1200,
+        height: 630,
+        alt: 'Clothica',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@yourTwitterHandle',
+    title: 'Clothica',
+    description:
+      'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
+    //change
+    images: ['https://online-shop-chi-flame.vercel.app/img/main-page.png'],
+  },
 };
 
 export default function RootLayout({
