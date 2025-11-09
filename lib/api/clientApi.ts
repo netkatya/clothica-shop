@@ -9,7 +9,7 @@ import {
 } from '@/types/auth';
 import { User } from '@/types/user';
 import { Gender, Good, Size } from '@/types/goods';
-import { Category } from '@/types/categoty';
+import { Category } from '@/types/category';
 
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>('/auth/register', data);
