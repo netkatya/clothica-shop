@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import css from './Product.module.css';
 import Image from 'next/image';
 import tShirtImg from '../../public/img/PlaceholderImage.png';
@@ -8,6 +11,7 @@ interface ProductProps {
 }
 
 export default function Product({ goodId }: ProductProps) {
+  const [value, setValue] = useState<number>(1);
   return (
     <section className={css.section}>
       <div className="container">
@@ -49,7 +53,13 @@ export default function Product({ goodId }: ProductProps) {
               </div>
               <div className={css.inputContainer}>
                 <button className={css.addToBucket}>Додати в кошик</button>
-                <input className={css.quantityInput}></input>
+                <input
+                  type="number"
+                  min={1}
+                  value={value || 1}
+                  className={css.quantityInput}
+                  onChange={e => setValue(Number(e.target.value))}
+                ></input>
               </div>
             </div>
             <button className={css.buyNow}>Купити зараз</button>

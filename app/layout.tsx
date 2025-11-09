@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import { Inter, Nunito_Sans } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import type { Metadata } from 'next';
+import { Inter, Nunito_Sans } from 'next/font/google';
+import './globals.css';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  variable: '--font-inter',
+  subsets: ['latin'],
 });
 
 const nunitoSans = Nunito_Sans({
-  variable: "--font-nunito-sans",
-  subsets: ["latin"],
+  variable: '--font-nunito-sans',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Clothica",
+  title: 'Clothica',
   description:
-    "Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.",
+    'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
 };
 
 export default function RootLayout({
@@ -30,6 +30,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <Header />
         <main>{children}</main>
+        <div id="modal-root"></div>
         <Footer />
       </body>
     </html>

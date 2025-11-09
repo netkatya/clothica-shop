@@ -57,10 +57,11 @@
 .size {
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 16px;
-  padding: 8px;
+  padding: 8px 36px 8px 12px;
   width: 100%;
   height: 40px;
   background: var(--opacity-transparent);
+  background-position: right 20px center;
 }
 .inputContainer {
   display: flex;
@@ -81,7 +82,16 @@
   color: var(--color-neutral-darkest);
   margin-bottom: 16px;
 }
+.addToBucket:hover,
+.addToBucket:focus {
+  border: 1px solid var(--color-deco-darker);
 
+  background: var(--color-deco-dark);
+}
+.addToBucket:active {
+  border: 1px solid var(--color-deco);
+  background: var(--color-deco-darkest);
+}
 .quantityInput {
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 16px;
@@ -104,6 +114,13 @@
   line-height: 150%;
   color: var(--color-neutral-darkest);
   margin-bottom: 16px;
+}
+.buyNow:hover,
+.buyNow:focus {
+  border: 1px solid var(--opacity-neutral-darkest-50);
+}
+.buyNow:active {
+  border: 1px solid var(--opacity-transparent);
 }
 .freeDelivery {
   font-family: var(--font-family);

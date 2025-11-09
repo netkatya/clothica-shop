@@ -89,6 +89,7 @@ const reviewsData = [
 type ReviewsSliderProps = {
   hasProductText?: boolean;
   hasCenteredButtons?: boolean;
+  reviews?: { username: string; message: string }[];
 };
 
 export default function ReviewsSlider({

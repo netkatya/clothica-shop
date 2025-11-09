@@ -1,0 +1,44 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.modal {
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 40px 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px 64px;
+    width: 704px;
+    height: 587px;
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .modal {
+    border-radius: 16px;
+    padding: 64px;
+    width: 768px;
+    height: 650px;
+    max-width: 768px;
+  }
+}
