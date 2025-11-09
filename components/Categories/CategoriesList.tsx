@@ -12,6 +12,8 @@ export default function CategoriesList() {
   const [maxVisible, setMaxVisible] = useState(4);
   const [maxHeight, setMaxHeight] = useState<number>(0);
   const listRef = useRef<HTMLUListElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
 
   // count of columns and visiable items for user 
   useEffect(() => {
@@ -52,8 +54,28 @@ export default function CategoriesList() {
     setMaxHeight(totalHeight);
   }, [showAll, columns, maxVisible]);
 
+  //smooth scroll of Categories section
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const top = sectionRef.current.offsetTop;
+    const bottom = sectionRef.current.offsetTop + sectionRef.current.offsetHeight;
+
+    if (showAll) {
+      window.scrollTo({
+        top: bottom,
+        behavior: "smooth"
+      });
+    } else {
+      window.scrollTo({
+        top: top - 20,
+        behavior: "smooth"
+      });
+    }
+  }, [showAll, maxHeight]);
+
   return (
-    <section className={css.categoriesSection}>
+    <section className={css.categoriesSection} ref={sectionRef}>
       <div className="container">
         <div className={css.containerWrapper}>
           <h2 className={css.title}>Категорії</h2>
