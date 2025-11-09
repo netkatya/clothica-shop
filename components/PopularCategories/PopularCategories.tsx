@@ -9,7 +9,7 @@ import { Navigation, Keyboard, A11y } from 'swiper/modules';
 import { useState } from 'react';
 import Image from 'next/image';
 
-const categoriesData = [
+export const categoriesData = [
   {
     img: '/img/categiries/t-shirts.png',
     category: 'Футболки',
