@@ -9,7 +9,8 @@ import UserInfoForm from '@/components/UserInfoForm/UserInfoForm';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 
-import styles from './page.module.css'; 
+import css from './page.module.css';
+import Loading from '@/app/loading';
 
 export default function ProfilePage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -27,14 +28,14 @@ export default function ProfilePage() {
         ]);
 
         setOrders(fetchedOrders);
-        
+
         setUser(
           fetchedUser || {
-            firstName: "",
-            lastName: "",
-            phone: "",
-            city: "",
-            npOffice: "",
+            firstName: '',
+            lastName: '',
+            phone: '',
+            city: '',
+            npOffice: '',
           }
         );
       } catch (err) {
@@ -51,57 +52,66 @@ export default function ProfilePage() {
     //
     // Коли з'явиться API, тут буде async-запит
     //
-    
+
     alert('Ви успішно вийшли з кабінету');
-    
+
     router.push('/auth/login');
-  }; 
-  
-  if (loading) return <div>Завантаження...</div>;
+  };
+
+  if (loading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   if (!user) return <div>Користувача не знайдено</div>;
 
   return (
-    <main className={styles.profilePage}>
-      <h1>Кабінет</h1>
+    <main className={css.profilePage}>
+      <div className="container">
+        <h1 className={css.title}>Кабінет</h1>
 
-      <div className={styles.contentWrapper}>
-        <section>
-          <h2>Мої замовлення</h2>
-          <OrdersList orders={orders} />
-        </section>
+        <div className={css.contentWrapper}>
+          <div className={css.formWraper}>
+            <h2 className={css.formTitle}>Особиста інформація</h2>
+            <Formik
+              initialValues={{
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phone: user.phone,
+                city: user.city,
+                npOffice: user.npOffice,
+              }}
+              onSubmit={async (values: UserProfile) => {
+                try {
+                  await updateUser(values);
+                  alert('Зміни збережено');
+                } catch (error) {
+                  console.error(error);
+                  alert('Помилка при збереженні');
+                }
+              }}
+            >
+              {formik => (
+                <Form>
+                  <UserInfoForm formik={formik} />
+                  <button type="submit" className={css.saveButton}>
+                    Зберегти зміни
+                  </button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div>
+            <h2>Мої замовлення</h2>
+            <OrdersList orders={orders} />
+          </div>
+        </div>
 
-        <section>
-          <h2>Особиста інформація</h2>
-          <Formik
-            initialValues={{
-              firstName: user.firstName,
-              lastName: user.lastName,
-              phone: user.phone,
-              city: user.city,
-              npOffice: user.npOffice,
-            }}
-            onSubmit={async (values: UserProfile) => {
-              try {
-                await updateUser(values);
-                alert('Зміни збережено');
-              } catch (error) {
-                console.error(error);
-                alert('Помилка при збереженні');
-              }
-            }}
-          >
-            {formik => (
-              <Form>
-                <UserInfoForm formik={formik} />
-              </Form>
-            )}
-          </Formik>
-        </section>
+        <button onClick={handleLogout} className={css.logoutButton}>
+          Вийти з кабінету
+        </button>
       </div>
-
-      <button onClick={handleLogout} className={styles.logoutButton}>
-        Вийти з кабінету
-      </button>
     </main>
   );
 }

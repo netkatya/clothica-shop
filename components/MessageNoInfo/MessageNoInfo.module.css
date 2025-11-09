@@ -19,20 +19,27 @@
 }
 
 .shopButton {
-    background: #c5e1a5;
-    border: 1px solid #c5e1a5;
+    background: var(--color-deco);
+    border: 1px solid var(--color-deco);
     border-radius: 100px;
     padding: 6px 12px;
 
-    color: #000;
+    color: var(--color-neutral-darkest);
     font-size: 16px;
     font-weight: 500;
 
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: all 0.25s ease-in-out;
 }
 
 .shopButton:hover {
-    background: #b7ce9f;
+    background: var(--color-deco-dark);
+    border: 1px solid var(--color-deco-darker);
+}
+
+@media screen and (min-width: 1440px) {
+    .noOrdersWrapper {
+        width: 640px;
+    }
 }

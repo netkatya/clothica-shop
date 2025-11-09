@@ -11,7 +11,6 @@ interface Props {
 export default function UserInfoForm({ formik }: Props) {
   return (
     <div className={styles.formWrapper}>
-      
       <div className={styles.field}>
         <label className={styles.label}>Ім’я*</label>
         <input
@@ -71,11 +70,6 @@ export default function UserInfoForm({ formik }: Props) {
           placeholder="1"
         />
       </div>
-
-      <button type="submit" className={styles.saveButton}>
-        Зберегти зміни
-      </button>
-
     </div>
   );
 }
