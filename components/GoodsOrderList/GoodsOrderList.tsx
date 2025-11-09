@@ -1,3 +1,5 @@
+'use client';
+
 import css from "./GoodsOrderList.module.css"
 import { useShopStore } from "@/lib/store/cartSrore"
 import Image from "next/image"
@@ -33,20 +35,31 @@ const GoodsOrderList = () => {
                     </div>
                     <div className={css.good_right}>
                         <p className={css.good_price}>{good.price} грн</p>
-                        <p className={css.good_quantity}>{good.quantity}</p>
-                        <button onClick={() => removeFromCart(good.goodId)}>
-                            <svg width="17" height="19" aria-hidden="true">
-                                <use href="/symbol-defs.svg#icon-trash-can"></use>
-                            </svg>
-                        </button>
+                        <div className={css.good_right_actions}>
+                            <p className={css.good_quantity}>{good.quantity}</p>
+                            <button onClick={() => removeFromCart(good.goodId)}>
+                                <svg width="17" height="19" aria-hidden="true">
+                                    <use href="/symbol-defs.svg#icon-trash-can"></use>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             ))}
-            <div className={css.total_price_wrapper}>
-                <p className={css.provisional_price}>Проміжний підсумок: {goodPrice} грн</p>
-                <p className={css.delivery_price}>Доставка: {deliveryPrice === 0 ? "" : `${deliveryPrice} грн`}</p>
-                <h3 className={css.total_price}>Всього: {totalPrice} грн</h3>
-            </div>
+            <ul className={css.total_price_wrapper}>
+                <li className={css.price_item}>
+                    <p className={css.provisional_price}>Проміжний підсумок </p>
+                    <p className={css.provisional_price_value}>{goodPrice} грн</p>
+                </li>
+                <li className={css.price_item}>
+                    <p className={css.delivery_price}>Доставка </p>
+                    <p className={css.delivery_price_value}>{deliveryPrice === 0 ? "" : `${deliveryPrice} грн`}</p>
+                </li>
+                <li className={css.price_item}>
+                    <h3 className={css.total_price}>Всього </h3>
+                    <h3 className={css.total_price_value}>{totalPrice} грн</h3>
+                </li>
+            </ul>
         </div>
     )
 }

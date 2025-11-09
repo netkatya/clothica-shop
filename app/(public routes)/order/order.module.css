@@ -1,71 +1,43 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.good_quantity, .good_price {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-}
-
-.good_numbers {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-}
-
-.good_name {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 150%;
-}
-
-.good_info {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-}
-
-.good_numbers {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-}
-.good_right {
-    display: flex;
-    flex-direction: row;
+    padding: 20px;
     gap: 32px;
 }
 
-.good_quantity {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-    padding: 8px;
-    text-align: start;
-    width: 64px;
-    height: 40px;
-}
-
-.total_price_wrapper {
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.provisional_price, delivery_price {
-    font-family: "Inter", sans-serif;
+.title {
+    font-family: var(--second-family);
     font-weight: 400;
-    font-size: 14px; 
-    line-height: 150%;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin-bottom: 48px;
 }
 
-.total_price {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 150%;
-    text-align: right;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.goods_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1440px) {
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    .goods_list {
+        max-width: 640px;
+    }
+}
+
