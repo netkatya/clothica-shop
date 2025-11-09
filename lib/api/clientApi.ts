@@ -137,9 +137,12 @@ export async function fetchCategoriesClient(
       perPage: String(perPage),
     };
 
-    const { data } = await nextServer.get<FetchGoodsResponse>('/categories', {
-      params,
-    });
+    const { data } = await nextServer.get<FetchCategoriesResponse>(
+      '/categories',
+      {
+        params,
+      }
+    );
     return data;
   } catch (error) {
     if (isAxiosError(error)) {
