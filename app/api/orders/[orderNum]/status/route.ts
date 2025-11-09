@@ -1,15 +1,22 @@
 import { isAxiosError } from 'axios';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { api } from '../../api';
+import { api } from '../../../api';
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ orderNum: string }>;
 };
 
-export async function GET(request: Request, { params }: Props) {
+export async function PATCH(request: Request, { params }: Props) {
   try {
-    const { id } = await params;
-    const res = await api(`/api/goods/${id}`);
+    const cookieStore = await cookies();
+    const { orderNum } = await params;
+    const body = await request.json();
+    const res = await api.patch(`/api/orders/${orderNum}/status`, body, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
+    });
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
     if (isAxiosError(error)) {
