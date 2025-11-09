@@ -8,8 +8,10 @@ import {
   UpdateRequest,
 } from '@/types/auth';
 import { User } from '@/types/user';
-import { Gender, Good, Size } from '@/types/goods';
+import { Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
+import { OrderGood, Order, OrderStatus } from '@/types/order';
+import { getCurrentDate } from '../utils';
 
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>('/auth/register', data);
@@ -153,3 +155,67 @@ export async function fetchCategoriesClient(
     throw new Error('Fetching categories failed');
   }
 }
+
+export const createOrderClient = async (
+  goods: OrderGood[],
+  sum: number,
+  userName: string,
+  userLastName: string,
+  userPhone: string,
+  branchnum_np: string,
+  comment?: string
+): Promise<Order> => {
+  try {
+    const { data } = await nextServer.post<Order>('/orders', {
+      goods,
+      date: getCurrentDate(),
+      sum,
+      status: 'new',
+      userName,
+      userLastName,
+      userPhone,
+      branchnum_np,
+      ...(comment && { comment }),
+    });
+    return data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || 'Creating order failed');
+    }
+    throw new Error('Creating order failed');
+  }
+};
+
+export const getOrdersClient = async (): Promise<Order[]> => {
+  try {
+    const { data } = await nextServer.get<Order[]>('/orders');
+    return data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || 'Fetching orders failed'
+      );
+    }
+    throw new Error('Fetching orders failed');
+  }
+};
+
+export const updateOrderClient = async (
+  orderNum: string,
+  status: OrderStatus
+): Promise<Order> => {
+  try {
+    const { data } = await nextServer.patch<Order>(
+      `/orders/${orderNum}/status`,
+      {
+        status,
+      }
+    );
+    return data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || 'Creating order failed');
+    }
+    throw new Error('Creating order failed');
+  }
+};
