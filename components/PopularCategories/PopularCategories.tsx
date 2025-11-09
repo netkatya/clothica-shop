@@ -74,7 +74,7 @@ export default function PopularCategories() {
   }, []);
 
   return (
-    <section className={css.section}>
+    <section className={css.section} id="PopularCategories">
       <div className="container">
         <div className={css.title_button}>
           <h2 className={css.title}>Популярні категорії</h2>
