@@ -29,15 +29,18 @@ export default function ProfilePage() {
 
         setOrders(fetchedOrders);
 
-        setUser(
-          fetchedUser || {
-            firstName: '',
-            lastName: '',
-            phone: '',
-            city: '',
-            npOffice: '',
-          }
-        );
+      setUser(
+        fetchedUser || {
+          name: '',
+          lastname: '',
+          phone: '',
+          city: '',
+          branchnum_np: '',
+          email: '',
+          avatar: '',
+        }
+      );
+
       } catch (err) {
         console.error(err);
       } finally {
@@ -76,11 +79,13 @@ export default function ProfilePage() {
             <h2 className={css.formTitle}>Особиста інформація</h2>
             <Formik
               initialValues={{
-                firstName: user.firstName,
-                lastName: user.lastName,
+                name: user.name,
+                lastname: user.lastname,
                 phone: user.phone,
                 city: user.city,
-                npOffice: user.npOffice,
+                branchnum_np: user.branchnum_np,
+                email: user.email,
+                avatar: user.avatar,
               }}
               onSubmit={async (values: UserProfile) => {
                 try {

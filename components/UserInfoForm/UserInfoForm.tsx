@@ -16,7 +16,7 @@ export default function UserInfoForm({ formik }: Props) {
         <input
           name="firstName"
           className={styles.input}
-          value={formik.values.firstName}
+          value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Ваше ім'я"
@@ -28,7 +28,7 @@ export default function UserInfoForm({ formik }: Props) {
         <input
           name="lastName"
           className={styles.input}
-          value={formik.values.lastName}
+          value={formik.values.lastname}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Ваше прізвище"
@@ -64,7 +64,7 @@ export default function UserInfoForm({ formik }: Props) {
         <input
           name="npOffice"
           className={styles.input}
-          value={formik.values.npOffice}
+          value={formik.values.branchnum_np}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="1"
