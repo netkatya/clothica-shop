@@ -1,19 +1,19 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-
+import Link from 'next/link';
+import clsx from 'clsx';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import type { FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
-// import { register, RegisterRequest } from '@/lib/api/clientApi';
-// import { ApiError } from '@/app/api/api';
-// import { useAuthStore } from '@/lib/store/authStore';
+import { register } from '@/lib/api/clientApi';
+import { ApiError } from '@/types/auth';
+import { useAuthStore } from '@/lib/store/authStore';
+import { UserPost } from '@/types/user';
 
 import css from './RegistrationForm.module.css';
-import Link from 'next/link';
-import clsx from 'clsx';
-import { UserPost } from '@/types/user';
 
 const initialFormValues: UserPost = {
   name: '',
@@ -36,15 +36,34 @@ const UserSchema = Yup.object().shape({
 
 const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
   const router = useRouter();
-
-  // const setUser = useAuthStore((state) => state.setUser);
+  const [error, setError] = useState('');
+  const setUser = useAuthStore(state => state.setUser);
 
   const handleSubmit = async (
     values: UserPost,
     formikHelpers: FormikHelpers<UserPost>
   ) => {
-    //зберегти дані на бек, якщо все ок, то переадресувати на кабінет користувача
-    router.push('/profile');
+    try {
+      const res = await register(values);
+      if (res) {
+        setUser(res);
+        router.push('/profile');
+      } else {
+        setError('Invalid phone or password');
+      }
+    } catch (err) {
+      const errorAPI = err as ApiError;
+      if (errorAPI.response?.status === 400) {
+        setError('User with this phone already exists');
+      } else {
+        setError(
+          errorAPI.response?.data?.error ??
+            errorAPI.message ??
+            'Oops... some error'
+        );
+      }
+    }
+
     formikHelpers.resetForm();
   };
 
@@ -135,6 +154,8 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
                 className={css.error}
               />
             </div>
+
+            {error && <p className={css.apiErrorMessage}>{error}</p>}
 
             <div className={css.actions}>
               <button type="submit" className={css.submitButton}>

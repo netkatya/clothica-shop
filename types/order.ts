@@ -1,7 +1,29 @@
-export interface Order {
-  id: string | number;
+import { Size } from './good';
+
+export type OrderGood = {
+  goodId: string;
+  amount: number;
+  size: Size;
+};
+
+export type OrderStatus =
+  | 'new'
+  | 'processing'
+  | 'picking'
+  | 'completed'
+  | 'cancelled';
+
+export type Order = {
+  _id: string;
+  goods: OrderGood[];
+  orderNum: string;
   date: string;
-  number: string | number;
-  total: number;
-  status: string;
-}
+  userId: string;
+  sum: number;
+  status: OrderStatus;
+  userName: string;
+  userLastName: string;
+  userPhone: string;
+  branchnum_np: string;
+  comment?: string;
+};

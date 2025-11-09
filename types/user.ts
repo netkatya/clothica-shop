@@ -1,18 +1,14 @@
 export interface User {
-  email: string;
   phone: string;
+  email: string;
   name: string;
   avatar: string;
-  telegramChatId: string | null;
-  telegramLinked: boolean;
-  id: string;
 }
 
 export interface UserPost {
-  email?: string;
   phone: string;
-  name?: string;
   password: string;
+  name?: string;
 }
 
 export interface UserLogin {
@@ -20,11 +16,12 @@ export interface UserLogin {
   password: string;
 }
 
-// profilePage
 export interface UserProfile {
-  firstName: string;
-  lastName: string;
+  name: string;
+  lastname: string;
   phone: string;
   city: string;
-  npOffice: string;
+  branchnum_np: string;
+  email: string;
+  avatar: string;
 }
