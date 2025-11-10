@@ -35,7 +35,9 @@ export default function ProfilePage() {
             lastname: '',
             phone: '',
             city: '',
-            npOffice: '',
+            branchnum_np: '',
+            email: '',
+            avatar: '',
           }
         );
       } catch (err) {
@@ -76,11 +78,13 @@ export default function ProfilePage() {
             <h2 className={css.formTitle}>Особиста інформація</h2>
             <Formik
               initialValues={{
-                firstName: user.firstName,
-                lastName: user.lastName,
+                name: user.name,
+                lastname: user.lastname,
                 phone: user.phone,
                 city: user.city,
-                npOffice: user.npOffice,
+                branchnum_np: user.branchnum_np,
+                email: user.email,
+                avatar: user.avatar,
               }}
               onSubmit={async (values: UserProfile) => {
                 try {
