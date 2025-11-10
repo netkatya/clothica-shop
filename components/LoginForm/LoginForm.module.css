@@ -65,22 +65,6 @@
   color: var(--color-neutral-darkest);
 }
 
-.input {
-  background-color: inherit;
-  transition: border-color 0.2s ease;
-
-  border: 1px solid var(--opacity-neutral-darkest-15);
-  border-radius: 16px;
-  padding: 11px 8px;
-
-  font-family: var(--font-inter);
-  font-weight: 400;
-  font-size: 16px;
-
-  line-height: 1.5;
-  color: var(--opacity-neutral-darkest-60);
-}
-
 .actions {
   display: flex;
   justify-content: center;
