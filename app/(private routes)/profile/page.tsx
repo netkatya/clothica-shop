@@ -31,8 +31,8 @@ export default function ProfilePage() {
 
         setUser(
           fetchedUser || {
-            firstName: '',
-            lastName: '',
+            name: '',
+            lastname: '',
             phone: '',
             city: '',
             npOffice: '',
