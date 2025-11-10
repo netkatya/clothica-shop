@@ -14,7 +14,7 @@ export default function UserInfoForm({ formik }: Props) {
       <div className={styles.field}>
         <label className={styles.label}>Ім’я*</label>
         <input
-          name="firstName"
+          name="name"
           className={styles.input}
           value={formik.values.name}
           onChange={formik.handleChange}
@@ -26,7 +26,7 @@ export default function UserInfoForm({ formik }: Props) {
       <div className={styles.field}>
         <label className={styles.label}>Прізвище*</label>
         <input
-          name="lastName"
+          name="lastname"
           className={styles.input}
           value={formik.values.lastname}
           onChange={formik.handleChange}
@@ -62,7 +62,7 @@ export default function UserInfoForm({ formik }: Props) {
       <div className={styles.field}>
         <label className={styles.label}>Номер відділення НП*</label>
         <input
-          name="npOffice"
+          name="branchnum_np"
           className={styles.input}
           value={formik.values.branchnum_np}
           onChange={formik.handleChange}
