@@ -63,8 +63,8 @@
   --color-scheme-6-foreground: var(--color-deco-dark);
   --color-red: #9d0000;
 
-  --font-inter: "Inter", sans-serif;
-  --second-family: "Nunito Sans", sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --second-family: 'Nunito Sans', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {

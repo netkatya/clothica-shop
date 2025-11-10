@@ -41,9 +41,18 @@ export default function ProfilePage() {
         ]);
 
         setOrders(fetchedOrders);
-        setUser({
-          ...fetchedUser,
-        });
+
+        setUser(
+          fetchedUser || {
+            name: '',
+            lastname: '',
+            phone: '',
+            city: '',
+            branchnum_np: '',
+            email: '',
+            avatar: '',
+          }
+        );
       } catch (err) {
         console.error(err);
       } finally {
