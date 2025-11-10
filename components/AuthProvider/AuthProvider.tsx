@@ -3,14 +3,13 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '@/lib/store/authStore';
 import { getMe } from '@/lib/api/clientApi';
-// @ts-nocheck
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user, clearIsAuthenticated, setLoading, setUser } = useAuthStore();
+  const { clearIsAuthenticated, setLoading, setUser } = useAuthStore();
 
   useEffect(() => {
     const checkUser = async () => {
