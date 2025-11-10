@@ -10,7 +10,7 @@ export default function OrdersList({ orders }: { orders: Order[] }) {
   return (
     <div>
       {orders.map(order => (
-        <OrderItem key={order.id} order={order} />
+        <OrderItem key={order._id} order={order} />
       ))}
     </div>
   );
