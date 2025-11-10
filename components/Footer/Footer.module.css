@@ -78,6 +78,15 @@
   line-height: 150%;
   color: #000;
 }
+@media screen and (max-width: 375) {
+  .input {
+    max-width: 195px;
+  }
+
+  .button {
+    max-width: 124px;
+  }
+}
 .socials {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 32px;
