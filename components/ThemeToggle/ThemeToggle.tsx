@@ -3,18 +3,17 @@
 import { useEffect, useState } from 'react';
 import css from './ThemeToggle.module.css';
 
+const DARKREADER_OPTIONS = { brightness: 80, contrast: 90, sepia: 10 };
+
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme');
-
     import('darkreader').then(DarkReader => {
-      const enableDark = () =>
-        DarkReader.enable({ brightness: 100, contrast: 90, sepia: 10 });
-
+      const enableDark = () => DarkReader.enable(DARKREADER_OPTIONS);
       const disableDark = () => DarkReader.disable();
 
+      const stored = localStorage.getItem('theme');
       if (stored === 'dark') {
         enableDark();
         setIsDark(true);
@@ -33,9 +32,8 @@ export default function ThemeToggle() {
 
   const toggle = async () => {
     const DarkReader = await import('darkreader');
-
     if (!isDark) {
-      DarkReader.enable({ brightness: 80, contrast: 90, sepia: 10 });
+      DarkReader.enable(DARKREADER_OPTIONS);
       localStorage.setItem('theme', 'dark');
       setIsDark(true);
     } else {
