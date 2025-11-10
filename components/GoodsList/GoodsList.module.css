@@ -1,0 +1,179 @@
+.image {
+  border-radius: 16px;
+  width: 335px;
+  height: 412px;
+  margin-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  width: 260px;
+  margin-right: 16px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+
+.detail {
+  cursor: pointer;
+  outline: none;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 100px;
+  padding: 4px 10px;
+  width: 335px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.05);
+  transition: background 250ms ease-in-out;
+  color: var(--color-neutral-darkest);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.detail:hover,
+.detail:focus {
+  border: 1px solid var(--color-deco);
+  background: var(--opacity-neutral-darkest-50);
+}
+
+.swiper {
+  margin-bottom: 40px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 9px;
+}
+
+.paginationContainer {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.paginationContainer :global(.swiper-pagination-bullet) {
+  background-color: #cccccc;
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.paginationContainer :global(.swiper-pagination-bullet-active) {
+  background-color: #000000;
+}
+
+.paginationContainer :global(.swiper-pagination-bullet-prev),
+.paginationContainer :global(.swiper-pagination-bullet-next) {
+  background-color: #cccccc;
+  width: 10px;
+  height: 10px;
+}
+
+.buttonControls {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.btnPrev,
+.btnNext {
+  border: 1px solid var(--color-scheme-1-background);
+  border-radius: 100px;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-scheme-5-foreground);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 250ms ease-in-out;
+}
+
+.btnPrev:hover,
+.btnNext:hover {
+  background: var(--color-deco-dark);
+}
+
+.btnNext:disabled,
+.btnNext:disabled {
+  background: var(--color-deco);
+
+  opacity: 0.4;
+}
+
+@media screen and (min-width: 768px) {
+  .sliderContainer {
+    margin-bottom: 0px;
+    position: relative;
+    overflow: visible;
+  }
+  .item {
+    z-index: 2;
+  }
+
+  .image {
+    border-radius: 16px;
+    width: 336px;
+    height: 414px;
+  }
+  .buttonControls {
+    position: absolute;
+    top: 50%;
+    left: -28px;
+    width: 108%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .paginationContainer {
+  }
+  .btnPrev,
+  .btnNext {
+    pointer-events: auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .image {
+    border-radius: 16px;
+    width: 304px;
+    height: 374px;
+  }
+
+  .buttonControls {
+    left: -28px;
+    width: 104%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .detail {
+    width: 304px;
+    height: 40px;
+  }
+}
