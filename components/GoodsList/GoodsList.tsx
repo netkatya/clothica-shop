@@ -6,15 +6,19 @@ import { Navigation, Keyboard, A11y, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
 import css from './GoodsList.module.css';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { fetchGoodsClient } from '@/lib/api/clientApi';
 
-interface GoodsListInt {
-  products: {
-    img: string;
-    category: string;
-  }[];
-}
+import { AiFillStar } from 'react-icons/ai';
 
-export default function GoodsList({ products }: GoodsListInt) {
+export default function GoodsList() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['goods'],
+    queryFn: () => fetchGoodsClient(),
+    placeholderData: keepPreviousData,
+    refetchOnMount: false,
+  });
+  const goods = data?.data ?? [];
   return (
     <div className={css.sliderContainer}>
       <Swiper
@@ -27,6 +31,9 @@ export default function GoodsList({ products }: GoodsListInt) {
         pagination={{
           clickable: true,
           el: `.${css.paginationContainer}`,
+          type: 'bullets',
+          dynamicBullets: true,
+          dynamicMainBullets: 2,
         }}
         spaceBetween={32}
         slidesPerView={1}
@@ -38,24 +45,34 @@ export default function GoodsList({ products }: GoodsListInt) {
         className={css.swiper}
         a11y={{ enabled: true }}
       >
-        {products.map((item, index) => (
-          <SwiperSlide key={index} className={css.item}>
+        {goods.map(good => (
+          <SwiperSlide key={good._id} className={css.item}>
             <div>
               <Image
-                src={item.img}
-                alt={item.category}
+                src={good.image}
+                alt={good.name}
                 width={335}
                 height={223}
                 className={css.image}
               />
               <div className={css.info}>
-                <p className={css.name}>Базова футболка Clothica</p>
-                <p className={css.price}>1499 грн</p>
+                <p className={css.name}>{good.name}</p>
+                <p className={css.price}>
+                  {good.price.value} {good.price.currency}
+                </p>
               </div>
-              <div>
-                <p>star 5</p>
+              <div className={css.reviews}>
+                <p>
+                  <AiFillStar /> {''}5
+                </p>
+                <p>
+                  <svg width="16" height="16" aria-hidden="true">
+                    <use href="/symbol-defs.svg#icon-comment"></use>
+                  </svg>{' '}
+                  {good.feedbacks.length}
+                </p>
               </div>
-              <Link href="/goods">
+              <Link href={`/goods/${good._id}`}>
                 <button className={css.detail}>Детальніше</button>
               </Link>
             </div>

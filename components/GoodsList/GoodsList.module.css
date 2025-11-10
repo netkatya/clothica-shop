@@ -15,12 +15,20 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 150%;
+  width: 260px;
+  margin-right: 16px;
 }
 
 .price {
   font-weight: 600;
   font-size: 20px;
   line-height: 150%;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
 }
 
 .detail {
@@ -58,8 +66,8 @@
 }
 
 .paginationContainer {
-  display: flex;
-  gap: 9px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .paginationContainer :global(.swiper-pagination-bullet) {
@@ -120,7 +128,6 @@
     position: relative;
     overflow: visible;
   }
-
   .item {
     z-index: 2;
   }
@@ -142,7 +149,6 @@
     z-index: 10;
   }
   .paginationContainer {
-    justify-content: center;
   }
   .btnPrev,
   .btnNext {

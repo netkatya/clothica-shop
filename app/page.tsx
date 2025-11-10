@@ -1,6 +1,6 @@
-import GoodsList from '@/components/GoodsList/GoodsList';
 import Hero from '@/components/Hero/Hero';
 import PopularCategories from '@/components/PopularCategories/PopularCategories';
+import PopularGoods from '@/components/PopularGoods/PopularGoods';
 import Reviews from '@/components/Reviews/Reviews';
 import Style from '@/components/Style/Style';
 
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <Style />
       <PopularCategories />
-      <GoodsList />
+      <PopularGoods />
       <Reviews />
     </main>
   );

@@ -1,50 +1,32 @@
-'use client';
 import css from './PopularGoods.module.css';
 import Link from 'next/link';
 import GoodsList from '../GoodsList/GoodsList';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { fetchGoodsClient } from '@/lib/api/clientApi';
 
-const categoriesData = [
-  {
-    img: '/img/categiries/t-shirts.png',
-    category: 'Футболки',
-  },
-  {
-    img: '/img/categiries/hoodies.png',
-    category: 'Худі та світшоти',
-  },
-  {
-    img: '/img/categiries/trousers.png',
-    category: 'Джинси та штани',
-  },
-  {
-    img: '/img/categiries/dresses.png',
-    category: 'Сукні та спідниці',
-  },
-  {
-    img: '/img/categiries/coats.png',
-    category: 'Куртки та верхній одяг',
-  },
-  {
-    img: '/img/categiries/homewear.png',
-    category: 'Домашній та спортивний одяг',
-  },
-  {
-    img: '/img/categiries/tops.png',
-    category: 'Топи та майки',
-  },
-];
-
-export default function PopularGoods() {
+export default async function PopularGoods() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['goods'],
+    queryFn: () => fetchGoodsClient(),
+  });
   return (
     <section className={css.section}>
       <div className="container">
         <div className={css.title_button}>
-          <h2 className={css.title}>Популярні категорії</h2>
+          <h2 className={css.title}>Популярні товари</h2>
           <Link href="/goods" className={css.button}>
             Всі товари
           </Link>
         </div>
-        <GoodsList products={categoriesData} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          {' '}
+          <GoodsList />
+        </HydrationBoundary>
       </div>
     </section>
   );
