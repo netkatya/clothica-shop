@@ -10,8 +10,6 @@ export default function Home() {
       <Style />
       <PopularCategories />
       <Reviews />
-      {/* <Filters></Filters> */}
-      {/* <SidebarFilters></SidebarFilters> */}
     </main>
   );
 }

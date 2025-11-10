@@ -2,19 +2,18 @@
 import css from './FilterContent.module.css';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import { useState } from 'react';
-const SIZES = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
-const COLORS = [
-  'Білий',
-  'Чорний',
-  'Сірий',
-  'Синій',
-  'Зелений',
-  'Червоний',
-  'Пастельні відтінки',
-];
+import { SIZES, COLORS } from '@/constants/goods';
+import { fetchCategoriesClient } from '@/lib/api/clientApi';
+import { useQuery } from '@tanstack/react-query';
+
 const STATUS_OPTIONS = ['Всі', 'Жіночий', 'Чоловічий', 'Унісекс'];
 
 export default function FilterContent() {
+  const { data, isLoading } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => fetchCategoriesClient(1, 7),
+    refetchOnWindowFocus: false,
+  });
   const [selectedColors, setSelectedColors] = useState<string[]>(['Білий']);
   const [selectedStatus, setSelectedStatus] = useState<string>('Всі');
   const handleColorClick = (color: string) => {
@@ -27,17 +26,26 @@ export default function FilterContent() {
       }
     });
   };
+  const categories = data?.data ?? [];
   return (
     <div className={css.filterContentContainer}>
+      <div className={css.filterHeader}>
+        <h3>Категорії</h3>
+        <button
+          type="button"
+          // onClick={() => onFilterChange('sizes', [])}
+          className={css.clearButtonInternal}
+        >
+          Очистити
+        </button>
+      </div>
       <ul className={css.categoryList}>
         <li className={css.category}>Усі</li>
-        <li className={css.category}>Футболки та сорочки</li>
-        <li className={css.category}>Штани та джинси</li>
-        <li className={css.category}>Верхній одяг</li>
-        <li className={css.category}>Топи та майки</li>
-        <li className={css.category}>Сукні та спідниці</li>
-        <li className={css.category}>Домашній та спортивний одяг</li>
-        <li className={css.category}>Худі та кофти</li>
+        {categories.map(category => (
+          <li className={css.category} key={category._id}>
+            {category.name}
+          </li>
+        ))}
       </ul>
       <hr className={css.divider} />
 

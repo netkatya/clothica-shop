@@ -3,6 +3,7 @@ import css from './Filters.module.css';
 
 import FilterContent from '../FilterContent/FilterContent';
 import { useState } from 'react';
+import { QueryClient } from '@tanstack/react-query';
 
 export default function Filters() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
