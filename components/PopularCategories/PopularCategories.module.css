@@ -30,13 +30,13 @@
     font-size: 16px;
     line-height: 150%;
     color: var(--color-neutral-darkest);
-    transition: background 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
 }
 
 .button:hover,
 .button:focus {
-    border: 1px solid var(--color-deco);
-    background: var(--opacity-neutral-darkest-50);
+    border: 1px solid var(--opacity-neutral-darkest-50);
+    background: var(--opacity-neutral-darkest-15);
     
 }
 

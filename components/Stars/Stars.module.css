@@ -1,0 +1,31 @@
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+.starFull {
+    color: #000000;
+    width: 20px;
+    height: 20px;
+}
+
+.starEmpty {
+    color: #000000;
+    width: 20px;
+    height: 20px;
+}
+
+.starPartialWrapper {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.starPartialFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
