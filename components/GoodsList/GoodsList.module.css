@@ -84,15 +84,14 @@
 }
 
 .paginationContainer {
+  
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
 }
 
-.paginationContainer :global(.swiper-pagination-bullet) {
-  background-color: #cccccc;
-  opacity: 1;
-  width: 8px;
-  height: 8px;
+.paginationContainer  {
+  background-color: inherit;
+  /* opacity: 1; */
   transition: all 0.3s ease-in-out;
 }
 
@@ -100,12 +99,14 @@
   background-color: #000000;
 }
 
-.paginationContainer :global(.swiper-pagination-bullet-prev),
-.paginationContainer :global(.swiper-pagination-bullet-next) {
-  background-color: #cccccc;
+/* .paginationContainer :global(.swiper-pagination-bullet-prev),
+.paginationContainer :global(.swiper-pagination-bullet-next) { */
+  /* background-color: #cccccc;
   width: 10px;
-  height: 10px;
-}
+  height: 10px; */
+/* } */
+
+
 
 .buttonControls {
   display: flex;
@@ -155,6 +156,9 @@
     width: 336px;
     height: 380px;
   }
+
+  
+
   .buttonControls {
     position: absolute;
     top: 35%;

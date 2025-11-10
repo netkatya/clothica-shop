@@ -33,7 +33,7 @@ export default function GoodsList() {
           el: `.${css.paginationContainer}`,
           type: 'bullets',
           dynamicBullets: true,
-          dynamicMainBullets: 2,
+          dynamicMainBullets: 1,
         }}
         spaceBetween={32}
         slidesPerView={1}
