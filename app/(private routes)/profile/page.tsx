@@ -88,8 +88,6 @@ export default function ProfilePage() {
     values: UserProfile,
     formikHelpers: FormikHelpers<UserProfile>
   ) => {
-    console.log(values);
-
     try {
       const updatedUser = await updateMe(values);
       if (updatedUser) {
