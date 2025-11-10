@@ -33,9 +33,9 @@ export const resetPassword = async (data: ResetPassword) => {
   return res.data;
 };
 
-export const getMe = async () => {
-  const res = await nextServer.get<User>('/users/profile');
-  return res.data;
+export const getMe = async (): Promise<User> => {
+  const { data } = await nextServer.get<User>('/users/profile');
+  return data;
 };
 
 export const getMeTelegramLink = async () => {
@@ -48,8 +48,17 @@ export const logout = async (): Promise<void> => {
 };
 
 export async function updateMe(update: Partial<UpdateRequest>): Promise<User> {
-  const { data } = await nextServer.patch<User>('/users/profile', update);
-  return data;
+  try {
+    const { data } = await nextServer.patch<User>('/users/profile', update);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || 'Updating profile failed'
+      );
+    }
+    throw new Error('Updating profile failed');
+  }
 }
 
 export async function updateMeAvatar(update: File): Promise<User> {
@@ -186,7 +195,7 @@ export const createOrderClient = async (
   }
 };
 
-export const getOrdersClient = async (): Promise<Order[]> => {
+export const fetchOrdersClient = async (): Promise<Order[]> => {
   try {
     const { data } = await nextServer.get<Order[]>('/orders');
     return data;
