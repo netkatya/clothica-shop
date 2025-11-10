@@ -135,7 +135,6 @@ export default function ProfilePage() {
           <div className={css.formWraper}>
             <h2 className={css.formTitle}>Особиста інформація</h2>
             <Formik
-              enableReinitialize
               initialValues={{
                 ...user,
               }}
