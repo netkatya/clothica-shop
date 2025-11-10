@@ -1,0 +1,118 @@
+.profilePage {
+    padding-top: 64px;
+    padding-bottom: 48px;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.title {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--color-scheme-1-text);
+}
+
+.formTitle {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--color-scheme-1-text);
+}
+
+.saveButton {
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: var(--color-deco);
+    border: 1px solid var(--color-deco);
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-neutral-darkest);
+    transition: all 0.25s ease-in-out;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.saveButton:hover {
+    background: var(--color-deco-dark);
+    border: 1px solid var(--color-deco-darker);
+}
+
+.logoutButton {
+    display: block;
+    margin: 32px auto 0 auto;
+    background: var(--opacity-neutral-darkest-5);
+    border: 1px solid var(--opacity-transparent);
+    border-radius: 100px;
+    padding: 6px 12px;
+    font-family: var(--font-family);
+    color: var(--color-neutral-darkest);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    transition: all 0.25s ease-in-out;
+    width: 100%;
+}
+
+.logoutButton:hover {
+    background: var(--opacity-neutral-darkest-15);
+    border: 1px solid var(--opacity-neutral-darkest-50);
+}
+
+@media screen and (min-width: 768px) {
+    .saveButton {
+        display: block;
+        width: 160px;
+        height: 36px;
+        margin: 0 auto;
+        margin-top: 24px;
+    }
+
+    .logoutButton {
+        width: 160px;
+        height: 36px;
+    }
+}
+
+.profilePage h1 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+    margin-bottom: 32px;
+}
+
+.profilePage h2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #000;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+@media screen and (min-width: 1440px) {
+    .contentWrapper {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    .formWraper {
+        width: 640px;
+    }
+
+}

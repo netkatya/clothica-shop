@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import css from "./CategoriesList.module.css";
-import { categoriesData } from "@/components/PopularCategories/PopularCategories";
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import css from './CategoriesList.module.css';
+import { categoriesArray } from '@/components/PopularCategories/PopularCategories';
+import { fetchCategoriesClient } from '@/lib/api/clientApi';
+import { Category } from '@/types/category';
+import { mergeById } from '@/lib/utils';
 
 export default function CategoriesList() {
   const [showAll, setShowAll] = useState(false);
@@ -14,8 +17,30 @@ export default function CategoriesList() {
   const listRef = useRef<HTMLUListElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  const [categoriesData, setCategoriesData] = useState<Category[]>([]);
 
-  // count of columns and visiable items for user 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchCategoriesClient(1, 7);
+
+        const extendedData = mergeById(
+          data.data,
+          categoriesArray.map(({ img, _id }) => ({
+            _id,
+            img,
+          }))
+        );
+        setCategoriesData(extendedData);
+      } catch {
+        setCategoriesData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // count of columns and visiable items for user
   useEffect(() => {
     const updateLayout = () => {
       const w = window.innerWidth;
@@ -32,8 +57,8 @@ export default function CategoriesList() {
     };
 
     updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   // calculating height for transition of list
@@ -41,7 +66,10 @@ export default function CategoriesList() {
     if (!listRef.current) return;
 
     const visibleCount = showAll ? categoriesData.length : maxVisible;
-    const children = Array.from(listRef.current.children).slice(0, visibleCount) as HTMLElement[];
+    const children = Array.from(listRef.current.children).slice(
+      0,
+      visibleCount
+    ) as HTMLElement[];
 
     const rowHeights: number[] = [];
     for (let i = 0; i < children.length; i += columns) {
@@ -50,26 +78,28 @@ export default function CategoriesList() {
       rowHeights.push(rowHeight);
     }
 
-    const totalHeight = rowHeights.reduce((sum, h) => sum + h, 0) + (rowHeights.length - 1) * 32;
+    const totalHeight =
+      rowHeights.reduce((sum, h) => sum + h, 0) + (rowHeights.length - 1) * 32;
     setMaxHeight(totalHeight);
-  }, [showAll, columns, maxVisible]);
+  }, [showAll, columns, maxVisible, categoriesData]);
 
   //smooth scroll of Categories section
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const top = sectionRef.current.offsetTop;
-    const bottom = sectionRef.current.offsetTop + sectionRef.current.offsetHeight;
+    const bottom =
+      sectionRef.current.offsetTop + sectionRef.current.offsetHeight;
 
     if (showAll) {
       window.scrollTo({
         top: bottom,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     } else {
       window.scrollTo({
         top: top - 20,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     }
   }, [showAll, maxHeight]);
@@ -90,7 +120,7 @@ export default function CategoriesList() {
             }}
           >
             {categoriesData.map((item, index) => {
-              const slug = item.category.toLowerCase().replace(/\s+/g, '-');
+              const slug = item._id;
               const isVisible = showAll || index < maxVisible;
 
               return (
@@ -106,12 +136,12 @@ export default function CategoriesList() {
                   <Link href={`/categories/${slug}`} className={css.card}>
                     <Image
                       src={item.img}
-                      alt={item.category}
+                      alt={item.name}
                       width={336}
                       height={223}
                       className={css.image}
                     />
-                    <p className={css.name}>{item.category}</p>
+                    <p className={css.name}>{item.name}</p>
                   </Link>
                 </li>
               );
@@ -123,7 +153,7 @@ export default function CategoriesList() {
               className={css.moreBtn}
               onClick={() => setShowAll(prev => !prev)}
             >
-              {showAll ? "Показати менше" : "Показати більше"}
+              {showAll ? 'Показати менше' : 'Показати більше'}
             </button>
           </div>
         </div>
