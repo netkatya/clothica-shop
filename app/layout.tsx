@@ -6,6 +6,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import DarkReaderClient from '@/components/DarkReaderClient/DarkReaderClient';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -59,7 +60,6 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TanStackProvider>
           <AuthProvider>
-            <DarkReaderClient />
             <Header />
             <main>{children}</main>
             <Footer />
