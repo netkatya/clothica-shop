@@ -10,7 +10,7 @@ import {
 import { User } from '@/types/user';
 import { Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
-import { OrderGood, Order, OrderStatus } from '@/types/order';
+import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
 import { getCurrentDate } from '../utils';
 
 export const register = async (data: RegisterRequest) => {
@@ -60,8 +60,6 @@ export async function updateMe(update: Partial<UpdateRequest>): Promise<User> {
     throw new Error('Updating profile failed');
   }
 }
-
-// export async function createOrder(data: CreateOrderForm): Promise<Order> {
 
 export async function updateMeAvatar(update: File): Promise<User> {
   const dataFile = new FormData();
@@ -169,26 +167,18 @@ export async function fetchCategoriesClient(
   }
 }
 
-export const createOrderClient = async (
-  goods: OrderGood[],
-  sum: number,
-  userName: string,
-  userLastName: string,
-  userPhone: string,
-  branchnum_np: string,
-  comment?: string
-): Promise<Order> => {
+export const createOrderClient = async (CreateOrderParams: CreateOrderParams): Promise<Order> => {
   try {
     const { data } = await nextServer.post<Order>('/orders', {
-      goods,
+      goods: CreateOrderParams.goods,
       date: getCurrentDate(),
-      sum,
+      sum: CreateOrderParams.sum,
       status: 'new',
-      userName,
-      userLastName,
-      userPhone,
-      branchnum_np,
-      ...(comment && { comment }),
+      userName: CreateOrderParams.userName,
+      userLastName: CreateOrderParams.userLastName,
+      userPhone: CreateOrderParams.userPhone,
+      branchnum_np: CreateOrderParams.branchnum_np,
+      ...(CreateOrderParams.comment && { comment: CreateOrderParams.comment }),
     });
     return data;
   } catch (error) {

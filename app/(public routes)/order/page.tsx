@@ -6,10 +6,24 @@ import { useFormik } from "formik";
 import UserInfoForm from "@/components/UserInfoForm/UserInfoForm";
 import { CartItem, useShopStore } from "@/lib/store/cartSrore";
 import { CreateOrderForm, OrderGood } from "@/types/order";
+import { createOrderClient } from "@/lib/api/clientApi";
+import { useAuthStore } from '@/lib/store/authStore';
+import { useEffect } from "react";
 
 const OrderPage = () => {
 
+    const { user: authUser } = useAuthStore();
     const { cartItems } = useShopStore();
+
+    useEffect(() => {
+    if (authUser) {
+        formik.setFieldValue('name', authUser.name || '');
+        formik.setFieldValue('lastname', authUser.lastname || '');
+        formik.setFieldValue('phone', authUser.phone || '');
+        formik.setFieldValue('city', authUser.city || '');
+        formik.setFieldValue('branchnum_np', authUser.branchnum_np || '');
+    }
+}, [authUser]);
 
     const transformCartToOrderGoods = (cartItems: CartItem[]): OrderGood[] => {
         return cartItems.map(item => ({
@@ -21,13 +35,13 @@ const OrderPage = () => {
 
     const formik = useFormik<CreateOrderForm>({
         initialValues: {
-            name: "",
-            lastname: "",
-            phone: "",
-            city: "",
-            branchnum_np: "",
-            email: "",
-            avatar: "",
+            name: authUser?.name || "",
+            lastname: authUser?.lastname || "",
+            phone: authUser?.phone || "",
+            city: authUser?.city || "",
+            branchnum_np: authUser?.branchnum_np || "",
+            email: authUser?.email || "",
+            avatar: authUser?.avatar || "",
             comment: "",
         },
         onSubmit: (values) => {
@@ -41,6 +55,7 @@ const OrderPage = () => {
             sum: cartItems.reduce((total, item) => total + item.price * item.amount, 0)
         };
             console.log(orderPayload);
+            createOrderClient(orderPayload)
         }
     });
 

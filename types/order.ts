@@ -24,6 +24,16 @@ export interface CreateOrderForm {
   comment?: string;
 }
 
+export type CreateOrderParams = {
+  goods: OrderGood[],
+  sum: number,
+  userName: string,
+  userLastName: string,
+  userPhone: string,
+  branchnum_np: string,
+  comment?: string
+}
+
 export type Order = {
   _id: string;
   goods: OrderGood[];
