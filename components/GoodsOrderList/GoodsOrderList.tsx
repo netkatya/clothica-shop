@@ -10,7 +10,7 @@ const GoodsOrderList = () => {
 
     const { cartItems, removeFromCart } = useShopStore();
 
-    const goodPrice = cartItems.reduce((total, good) => total + good.price * good.quantity, 0);
+    const goodPrice = cartItems.reduce((total, good) => total + good.price * good.amount, 0);
     const deliveryPrice = goodPrice > 0 ? 50 : 0;
     const totalPrice = goodPrice + deliveryPrice;
 
@@ -36,7 +36,7 @@ const GoodsOrderList = () => {
                     <div className={css.good_right}>
                         <p className={css.good_price}>{good.price} грн</p>
                         <div className={css.good_right_actions}>
-                            <p className={css.good_quantity}>{good.quantity}</p>
+                            <p className={css.good_quantity}>{good.amount}</p>
                             <button onClick={() => removeFromCart(good.goodId)}>
                                 <svg width="17" height="19" aria-hidden="true">
                                     <use href="/symbol-defs.svg#icon-trash-can"></use>

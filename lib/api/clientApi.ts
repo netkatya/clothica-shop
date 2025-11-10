@@ -52,6 +52,8 @@ export async function updateMe(update: Partial<UpdateRequest>): Promise<User> {
   return data;
 }
 
+// export async function createOrder(data: CreateOrderForm): Promise<Order> {
+
 export async function updateMeAvatar(update: File): Promise<User> {
   const dataFile = new FormData();
   dataFile.append('avatar', update);
@@ -62,6 +64,8 @@ export async function updateMeAvatar(update: File): Promise<User> {
   );
   return data;
 }
+
+
 
 export interface FetchGoodsResponse {
   data: Good[];

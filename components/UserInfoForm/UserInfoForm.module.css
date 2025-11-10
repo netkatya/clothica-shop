@@ -30,6 +30,7 @@
     background-color: #f3f9ed;;
     font-size: 15px;
     outline: none;
+    color: var(--color-neutral-darkest);
     transition: border-color 0.25s ease;
 }
 
