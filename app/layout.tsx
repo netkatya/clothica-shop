@@ -3,6 +3,7 @@ import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import ScrollToTopBtn from "@/components/ScrollToTopBtn/ScrollToTopBtn";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <Header />
         <main>{children}</main>
+         <ScrollToTopBtn />
         <Footer />
       </body>
     </html>

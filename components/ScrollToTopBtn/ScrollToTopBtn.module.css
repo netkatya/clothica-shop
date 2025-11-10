@@ -1,0 +1,42 @@
+.scrollToTopBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-deco-dark);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+    transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
+  transform: translateY(20px);
+}
+
+.scrollToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scrollUpIcon {
+  stroke: #000;
+  fill: #000;
+}
+
+@media (min-width: 768px) {
+  .scrollToTopBtn {
+    width: 42px;
+    height: 42px;
+  }
+  .scrollToTopBtn.show:hover,
+  .scrollToTopBtn.show:active {
+      transform: scale(1.5);
+  }
+}
