@@ -1,5 +1,3 @@
-// import { useParams } from 'next/navigation';
-
 import RegistrationForm from '@/components/RegistrationForm/RegistrationForm';
 import LoginForm from '@/components/LoginForm/LoginForm';
 

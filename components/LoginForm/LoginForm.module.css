@@ -1,7 +1,7 @@
 .mainContent {
   flex: 1;
   padding: 79px 0;
-  background-color: var(--color-deco-lightest);
+  background: (--color-scheme-4-background);
 }
 
 .formLinks {

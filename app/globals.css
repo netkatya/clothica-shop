@@ -101,6 +101,10 @@ li {
   list-style: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
