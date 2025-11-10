@@ -15,7 +15,7 @@ export default async function PopularGoods() {
     queryFn: () => fetchGoodsClient(),
   });
   return (
-    <section className={css.section}>
+    <section className={css.section} id="PopularGoods">
       <div className="container">
         <div className={css.title_button}>
           <h2 className={css.title}>Популярні товари</h2>
