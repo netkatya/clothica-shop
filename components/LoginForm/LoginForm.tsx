@@ -5,14 +5,14 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import type { FormikHelpers } from 'formik';
+import { Formik, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
 import { login } from '@/lib/api/clientApi';
 import { ApiError } from '@/types/auth';
 import { useAuthStore } from '@/lib/store/authStore';
 import { UserLogin } from '@/types/user';
+import { TextField } from '../TextField/TextField';
 
 import css from './LoginForm.module.css';
 
@@ -46,19 +46,22 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
         setUser(res);
         router.push('/profile');
       } else {
-        setError('Invalid phone or password');
+        setError('Помилка реєстрації користувача!');
       }
     } catch (err) {
       const errorAPI = err as ApiError;
       if (errorAPI.response?.status === 400) {
-        setError('User with this phone already exists');
+        setError('Користувач з таким номером телефону вже існує');
+      } else if (errorAPI.response?.status === 401) {
+        setError('Користувач з таким номером телефону не знайдений');
       } else {
         setError(
           errorAPI.response?.data?.error ??
             errorAPI.message ??
-            'Oops... some error'
+            'Невідома помилка!'
         );
       }
+      setTimeout(() => setError(''), 2000);
     }
 
     formikHelpers.resetForm();
@@ -99,14 +102,13 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
                 Номер телефону
               </label>
 
-              <Field
+              <TextField
+                name="phone"
                 id="phone"
                 type="text"
-                name="phone"
-                className={css.input}
                 placeholder="+38 (0__) ___-__-__"
-                required
-              />
+                required={true}
+              ></TextField>
               <ErrorMessage
                 name="phone"
                 component="span"
@@ -118,14 +120,13 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
               <label className={css.label} htmlFor="password">
                 Пароль
               </label>
-              <Field
+              <TextField
                 id="password"
                 type="password"
                 name="password"
-                className={css.input}
                 placeholder="********"
-                required
-              />
+                required={true}
+              ></TextField>
               <ErrorMessage
                 name="password"
                 component="span"

@@ -1,0 +1,227 @@
+.section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.content {
+  margin-bottom: 176px;
+}
+
+.image {
+  border-radius: 16px;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+.productDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.breadcrumbs {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+}
+
+.title {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-scheme-1-text);
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.verticalLine {
+  height: 2em;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.reviews {
+  display: flex;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 8px;
+}
+
+.size {
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  padding: 8px 36px 8px 12px;
+  width: 100%;
+  height: 40px;
+  background: var(--opacity-transparent);
+  background-position: right 20px center;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.addToBucket {
+  border: 1px solid var(--color-deco);
+  border-radius: 100px;
+  padding: 6px 12px;
+  width: 100%;
+  height: 36px;
+  background: var(--color-deco);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  margin-bottom: 16px;
+}
+
+.addToBucket:hover,
+.addToBucket:focus {
+  border: 1px solid var(--color-deco-darker);
+
+  background: var(--color-deco-dark);
+}
+
+.addToBucket:active {
+  border: 1px solid var(--color-deco);
+  background: var(--color-deco-darkest);
+}
+
+.quantityInput {
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  padding: 8px;
+  width: 64px;
+  height: 40px;
+  background: var(--opacity-transparent);
+}
+
+.buyNow {
+  border: 1px solid var(--opacity-transparent);
+  border-radius: 100px;
+  padding: 6px 12px;
+  width: 100%;
+  height: 36px;
+  background: var(--opacity-neutral-darkest-5);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  margin-bottom: 16px;
+}
+
+.buyNow:hover,
+.buyNow:focus {
+  border: 1px solid var(--opacity-neutral-darkest-50);
+}
+
+.buyNow:active {
+  border: 1px solid var(--opacity-transparent);
+}
+
+.freeDelivery {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 34px;
+}
+
+.descTitle {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 24px;
+}
+
+.descTitle::after {
+  content: '';
+  display: block;
+  left: 0;
+  margin-top: 12px;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-scheme-1-accent);
+}
+
+.descSubtitle {
+  margin-top: 16px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+}
+
+.descText {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+}
+
+.listDisc {
+  padding-left: 26px;
+}
+
+.listDisc li {
+  list-style-type: disc;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .image {
+    min-width: 336px;
+    min-height: 374px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+
+  .image {
+    min-width: 640px;
+    min-height: 698px;
+  }
+}

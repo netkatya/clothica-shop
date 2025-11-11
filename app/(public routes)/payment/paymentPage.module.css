@@ -1,0 +1,140 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form {
+    width: 100%;
+    max-width: 460px;
+    background: var(--color-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+    font-family: var(--second-family);
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+        text-align: center;
+        color: var(--color-scheme-1-text);
+    margin-bottom: 24px;
+}
+
+.label {
+    font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: var(--color-scheme-1-text);
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--opacity-neutral-darkest-15);
+    background: var(--opacity-transparent);
+    font-size: 16px;
+    transition: border 0.2s, background 0.2s;
+    margin-bottom: 10px;
+    color: var(--text);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--color-white);
+}
+
+.error {
+    font-size: 13px;
+    color: #c82222;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.col {
+    flex: 1;
+}
+
+.button {
+    display: block;
+    border: 1px solid var(--color-deco);
+    border-radius: 100px;
+    padding: 4px 10px;
+    width: 198px;
+    height: 40px;
+    background: var(--color-deco);
+    margin: 0 auto;
+    margin-top: 16px;
+    transition: all 250ms ease-in-out;
+}
+
+.button:hover {
+    border: 1px solid var(--color-deco-darker);
+background: var(--color-deco-dark);
+}
+
+.disabled {
+    border: 1px solid var(--color-deco);
+    background: var(--color-deco);
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--color-neutral-darkest);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: fade 0.3s ease forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .form {
+        padding: 24px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .button {
+        font-size: 17px;
+    }
+}
