@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import css from './paymentPage.module.css';
 import { useState } from 'react';
 import MotionCheck from '@/components/PaymentStatus/PaymentStatus';
+import RadioCart from '@/components/RadioCart/RadioCart';
+import { useShopStore } from '@/lib/store/cartSrore';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
@@ -24,16 +26,19 @@ const validationSchema = Yup.object({
       const expiryDate = new Date(year, month - 1, 1);
       const current = new Date(now.getFullYear(), now.getMonth(), 1);
 
+
       return expiryDate >= current;
     })
     .required('Введіть строк дії'),
-  cvc: Yup.string()
+  cvv: Yup.string()
     .matches(/^\d{3}$/, '3 цифри')
-    .required('Введіть CVC'),
+    .required('Введіть CVV'),
 });
 
 export default function CheckoutForm() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const { cartItems } = useShopStore();
+  const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.amount, 0);
 
   if (status === 'success') {
     return <MotionCheck status="success" />;
@@ -45,7 +50,7 @@ export default function CheckoutForm() {
         initialValues={{
           cardNumber: '',
           expiry: '',
-          cvc: '',
+          cvv: '',
         }}
         validationSchema={validationSchema}
         onSubmit={values => {
@@ -58,7 +63,7 @@ export default function CheckoutForm() {
         {({ setFieldValue, isValid }) => (
           <Form className={css.form}>
             <h2 className={css.title}>Оплата</h2>
-
+            <RadioCart />
             <label className={css.label}>Номер картки</label>
             <Field
               name="cardNumber"
@@ -102,19 +107,19 @@ export default function CheckoutForm() {
               </div>
 
               <div className={css.col}>
-                <label className={css.label}>CVC</label>
+                <label className={css.label}>CVV</label>
                 <Field
-                  name="cvc"
+                  name="cvv"
                   placeholder="123"
                   className={css.input}
                   onChange={(e: any) => {
                     const digits = e.target.value
                       .replace(/\D/g, '')
                       .slice(0, 3);
-                    setFieldValue('cvc', digits);
+                    setFieldValue('cvv', digits);
                   }}
                 />
-                <ErrorMessage name="cvc" component="p" className={css.error} />
+                <ErrorMessage name="cvv" component="p" className={css.error} />
               </div>
             </div>
 
@@ -123,7 +128,7 @@ export default function CheckoutForm() {
               disabled={!isValid}
               className={`${css.button} ${!isValid ? css.disabled : ''}`}
             >
-              Оплатити ₴
+              Оплатити {totalAmount}₴
             </button>
           </Form>
         )}

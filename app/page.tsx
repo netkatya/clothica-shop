@@ -13,7 +13,6 @@ export default function Home() {
       <PopularCategories />
       <PopularGoods />
       <Reviews />
-      <RadioCart />
     </main>
   );
 }
