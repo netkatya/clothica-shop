@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
-import { Inter, Nunito_Sans } from 'next/font/google';
+import type { Metadata } from "next";
+import { Inter, Nunito_Sans } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import ScrollToTopBtn from "@/components/ScrollToTopBtn/ScrollToTopBtn";
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
-import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
 
 const inter = Inter({
@@ -62,6 +63,7 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <ScrollToTopBtn />
           </AuthProvider>
         </TanStackProvider>
         <CookieBanner />
