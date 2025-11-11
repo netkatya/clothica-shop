@@ -2,6 +2,9 @@ export interface User {
   phone: string;
   email: string;
   name: string;
+  lastname: string;
+  city: string;
+  branchnum_np: string;
   avatar: string;
 }
 

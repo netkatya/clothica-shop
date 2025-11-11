@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useAuthStore } from "@/lib/store/authStore";
-import { getMe } from "@/lib/api/clientApi";
-// @ts-nocheck
+import { useEffect } from 'react';
+import { useAuthStore } from '@/lib/store/authStore';
+import { getMe } from '@/lib/api/clientApi';
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user, clearIsAuthenticated, setLoading, setUser } = useAuthStore();
+  const { clearIsAuthenticated, setLoading, setUser } = useAuthStore();
 
   useEffect(() => {
     const checkUser = async () => {
@@ -24,7 +23,6 @@ export default function AuthProvider({
           // 3. Якщо так, оновлюємо дані (про всяк випадок)
           setUser(freshUser);
         } catch (error) {
-          console.log(error);
           clearIsAuthenticated();
         }
       } else {

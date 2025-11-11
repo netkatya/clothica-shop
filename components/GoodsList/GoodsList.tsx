@@ -33,7 +33,7 @@ export default function GoodsList() {
           el: `.${css.paginationContainer}`,
           type: 'bullets',
           dynamicBullets: true,
-          dynamicMainBullets: 2,
+          dynamicMainBullets: 1,
         }}
         spaceBetween={32}
         slidesPerView={1}
@@ -62,15 +62,16 @@ export default function GoodsList() {
                 </p>
               </div>
               <div className={css.reviews}>
-                <p>
-                  <AiFillStar /> {''}5
-                </p>
-                <p>
+                <div className={css.rate}>
+                  <AiFillStar />
+                  <p className={css.ratenumber}>5</p>
+                </div>
+                <div className={css.rate}>
                   <svg width="16" height="16" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
-                  </svg>{' '}
-                  {good.feedbacks.length}
-                </p>
+                  </svg>
+                  <p className={css.ratenumber}>{good.feedbacks.length}</p>
+                </div>
               </div>
               <Link href={`/goods/${good._id}`}>
                 <button className={css.detail}>Детальніше</button>

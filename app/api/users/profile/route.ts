@@ -20,7 +20,7 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(data.data, { status: 200 });
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);
@@ -43,12 +43,12 @@ export async function PATCH(request: Request) {
     const cookieStore = await cookies();
     const body = await request.json();
 
-    const res = await api.patch('api/users/profile', body, {
+    const { data, status } = await api.patch('api/users/profile', body, {
       headers: {
         Cookie: cookieStore.toString(),
       },
     });
-    return NextResponse.json(res.data, { status: res.status });
+    return NextResponse.json(data.data, { status: status });
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);

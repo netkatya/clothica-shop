@@ -1,22 +1,23 @@
 .image {
   border-radius: 16px;
   width: 335px;
-  height: 412px;
+  height: 380px;
   margin-bottom: 16px;
 }
 
 .info {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 8px;
+  
 }
 
 .name {
   font-weight: 600;
   font-size: 18px;
   line-height: 150%;
-  width: 260px;
-  margin-right: 16px;
+  max-width: 230px;
+  
 }
 
 .price {
@@ -27,8 +28,25 @@
 
 .reviews {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  
+}
+
+.ratenumber {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
 }
 
 .detail {
@@ -50,8 +68,8 @@
 
 .detail:hover,
 .detail:focus {
-  border: 1px solid var(--color-deco);
-  background: var(--opacity-neutral-darkest-50);
+  border: 1px solid var(--opacity-neutral-darkest-50);
+  background: var(--opacity-neutral-darkest-15);
 }
 
 .swiper {
@@ -66,15 +84,14 @@
 }
 
 .paginationContainer {
+  
   margin: 0 auto;
-  text-align: center;
+  /* text-align: center; */
 }
 
-.paginationContainer :global(.swiper-pagination-bullet) {
-  background-color: #cccccc;
-  opacity: 1;
-  width: 8px;
-  height: 8px;
+.paginationContainer  {
+  background-color: inherit;
+  /* opacity: 1; */
   transition: all 0.3s ease-in-out;
 }
 
@@ -82,12 +99,14 @@
   background-color: #000000;
 }
 
-.paginationContainer :global(.swiper-pagination-bullet-prev),
-.paginationContainer :global(.swiper-pagination-bullet-next) {
-  background-color: #cccccc;
+/* .paginationContainer :global(.swiper-pagination-bullet-prev),
+.paginationContainer :global(.swiper-pagination-bullet-next) { */
+  /* background-color: #cccccc;
   width: 10px;
-  height: 10px;
-}
+  height: 10px; */
+/* } */
+
+
 
 .buttonControls {
   display: flex;
@@ -135,11 +154,14 @@
   .image {
     border-radius: 16px;
     width: 336px;
-    height: 414px;
+    height: 380px;
   }
+
+  
+
   .buttonControls {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: -28px;
     width: 108%;
     transform: translateY(-50%);
@@ -160,8 +182,12 @@
   .image {
     border-radius: 16px;
     width: 304px;
-    height: 374px;
+    height: 354px;
   }
+
+    .name {
+      max-width: 200px;
+    }
 
   .buttonControls {
     left: -28px;
