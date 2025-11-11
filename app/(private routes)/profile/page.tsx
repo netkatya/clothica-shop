@@ -42,7 +42,7 @@ const UserSchema = Yup.object().shape({
     .min(2, 'Занадто коротка назва міста!')
     .max(100, 'Занадто довга назва міста!'),
   branchnum_np: Yup.string()
-    .min(1, 'Занадто короткий номер відділення НП!')
+    .min(1, 'Занадто короткий номер відділення НП!'),
     .max(10, 'Занадто довгий номер відділення НП!'),
 });
 
@@ -135,6 +135,7 @@ export default function ProfilePage() {
           <div className={css.formWraper}>
             <h2 className={css.formTitle}>Особиста інформація</h2>
             <Formik
+              enableReinitialize
               initialValues={{
                 ...user,
               }}
