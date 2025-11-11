@@ -5,10 +5,16 @@ import FilterContent from '../FilterContent/FilterContent';
 import { useState } from 'react';
 import { QueryClient } from '@tanstack/react-query';
 
-export default function Filters() {
+export default function Filters({
+  currentFilters,
+  onFilterChange,
+  onClearAll,
+  Categories,
+  isLoadingCategories,
+}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className="container">
+    <div>
       <div className={css.filters}>
         <h3 className={css.filter}>Фільтри</h3>
         <button
@@ -38,7 +44,14 @@ export default function Filters() {
               </svg>
             </button>
           </div>
-          {isOpen && <FilterContent />}
+          {isOpen && (
+            <FilterContent
+              currentFilters={currentFilters}
+              onFilterChange={onFilterChange}
+              isLoadingCategories={isLoadingCategories}
+              Categories={Categories}
+            />
+          )}
         </div>
       </div>
     </div>

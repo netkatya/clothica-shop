@@ -87,7 +87,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li className={css.navigationItem}>
-                    <Link href="/products" className={css.navigationLink}>
+                    <Link href="/goods" className={css.navigationLink}>
                       Товари
                     </Link>
                   </li>

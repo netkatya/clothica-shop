@@ -1,0 +1,78 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.image {
+  border-radius: 16px;
+  width: 335px;
+  height: 412px;
+  margin-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  width: 260px;
+  margin-right: 16px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.star {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+}
+.feedbacks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+}
+
+.detail {
+  cursor: pointer;
+  outline: none;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 100px;
+  padding: 4px 10px;
+  width: 335px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.05);
+  transition: background 250ms ease-in-out;
+  color: var(--color-neutral-darkest);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.detail:hover,
+.detail:focus {
+  border: 1px solid var(--color-deco);
+  background: var(--opacity-neutral-darkest-50);
+}

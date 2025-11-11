@@ -1,7 +1,13 @@
 import css from './SidebarFilter.module.css';
 import FilterContent from '../FilterContent/FilterContent';
 
-export default function SidebarFilters() {
+export default function SidebarFilters({
+  currentFilters,
+  onFilterChange,
+  onClearAll,
+  Categories,
+  isLoadingCategories,
+}) {
   return (
     <aside className={css.sidebarContainer}>
       <div className={css.filters}>
@@ -15,7 +21,12 @@ export default function SidebarFilters() {
         </button>
       </div>
       <p className={css.shown}> Показано X з Y</p>
-      <FilterContent />
+      <FilterContent
+        currentFilters={currentFilters}
+        onFilterChange={onFilterChange}
+        isLoadingCategories={isLoadingCategories}
+        Categories={Categories}
+      />
     </aside>
   );
 }

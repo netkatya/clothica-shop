@@ -8,53 +8,93 @@ import { useQuery } from '@tanstack/react-query';
 
 const STATUS_OPTIONS = ['Всі', 'Жіночий', 'Чоловічий', 'Унісекс'];
 
-export default function FilterContent() {
-  const { data, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => fetchCategoriesClient(1, 7),
-    refetchOnWindowFocus: false,
-  });
-  const [selectedColors, setSelectedColors] = useState<string[]>(['Білий']);
-  const [selectedStatus, setSelectedStatus] = useState<string>('Всі');
-  const handleColorClick = (color: string) => {
-    setSelectedColors(prevSelected => {
-      const isSelected = prevSelected.includes(color);
-      if (isSelected) {
-        return prevSelected.filter(c => c !== color);
-      } else {
-        return [...prevSelected, color];
-      }
+export default function FilterContent({
+  currentFilters,
+  onFilterChange,
+  isLoadingCategories,
+  Categories,
+}) {
+  const handleCategoryClick = (categoryName: string) => {
+    onFilterChange(prev => ({ ...prev, category: categoryName }));
+  };
+
+  const handleSizeChange = (size: string) => {
+    onFilterChange(prev => {
+      const newSizes = prev.sizes.includes(size)
+        ? prev.sizes.filter(s => s !== size)
+        : [...prev.sizes, size];
+      return { ...prev, sizes: newSizes };
     });
   };
-  const categories = data?.data ?? [];
+
+  const handlePriceChange = (newValues: number[]) => {
+    onFilterChange(prev => ({ ...prev, priceRange: newValues }));
+  };
+
+  const handleColorClick = (color: string) => {
+    onFilterChange(prev => {
+      const newColors = prev.colors.includes(color)
+        ? prev.colors.filter(c => c !== color)
+        : [...prev.colors, color];
+      return { ...prev, colors: newColors };
+    });
+  };
+
+  const handleStatusChange = (status: string) => {
+    onFilterChange(prev => ({ ...prev, status: status }));
+  };
+
   return (
     <div className={css.filterContentContainer}>
+      {/* --- Категорії (тепер керовані) --- */}
       <div className={css.filterHeader}>
         <h3>Категорії</h3>
         <button
           type="button"
-          // onClick={() => onFilterChange('sizes', [])}
+          onClick={() => handleCategoryClick('Усі')}
           className={css.clearButtonInternal}
         >
           Очистити
         </button>
       </div>
       <ul className={css.categoryList}>
-        <li className={css.category}>Усі</li>
-        {categories.map(category => (
-          <li className={css.category} key={category._id}>
-            {category.name}
-          </li>
-        ))}
+        <li
+          className={
+            currentFilters.category === 'Усі'
+              ? `${css.category} ${css.categoryActive}`
+              : css.category
+          }
+          onClick={() => handleCategoryClick('Усі')}
+        >
+          Усі
+        </li>
+        {isLoadingCategories ? (
+          <li>Завантаження...</li>
+        ) : (
+          Categories.map(category => (
+            <li
+              className={
+                currentFilters.category === category.name
+                  ? `${css.category} ${css.categoryActive}`
+                  : css.category
+              }
+              key={category._id}
+              onClick={() => handleCategoryClick(category.name)}
+            >
+              {category.name}
+            </li>
+          ))
+        )}
       </ul>
       <hr className={css.divider} />
 
+      {/* --- Розмір (тепер керований) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Розмір</h3>
           <button
             type="button"
-            // onClick={() => onFilterChange('sizes', [])}
+            onClick={() => onFilterChange(prev => ({ ...prev, sizes: [] }))}
             className={css.clearButtonInternal}
           >
             Очистити
@@ -68,8 +108,8 @@ export default function FilterContent() {
                 id={`size-${size}`}
                 className={css.customCheckbox}
                 value={size}
-                // checked={currentFilters.sizes.includes(size)}
-                // onChange={() => handleSizeChange(size)}
+                checked={currentFilters.sizes.includes(size)}
+                onChange={() => handleSizeChange(size)}
               />
               <label htmlFor={`size-${size}`} className={css.checkboxLabel}>
                 {size}
@@ -79,24 +119,33 @@ export default function FilterContent() {
         </ul>
       </div>
       <hr className={css.divider} />
+
+      {/* --- Ціна (тепер керована) --- */}
       <div className={css.filterHeader}>
         <h3>Ціна</h3>
         <button
-          type-="button"
-          // onClick={() => onFilterChange('priceRange', [1, 5000])}
+          type="button"
+          onClick={() =>
+            onFilterChange(prev => ({ ...prev, priceRange: [1, 5000] }))
+          }
           className={css.clearButtonInternal}
         >
           Очистити
         </button>
       </div>
-      <PriceFilter />
+      <PriceFilter
+        values={currentFilters.priceRange}
+        onChange={handlePriceChange}
+      />
       <hr className={css.divider} />
+
+      {/* --- Колір (тепер керований) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Колір</h3>
           <button
             type="button"
-            // onClick={() => onFilterChange('colors', [])}
+            onClick={() => onFilterChange(prev => ({ ...prev, colors: [] }))}
             className={css.clearButtonInternal}
           >
             Очистити
@@ -108,7 +157,7 @@ export default function FilterContent() {
               <button
                 type="button"
                 className={
-                  COLORS.includes(color)
+                  currentFilters.colors.includes(color)
                     ? `${css.color} ${css.colorActive}`
                     : css.color
                 }
@@ -121,12 +170,14 @@ export default function FilterContent() {
         </ul>
       </div>
       <hr className={css.divider} />
+
+      {/* --- Стать (тепер керована) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Стать</h3>
           <button
             type="button"
-            // onClick={() => onFilterChange('status', 'Всі')}
+            onClick={() => onFilterChange(prev => ({ ...prev, status: 'Всі' }))}
             className={css.clearButtonInternal}
           >
             Очистити
@@ -140,8 +191,8 @@ export default function FilterContent() {
                 id={`status-${status}`}
                 name="status-filter-group"
                 value={status}
-                // checked={currentFilters.status === status}
-                // onChange={() => handleStatusChange(status)}
+                checked={currentFilters.status === status}
+                onChange={() => handleStatusChange(status)}
                 className={css.customRadio}
               />
               <label htmlFor={`status-${status}`} className={css.radioLabel}>

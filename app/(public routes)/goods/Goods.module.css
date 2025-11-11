@@ -1,0 +1,21 @@
+.section {
+  padding: 64px 0 64px 0;
+}
+.buttonContainer {
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  border: 1px solid #c5e1a5;
+  border-radius: 100px;
+
+  width: 158px;
+  height: 36px;
+  background: #c5e1a5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+}
