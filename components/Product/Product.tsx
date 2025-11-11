@@ -46,9 +46,13 @@ export default function Product({ goodId }: ProductProps) {
               <div className={css.sizeSelect}>
                 <label className={css.label}>Розмір :</label>
                 <select className={css.size}>
+                  <option>XXS</option>
+                  <option>XS</option>
                   <option>S</option>
                   <option>M</option>
                   <option>L</option>
+                  <option>XL</option>
+                  <option>XXL</option>
                 </select>
               </div>
               <div className={css.inputContainer}>

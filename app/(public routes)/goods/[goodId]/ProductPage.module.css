@@ -44,10 +44,17 @@
   height: 32px;
   cursor: pointer;
   position: absolute;
-  top: 12px;
+  top: 20px;
   right: 16px;
   border: none;
+  background-color: inherit;
 }
+.icon {
+  fill: var(--color-white);
+  stroke-width: 1px;
+  stroke: var(--color-scheme-1-text);
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -91,6 +98,11 @@
   width: 295px;
   height: 40px;
   background: var(--opacity-transparent);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--opacity-neutral-darkest-60);
 }
 .textarea {
   border: 1px solid var(--opacity-neutral-darkest-15);
@@ -99,6 +111,12 @@
   width: 295px;
   height: 180px;
   background: var(--opacity-transparent);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--opacity-neutral-darkest-60);
+  resize: none;
 }
 .btnReviews {
   border: 1px solid var(--color-deco);
@@ -108,7 +126,7 @@
   height: 36px;
   background: var(--color-deco);
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 150%;
   color: var(--color-neutral-darkest);
@@ -127,15 +145,6 @@
 .error {
   color: brown;
 }
-.input,
-.textarea {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.2s ease;
-}
 
 .inputError,
 .textareaError {
@@ -152,7 +161,11 @@
 .inpBox {
   margin-bottom: 24px;
 }
-
+@media screen and (min-width: 375px) {
+  .form {
+    margin: 0 auto;
+  }
+}
 @media screen and (min-width: 768px) {
   .goodsReviews {
     display: flex;

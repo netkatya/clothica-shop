@@ -20,7 +20,7 @@
   border-radius: 12px;
   padding: 40px 20px;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   position: relative;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);

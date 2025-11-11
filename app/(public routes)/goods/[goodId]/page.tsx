@@ -53,7 +53,9 @@ export default function GoodPage() {
         {isModalOpen && (
           <ProductModal onClose={closeModal}>
             <button type="button" className={css.closeBtn} onClick={closeModal}>
-              ×
+              <svg className="icon" width={14} height={14}>
+                <use href="/symbol-defs.svg#icon-close"></use>
+              </svg>
             </button>
 
             <h2 className={css.titleModal}>Залишити відгук</h2>
