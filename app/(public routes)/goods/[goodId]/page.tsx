@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import ReviewsSlider from '@/components/ReviewsSlider/ReviewsSlider';
 import Product from '../../../../components/Product/Product';
@@ -8,6 +8,8 @@ import ProductModal from '../../../../components/ProductModal/ProductModal';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import StarPicker from '../../../../components/StarRating/StarRating';
+import { fetchGoodById } from '@/lib/api/clientApi';
+import { Good } from '@/types/good';
 
 const ReviewSchema = Yup.object().shape({
   username: Yup.string()
@@ -22,6 +24,8 @@ export default function GoodPage() {
   const params = useParams<{ goodId: string }>();
   const goodId = params.goodId;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [good, setGood] = useState<Good | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -35,9 +39,33 @@ export default function GoodPage() {
     closeModal();
   };
 
+  useEffect(() => {
+    if (!goodId) return;
+
+    let cancelled = false;
+
+    fetchGoodById(goodId)
+      .then(data => {
+        if (!cancelled) {
+          setGood(data.data);
+        }
+      })
+      .catch(err => {
+        if (!cancelled) {
+          setError(err.message ?? 'Не вдалося завантажити товар');
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [goodId]);
+
+  if (!good) return <div className={css.loading}>Завантаження…</div>;
+
   return (
     <>
-      <Product goodId={goodId} />
+      <Product good={good} />
       <div className="container">
         <div className={css.goodsReviews}>
           <p className={css.titleReviews}>Відгуки клієнтів</p>
@@ -45,11 +73,25 @@ export default function GoodPage() {
             Залишити відгук
           </button>
         </div>
-        <ReviewsSlider
-          reviews={reviews}
-          hasProductText={false}
-          hasCenteredButtons={true}
-        />
+        {reviews.length > 0 ? (
+          <ReviewsSlider
+            reviews={reviews}
+            hasProductText={false}
+            hasCenteredButtons={true}
+          />
+        ) : (
+          <div className={css.emptyStateContainer}>
+            <p className={css.emptyStateTitle}>
+              У цього товару ще немає відгуків
+            </p>
+            <button
+              className={`${css.addReviews} ${css.noMargin}`}
+              onClick={openModal}
+            >
+              Залишити відгук
+            </button>
+          </div>
+        )}
         {isModalOpen && (
           <ProductModal onClose={closeModal}>
             <button type="button" className={css.closeBtn} onClick={closeModal}>

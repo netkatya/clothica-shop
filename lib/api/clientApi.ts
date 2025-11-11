@@ -78,6 +78,12 @@ export interface FetchGoodsResponse {
   totalPage: number;
 }
 
+export interface FetchGoodByIdResponse {
+  data: Good;
+  success: boolean;
+  message?: string;
+}
+
 export interface FetchGoodsParam {
   page: string;
   perPage: string;
@@ -130,9 +136,14 @@ export async function fetchGoodsClient(
   }
 }
 
-export async function fetchGoodById(id: string): Promise<Good> {
+export async function fetchGoodById(
+  id: string
+): Promise<FetchGoodByIdResponse> {
   try {
-    const { data } = await nextServer.get<Good>(`/goods/${id}`);
+    const { data } = await nextServer.get<FetchGoodByIdResponse>(
+      `/goods/${id}`,
+      { withCredentials: false }
+    );
     return data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -269,6 +280,7 @@ export async function fetchFeedbacksClient({
 
     const { data } = await nextServer.get<FetchFeedbackResponse>('/feedbacks', {
       params,
+      withCredentials: false,
     });
     return data;
   } catch (error) {

@@ -2,9 +2,11 @@
   padding-top: 64px;
   padding-bottom: 64px;
 }
+
 .content {
   margin-bottom: 176px;
 }
+
 .image {
   border-radius: 16px;
   margin-bottom: 48px;
@@ -16,6 +18,7 @@
   flex-direction: column;
   gap: 24px;
 }
+
 .breadcrumbs {
   font-family: var(--font-family);
   font-weight: 400;
@@ -39,6 +42,18 @@
   align-items: center;
 }
 
+.verticalLine {
+  height: 2em;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.reviews {
+  display: flex;
+}
+
 .text {
   font-family: var(--font-family);
   font-weight: 400;
@@ -46,6 +61,7 @@
   line-height: 150%;
   color: var(--color-scheme-1-text);
 }
+
 .label {
   font-family: var(--font-family);
   font-weight: 400;
@@ -54,6 +70,7 @@
   color: var(--color-scheme-1-text);
   margin-bottom: 8px;
 }
+
 .size {
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 16px;
@@ -63,11 +80,13 @@
   background: var(--opacity-transparent);
   background-position: right 20px center;
 }
+
 .inputContainer {
   display: flex;
   flex-direction: row;
   gap: 16px;
 }
+
 .addToBucket {
   border: 1px solid var(--color-deco);
   border-radius: 100px;
@@ -82,16 +101,19 @@
   color: var(--color-neutral-darkest);
   margin-bottom: 16px;
 }
+
 .addToBucket:hover,
 .addToBucket:focus {
   border: 1px solid var(--color-deco-darker);
 
   background: var(--color-deco-dark);
 }
+
 .addToBucket:active {
   border: 1px solid var(--color-deco);
   background: var(--color-deco-darkest);
 }
+
 .quantityInput {
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 16px;
@@ -115,13 +137,16 @@
   color: var(--color-neutral-darkest);
   margin-bottom: 16px;
 }
+
 .buyNow:hover,
 .buyNow:focus {
   border: 1px solid var(--opacity-neutral-darkest-50);
 }
+
 .buyNow:active {
   border: 1px solid var(--opacity-transparent);
 }
+
 .freeDelivery {
   font-family: var(--font-family);
   font-weight: 400;
@@ -151,6 +176,15 @@
   background-color: var(--color-scheme-1-accent);
 }
 
+.descSubtitle {
+  margin-top: 16px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+}
+
 .descText {
   font-family: var(--font-family);
   font-weight: 400;
@@ -173,6 +207,7 @@
     flex-direction: row;
     gap: 32px;
   }
+
   .image {
     min-width: 336px;
     min-height: 374px;
@@ -184,6 +219,7 @@
     padding-top: 112px;
     padding-bottom: 112px;
   }
+
   .image {
     min-width: 640px;
     min-height: 698px;
