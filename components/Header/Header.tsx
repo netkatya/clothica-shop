@@ -11,7 +11,8 @@ export default function Header() {
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+     document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
 
   // Слідкуємо за зміною розміру екрану
