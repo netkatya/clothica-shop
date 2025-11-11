@@ -1,0 +1,134 @@
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float404 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(160deg, #c5e1a5, #9db484, #c5e1a5);
+  animation: gradientMove 8s ease-in-out infinite;
+  color: #4e5a42;
+  text-align: center;
+  padding: 24px;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 50px 24px;
+  border-radius: 20%;
+  box-shadow: 0 8px 20px rgba(78, 90, 66, 0.2);
+}
+
+.code {
+  font-size: 70px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+  animation: float404 3s ease-in-out infinite;
+}
+
+.message {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.text {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 6px 12px;
+  background-color:var(--color-scheme-5-foreground);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+   cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-deco-dark);
+  transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+.content {
+  padding: 60px 32px;
+}
+.code {
+  font-size: 100px;
+}
+
+.message {
+  font-size: 24px;
+  margin-top: 24px;
+}
+
+.text {
+  font-size: 16px;
+  margin-top: 16px;
+}
+.button {
+  margin-top: 24px;
+  font-size: 24px;
+}
+}
+@media (min-width: 1440px) {
+.content {
+  padding: 60px 32px;
+}
+.code {
+  font-size: 132px;
+}
+
+.message {
+  font-size: 32px;
+  margin-top: 32px;
+}
+
+.text {
+  font-size: 24px;
+  margin-top: 24px;
+}
+.button {
+  margin-top: 42px;
+  font-size: 24px;
+padding: 12px 24px;
+}
+}

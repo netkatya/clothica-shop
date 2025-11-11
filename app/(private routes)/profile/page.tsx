@@ -42,9 +42,10 @@ const UserSchema = Yup.object().shape({
     .min(2, 'Занадто коротка назва міста!')
     .max(100, 'Занадто довга назва міста!'),
   branchnum_np: Yup.string()
-    .min(1, 'Занадто короткий новер відділення НП!')
+    .min(1, 'Занадто короткий номер відділення НП!')
     .max(10, 'Занадто довгий номер відділення НП!'),
 });
+import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 
 export default function ProfilePage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -155,7 +156,15 @@ export default function ProfilePage() {
           </div>
           <div>
             <h2>Мої замовлення</h2>
-            <OrdersList orders={orders} />
+            {orders.length > 0 ? (
+              <OrdersList orders={orders} />
+            ) : (
+              <MessageNoInfo
+                text="У вас ще не було жодних замовлень! Мерщій до покупок!"
+                buttonText="До покупок"
+                route="/goods"
+              />
+            )}
           </div>
         </div>
 

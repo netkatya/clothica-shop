@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   try {
     const page = Number(request.nextUrl.searchParams.get('page') ?? 1);
     const perPage = Number(request.nextUrl.searchParams.get('perPage') ?? 12);
+    const category = request.nextUrl.searchParams.get('category') ?? '';
     const gender = request.nextUrl.searchParams.get('gender') ?? '';
     const size = request.nextUrl.searchParams.get('size') ?? '';
     const minPrice = request.nextUrl.searchParams.get('minPrice') ?? '';
@@ -16,6 +17,7 @@ export async function GET(request: NextRequest) {
         page,
         perPage,
         ...(gender && { gender }),
+        ...(category && { category }),
         ...(size && { size: size.split(',') }),
         ...(minPrice && { minPrice }),
         ...(maxPrice && { maxPrice }),

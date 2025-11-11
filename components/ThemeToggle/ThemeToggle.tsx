@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import css from './ThemeToggle.module.css';
 
-const DARKREADER_OPTIONS = { brightness: 80, contrast: 90, sepia: 10 };
+const DARKREADER_OPTIONS = { brightness: 80, contrast: 100, sepia: 10 };
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);

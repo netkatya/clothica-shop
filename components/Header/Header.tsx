@@ -7,33 +7,23 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [count, setCount] = useState(0);
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+     document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
-
-  // Функція для перевірки ширини вікна
-  const checkScreenSize = () => {
-    if (typeof window !== 'undefined') {
-      setIsMobile(window.innerWidth < 768);
-    }
-  };
 
   // Слідкуємо за зміною розміру екрану
   useEffect(() => {
+    const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-    return () => {
-      window.removeEventListener('resize', checkScreenSize);
-    };
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+  if (isMobile === null) return null;
 
   return (
     <header className={css.section}>
@@ -48,38 +38,79 @@ export default function Header() {
           <ThemeToggle />
 
           {isMobile ? (
-            <div className={css.mobileButtons}>
-              <button
-                type="button"
-                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                onClick={() => setMenuOpen(!menuOpen)}
-                className={css.burgerButton}
-              >
-                <svg width="19" height="13" className={css.buttonSvg}>
-                  <use
-                    href={
-                      menuOpen
-                        ? '/symbol-defs.svg#icon-close'
-                        : '/symbol-defs.svg#icon-burger-menu'
-                    }
-                  ></use>
-                </svg>
-              </button>
-
-              <div className={css.basketWrapper}>
-                <Link
-                  href="/basket"
-                  aria-label="Basket"
-                  className={css.basketBtn}
+            <>
+              <div className={css.mobileButtons}>
+                <button
+                  type="button"
+                  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className={css.burgerButton}
                 >
-                  <svg width="20" height="21" className={css.basketButtonSvg}>
-                    <use href="/symbol-defs.svg#icon-basket"></use>
+                  <svg width="19" height="13" className={css.buttonSvg}>
+                    <use
+                      href={
+                        menuOpen
+                          ? '/symbol-defs.svg#icon-close'
+                          : '/symbol-defs.svg#icon-burger-menu'
+                      }
+                    ></use>
                   </svg>
+                </button>
 
-                  {count > 0 && <span className={css.badge}>{count}</span>}
-                </Link>
+                <div className={css.basketWrapper}>
+                  <Link
+                    href="/basket"
+                    aria-label="Basket"
+                    className={css.basketBtn}
+                  >
+                    <svg width="20" height="21" className={css.basketButtonSvg}>
+                      <use href="/symbol-defs.svg#icon-basket"></use>
+                    </svg>
+
+                    {count > 0 && <span className={css.badge}>{count}</span>}
+                  </Link>
+                </div>
               </div>
-            </div>
+
+              {menuOpen && (
+                <div className={css.mobileMenu}>
+                  <nav aria-label="Mobile Navigation">
+                    <ul className={css.navigationMobile}>
+                      <li>
+                        <Link
+                          href="/"
+                          className={css.navigationItemMobile}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          Головна
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/goods"
+                          className={css.navigationItemMobile}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          Товари
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/categories"
+                          className={css.navigationItemMobile}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          Категорії
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div className={css.mobileActions}>
+                    <AuthNavigation />
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
             <div className={css.navContainer}>
               <nav aria-label="Main Navigation" className={css.navigationList}>
@@ -90,7 +121,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li className={css.navigationItem}>
-                    <Link href="/products" className={css.navigationLink}>
+                    <Link href="/goods" className={css.navigationLink}>
                       Товари
                     </Link>
                   </li>
@@ -123,33 +154,6 @@ export default function Header() {
             </div>
           )}
         </div>
-
-        {menuOpen && (
-          <div className={css.mobileMenu}>
-            <nav aria-label="Mobile Navigation">
-              <ul className={css.navigationMobile}>
-                <li>
-                  <Link href="/" className={css.navigationItemMobile}>
-                    Головна
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products" className={css.navigationItemMobile}>
-                    Товари
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/categories" className={css.navigationItemMobile}>
-                    Категорії
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-            <div className={css.mobileActions}>
-              <AuthNavigation />
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );
