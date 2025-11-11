@@ -1,36 +1,32 @@
 .section {
-    padding-top: 32px;
-    padding-bottom: 64px;
+  padding-top: 32px;
+  padding-bottom: 64px;
 }
 
 .title {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 120%;
-    letter-spacing: -0.01em;
-    margin-bottom: 40px;
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
 }
 
-
-
 @media screen and (min-width: 768px) {
-   
 }
 
 @media screen and (min-width: 1440px) {
-    .section {
-        padding-top: 56px;
-        padding-bottom: 112px;
-    }
+  .section {
+    padding-top: 56px;
+    padding-bottom: 112px;
+  }
 
-    .title {
-        font-size: 48px;
-    }
+  .title {
+    font-size: 48px;
+  }
 
-    .text {
-        font-size: 20px;
-        min-height: 56px;
-    }
+  .text {
+    font-size: 20px;
+    min-height: 56px;
+  }
 }
-
