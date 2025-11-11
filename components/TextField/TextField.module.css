@@ -1,0 +1,30 @@
+.input {
+  background-color: inherit;
+  transition: border-color 0.2s ease;
+
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  padding: 11px 8px;
+
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 16px;
+
+  line-height: 1.5;
+  color: var(--opacity-neutral-darkest-60);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.inputError {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.input::placeholder {
+  color: --opacity-neutral-darkest-60;
+}
+
+.input:focus {
+  border-color: var(--color-deco-dark);
+}
