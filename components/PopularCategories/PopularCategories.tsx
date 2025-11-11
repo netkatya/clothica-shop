@@ -1,58 +1,80 @@
 'use client';
 
 import css from './PopularCategories.module.css';
-
 import Link from 'next/link';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Keyboard, A11y } from 'swiper/modules';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { fetchCategoriesClient } from '@/lib/api/clientApi';
+import { Category } from '@/types/category';
+import { mergeById } from '@/lib/utils';
 
-const categoriesData = [
+export const categoriesArray = [
   {
     img: '/img/categiries/t-shirts.png',
-    category: 'Футболки',
+    name: 'Футболки та сорочки',
+    _id: '690c9ce6a6276289c98fc006',
   },
   {
     img: '/img/categiries/hoodies.png',
-    category: 'Худі та світшоти',
+    name: 'Худі та кофти',
+    _id: '690c9ce6a6276289c98fc00c',
   },
   {
     img: '/img/categiries/trousers.png',
-    category: 'Джинси та штани',
+    name: 'Штани та джинси',
+    _id: '690c9ce6a6276289c98fc007',
   },
   {
     img: '/img/categiries/dresses.png',
-    category: 'Сукні та спідниці',
+    name: 'Сукні та спідниці',
+    _id: '690c9ce6a6276289c98fc00a',
   },
   {
     img: '/img/categiries/coats.png',
-    category: 'Куртки та верхній одяг',
+    name: 'Верхній одяг',
+    _id: '690c9ce6a6276289c98fc008',
   },
   {
     img: '/img/categiries/homewear.png',
-    category: 'Домашній та спортивний одяг',
+    name: 'Домашній та спортивний одяг',
+    _id: '690c9ce6a6276289c98fc00b',
   },
   {
     img: '/img/categiries/tops.png',
-    category: 'Топи та майки',
+    name: 'Топи та майки',
+    _id: '690c9ce6a6276289c98fc009',
   },
 ];
 
 export default function PopularCategories() {
-  const [visibleCount, setVisibleCount] = useState(3);
-  const visibleCatetegories = categoriesData.slice(0, visibleCount);
-  const hasMore = visibleCount < categoriesData.length;
+  const [categoriesData, setCategoriesData] = useState<Category[]>([]);
 
-  const loadMore = () => {
-    if (hasMore) {
-      setVisibleCount(prev => prev + 1);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchCategoriesClient(1, 7);
+
+        const extendedData = mergeById(
+          data.data,
+          categoriesArray.map(({ img, _id }) => ({
+            _id,
+            img,
+          }))
+        );
+        setCategoriesData(extendedData);
+      } catch {
+        setCategoriesData([]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <section className={css.section}>
+    <section className={css.section} id="PopularCategories">
       <div className="container">
         <div className={css.title_button}>
           <h2 className={css.title}>Популярні категорії</h2>
@@ -60,66 +82,49 @@ export default function PopularCategories() {
             Всі категорії
           </Link>
         </div>
-        <Swiper
-          modules={[Navigation, Keyboard, A11y]}
-          navigation={{
-            nextEl: `.${css.btnNext}`,
-            prevEl: `.${css.btnPrev}`,
-          }}
-          keyboard={{ enabled: true }}
-          spaceBetween={34}
-          slidesPerView={1}
-          slidesPerGroup={1}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              slidesPerGroup: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
-            },
-          }}
-          className={css.swiper}
-          a11y={{ enabled: true }}
-        >
-          {visibleCatetegories.map((item, index) => (
-            <SwiperSlide key={index} className={css.item}>
-              <Image
-                src={item.img}
-                alt={item.category}
-                width={416}
-                height={277}
-                className={css.image}
-              ></Image>
 
-              <p className={css.name}>{item.category}</p>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className={css.controls}>
-          <button
-            type="button"
-            className={css.btnPrev}
-            aria-label="Попередній слайд"
-            disabled={visibleCatetegories.length === 0}
+        <div className={css.sliderContainer}>
+          <Swiper
+            modules={[Navigation, Keyboard, A11y]}
+            navigation={{
+              nextEl: `.${css.btnNext}`,
+              prevEl: `.${css.btnPrev}`,
+            }}
+            keyboard={{ enabled: true }}
+            spaceBetween={34}
+            slidesPerView={1}
+            slidesPerGroup={1}
+            breakpoints={{
+              768: { slidesPerView: 2, slidesPerGroup: 1 },
+              1024: { slidesPerView: 3, slidesPerGroup: 1 },
+            }}
+            className={css.swiper}
+            a11y={{ enabled: true }}
           >
-            <LuArrowLeft size={24} />
-          </button>
+            {categoriesData.map((item, index) => (
+              <SwiperSlide key={index} className={css.item}>
+                <Link href={`/categories/${item._id}`} className={css.card}>
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={416}
+                    height={277}
+                    className={css.image}
+                  />
+                </Link>
+                <p className={css.name}>{item.name}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          <button
-            type="button"
-            className={css.btnNext}
-            aria-label="Наступний слайд"
-            disabled={!hasMore}
-            onClick={loadMore}
-          >
-            <LuArrowRight size={24} />
-          </button>
+          <div className={css.controls}>
+            <button type="button" className={css.btnPrev} aria-label="Prev">
+              <LuArrowLeft size={24} />
+            </button>
+            <button type="button" className={css.btnNext} aria-label="Next">
+              <LuArrowRight size={24} />
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,45 @@
+.noOrdersWrapper {
+    background: #d6eac0;
+    border-radius: 16px;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.messageText {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+}
+
+.shopButton {
+    background: var(--color-deco);
+    border: 1px solid var(--color-deco);
+    border-radius: 100px;
+    padding: 6px 12px;
+
+    color: var(--color-neutral-darkest);
+    font-size: 16px;
+    font-weight: 500;
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.shopButton:hover {
+    background: var(--color-deco-dark);
+    border: 1px solid var(--color-deco-darker);
+}
+
+@media screen and (min-width: 1440px) {
+    .noOrdersWrapper {
+        width: 640px;
+    }
+}

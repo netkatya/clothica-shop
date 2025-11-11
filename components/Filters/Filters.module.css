@@ -1,0 +1,66 @@
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.filter {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.01em;
+}
+.button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  background: transparent;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+}
+.shown {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  margin-bottom: 8px;
+}
+.filterWrapper {
+  position: relative;
+  min-height: 40px;
+  margin-bottom: 32px;
+}
+.filterDropdownContainer {
+  background: var(--color-deco-lighter);
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  width: 100%;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.filterDropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.filterDropdownTitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.arrow {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}

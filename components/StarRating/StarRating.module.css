@@ -1,0 +1,18 @@
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+
+.starEmpty,
+.starFull {
+    color: #000000;
+    width: 20px;
+    height: 20px;
+    transition: color 250ms ease-in-out;
+}
+
+.stars span:hover .starEmpty,
+.stars span:hover .starFull {
+    color: #000000;
+}

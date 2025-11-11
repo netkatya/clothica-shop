@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import css from './Header.module.css';
 import Link from 'next/link';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,6 +34,8 @@ export default function Header() {
               <use href="/symbol-defs.svg#icon-company-logo"></use>
             </svg>
           </Link>
+
+          <ThemeToggle />
 
           {isMobile ? (
             <>

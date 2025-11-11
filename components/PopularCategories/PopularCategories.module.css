@@ -30,10 +30,20 @@
     font-size: 16px;
     line-height: 150%;
     color: var(--color-neutral-darkest);
+    transition: all 250ms ease-in-out;
 }
+
+.button:hover,
+.button:focus {
+    border: 1px solid var(--opacity-neutral-darkest-50);
+    background: var(--opacity-neutral-darkest-15);
+    
+}
+
 
 .image {
     max-width: 335px;
+    max-height: 223;
     margin-bottom: 24px;
 }
 
@@ -65,6 +75,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background 250ms ease-in-out;
 }
 
 .btnPrev:hover,
@@ -80,17 +91,61 @@
 
 
 @media screen and (min-width: 768px) {
-    .swiper {
+    .sliderContainer {
         margin-bottom: 0px;
+        position: relative;
+        overflow: visible;
     }
 
+
+    .item {
+        z-index: 2;
+    }
+        
+    .controls {
+        position: absolute;
+        top: 50%;
+        left: -28px;
+        width: 108%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 10;
+    }
     
+    .btnPrev,
+    .btnNext {
+        pointer-events: auto;
+    }
 }
+
+    
+
 
 @media screen and (min-width: 1440px) {
     .image {
         max-width: 416px;
-        height: fit-content;
+        max-height: 277px;
+    }
+
+    .title {
+        font-size: 48px;
+        color: var(--color-scheme-1-text);
+    }
+
+    .controls {
+        left: -28px;
+        width: 104%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .category {
+        font-size: 24px;
     }
 }
 
