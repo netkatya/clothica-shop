@@ -9,45 +9,44 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { fetchCategoriesClient } from '@/lib/api/clientApi';
 import { Category } from '@/types/category';
-import { mergeById } from '@/lib/utils';
 
-export const categoriesArray = [
-  {
-    img: '/img/categiries/t-shirts.png',
-    name: 'Футболки та сорочки',
-    _id: '690c9ce6a6276289c98fc006',
-  },
-  {
-    img: '/img/categiries/hoodies.png',
-    name: 'Худі та кофти',
-    _id: '690c9ce6a6276289c98fc00c',
-  },
-  {
-    img: '/img/categiries/trousers.png',
-    name: 'Штани та джинси',
-    _id: '690c9ce6a6276289c98fc007',
-  },
-  {
-    img: '/img/categiries/dresses.png',
-    name: 'Сукні та спідниці',
-    _id: '690c9ce6a6276289c98fc00a',
-  },
-  {
-    img: '/img/categiries/coats.png',
-    name: 'Верхній одяг',
-    _id: '690c9ce6a6276289c98fc008',
-  },
-  {
-    img: '/img/categiries/homewear.png',
-    name: 'Домашній та спортивний одяг',
-    _id: '690c9ce6a6276289c98fc00b',
-  },
-  {
-    img: '/img/categiries/tops.png',
-    name: 'Топи та майки',
-    _id: '690c9ce6a6276289c98fc009',
-  },
-];
+// export const categoriesArray = [
+//   {
+//     img: '/img/categiries/t-shirts.png',
+//     name: 'Футболки та сорочки',
+//     _id: '690c9ce6a6276289c98fc006',
+//   },
+//   {
+//     img: '/img/categiries/hoodies.png',
+//     name: 'Худі та кофти',
+//     _id: '690c9ce6a6276289c98fc00c',
+//   },
+//   {
+//     img: '/img/categiries/trousers.png',
+//     name: 'Штани та джинси',
+//     _id: '690c9ce6a6276289c98fc007',
+//   },
+//   {
+//     img: '/img/categiries/dresses.png',
+//     name: 'Сукні та спідниці',
+//     _id: '690c9ce6a6276289c98fc00a',
+//   },
+//   {
+//     img: '/img/categiries/coats.png',
+//     name: 'Верхній одяг',
+//     _id: '690c9ce6a6276289c98fc008',
+//   },
+//   {
+//     img: '/img/categiries/homewear.png',
+//     name: 'Домашній та спортивний одяг',
+//     _id: '690c9ce6a6276289c98fc00b',
+//   },
+//   {
+//     img: '/img/categiries/tops.png',
+//     name: 'Топи та майки',
+//     _id: '690c9ce6a6276289c98fc009',
+//   },
+// ];
 
 export default function PopularCategories() {
   const [categoriesData, setCategoriesData] = useState<Category[]>([]);
@@ -55,16 +54,9 @@ export default function PopularCategories() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchCategoriesClient(1, 7);
+        const { categories } = await fetchCategoriesClient(1, 7);
 
-        const extendedData = mergeById(
-          data.data,
-          categoriesArray.map(({ img, _id }) => ({
-            _id,
-            img,
-          }))
-        );
-        setCategoriesData(extendedData);
+        setCategoriesData(categories);
       } catch {
         setCategoriesData([]);
       }
