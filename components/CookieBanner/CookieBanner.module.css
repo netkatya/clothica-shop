@@ -1,39 +1,40 @@
 .wrapper {
   position: fixed;
   left: 0;
-  bottom: -200px;
+  bottom: -100px;
   width: 100%;
   box-sizing: border-box;
-  padding: 16px 20px;
-  background: #2b2b2b;
-  color: #fff;
-  display: flex;
-  gap: 12px;
+  padding: 30px 30px;
+  background: var(--color-scheme-6-background);
+  color: var(--color-scheme-6-text);
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   z-index: 10000;
-  transition: bottom 0.4s ease;
+  transition: all 250ms ease-in-out;
+  opacity: 0;
 }
 
 .show {
   bottom: 0;
+  opacity: 1;
 }
 
 .text {
   font-size: 14px;
   line-height: 1.4;
   text-align: center;
-  margin-right: 8px;
+  margin-bottom: 16px;
 }
 
 .actions {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
 }
 
 .actions button {
-  border: none;
+  border-radius: 100px;
   padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
@@ -41,11 +42,23 @@
 }
 
 .accept {
-  background: #4caf50;
-  color: #fff;
+  border: 1px solid rgb(0, 233, 116);
+  background: rgb(0, 233, 116);
+  color: var(--color-neutral-darkest);
+}
+
+.accept:hover,
+.accept:focus {
+  background: var(--opacity-neutral-darkest-5);
 }
 
 .decline {
-  background: #e53935;
-  color: #fff;
+  border: 1px solid var(--opacity-neutral-darkest-5);
+  background: var(--opacity-neutral-darkest-5);
+  color: var(--color-neutral-darkest);
+}
+
+.decline:hover,
+.decline:focus {
+  border: 1px solid rgb(0, 233, 116);
 }
