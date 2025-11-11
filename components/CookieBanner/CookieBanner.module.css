@@ -11,11 +11,11 @@
   justify-content: center;
   flex-wrap: wrap;
   z-index: 10000;
-  transition: all 250ms ease-in-out;
+  transition: all 500ms ease-in-out;
   opacity: 0;
 }
 
-.show {
+.wrapper.show {
   bottom: 0;
   opacity: 1;
 }
