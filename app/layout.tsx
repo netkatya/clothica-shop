@@ -62,6 +62,7 @@ export default function RootLayout({
           <AuthProvider>
             <Header />
             <main>{children}</main>
+            <div id="modal-root"></div>
             <Footer />
             <ScrollToTopBtn />
           </AuthProvider>

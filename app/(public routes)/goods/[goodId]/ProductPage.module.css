@@ -1,0 +1,262 @@
+.goodsReviews {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titleReviews {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-scheme-4-text);
+}
+
+.addReviews {
+  border: 1px solid var(--color-deco);
+  border-radius: 100px;
+  padding: 6px 12px;
+  width: 100%;
+  height: 36px;
+  background: var(--color-deco);
+  margin-bottom: 40px;
+}
+
+.noMargin {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.addReviews:hover,
+.addReviews:focus {
+  border: 1px solid var(--color-deco-darker);
+  background: var(--color-deco-dark);
+}
+
+.addReviews:active {
+  border: 1px solid var(--color-deco);
+  background: var(--color-deco-darkest);
+}
+
+.modal {
+  border-radius: 16px;
+  padding: 40px 20px;
+  width: 335px;
+  max-width: 768px;
+  background: var(--color-scheme-1-background);
+  fill: var(--color-white);
+  stroke-width: 1px;
+  stroke: var(--color-scheme-1-text);
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  border: none;
+  background-color: inherit;
+}
+
+.icon {
+  fill: var(--color-white);
+  stroke-width: 1px;
+  stroke: var(--color-scheme-1-text);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.titleModal {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 48px;
+}
+
+.form {
+  width: 295px;
+  height: 416px;
+}
+
+.inpName {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 8px;
+}
+
+.input {
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  padding: 8px;
+  width: 295px;
+  height: 40px;
+  background: var(--opacity-transparent);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--opacity-neutral-darkest-60);
+}
+
+.textarea {
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 16px;
+  padding: 12px;
+  width: 295px;
+  height: 180px;
+  background: var(--opacity-transparent);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--opacity-neutral-darkest-60);
+  resize: none;
+}
+
+.btnReviews {
+  border: 1px solid var(--color-deco);
+  border-radius: 100px;
+  padding: 6px 12px;
+  width: 295px;
+  height: 36px;
+  background: var(--color-deco);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  margin-top: 24px;
+}
+
+.btnReviews:hover,
+.btnReviews:focus {
+  border: 1px solid var(--color-deco-darker);
+  background: var(--color-deco-dark);
+}
+
+.btnReviews:active {
+  border: 1px solid var(--color-deco);
+  background: var(--color-deco-darkest);
+}
+
+.error {
+  color: brown;
+}
+
+.inputError,
+.textareaError {
+  border-color: #e63946;
+}
+
+.inpName {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 24px;
+}
+
+.inpBox {
+  margin-bottom: 24px;
+}
+
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 24px 16px;
+  width: 335px;
+  height: 127px;
+  margin-bottom: 40px;
+  background: var(--color-deco-light);
+}
+
+.emptyStateTitle {
+  width: 303px;
+  height: 27px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--color-scheme-1-text);
+}
+
+@media screen and (min-width: 375px) {
+  .form {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .goodsReviews {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .addReviews {
+    margin-bottom: 0;
+    width: 156px;
+  }
+
+  .form {
+    width: 576px;
+    height: 416px;
+  }
+
+  .input {
+    width: 576px;
+    height: 40px;
+  }
+
+  .textarea {
+    width: 576px;
+    height: 180px;
+  }
+
+  .btnReviews {
+    display: block;
+    width: 105px;
+    align-items: center;
+    margin: 24px auto 0;
+  }
+
+  .emptyStateContainer {
+    width: 753px;
+  }
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
