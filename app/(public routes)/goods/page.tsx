@@ -17,7 +17,7 @@ async function GoodsPage() {
   return (
     <section className={css.section}>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <GoodsClient />;
+        <GoodsClient />
       </HydrationBoundary>
     </section>
   );

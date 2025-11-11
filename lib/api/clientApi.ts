@@ -76,6 +76,7 @@ export async function updateMeAvatar(update: File): Promise<User> {
 export interface FetchGoodsResponse {
   data: Good[];
   totalPages: number;
+  totalItems: number;
 }
 
 export interface FetchGoodsParam {

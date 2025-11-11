@@ -1,24 +1,21 @@
 'use client';
 import css from './FilterContent.module.css';
 import PriceFilter from '../PriceFilter/PriceFilter';
-import { useState } from 'react';
-import { SIZES, COLORS } from '@/constants/goods';
-import { fetchCategoriesClient } from '@/lib/api/clientApi';
-import { useQuery } from '@tanstack/react-query';
+import { SIZES, COLORS, GENDERS } from '@/constants/goods';
+import { FilterContentProps } from '@/types/filters';
+import { Gender, Size } from '@/types/good';
 
-const STATUS_OPTIONS = ['Всі', 'Жіночий', 'Чоловічий', 'Унісекс'];
-
+const STATUS_OPTIONS: (Gender | 'Всі')[] = ['Всі', ...GENDERS];
 export default function FilterContent({
   currentFilters,
   onFilterChange,
   isLoadingCategories,
-  Categories,
-}) {
+  categories,
+}: FilterContentProps) {
   const handleCategoryClick = (categoryName: string) => {
     onFilterChange(prev => ({ ...prev, category: categoryName }));
   };
-
-  const handleSizeChange = (size: string) => {
+  const handleSizeChange = (size: Size) => {
     onFilterChange(prev => {
       const newSizes = prev.sizes.includes(size)
         ? prev.sizes.filter(s => s !== size)
@@ -26,11 +23,9 @@ export default function FilterContent({
       return { ...prev, sizes: newSizes };
     });
   };
-
   const handlePriceChange = (newValues: number[]) => {
     onFilterChange(prev => ({ ...prev, priceRange: newValues }));
   };
-
   const handleColorClick = (color: string) => {
     onFilterChange(prev => {
       const newColors = prev.colors.includes(color)
@@ -39,24 +34,12 @@ export default function FilterContent({
       return { ...prev, colors: newColors };
     });
   };
-
-  const handleStatusChange = (status: string) => {
+  const handleStatusChange = (status: Gender | 'Всі') => {
     onFilterChange(prev => ({ ...prev, status: status }));
   };
 
   return (
     <div className={css.filterContentContainer}>
-      {/* --- Категорії (тепер керовані) --- */}
-      <div className={css.filterHeader}>
-        <h3>Категорії</h3>
-        <button
-          type="button"
-          onClick={() => handleCategoryClick('Усі')}
-          className={css.clearButtonInternal}
-        >
-          Очистити
-        </button>
-      </div>
       <ul className={css.categoryList}>
         <li
           className={
@@ -71,7 +54,7 @@ export default function FilterContent({
         {isLoadingCategories ? (
           <li>Завантаження...</li>
         ) : (
-          Categories.map(category => (
+          categories.map(category => (
             <li
               className={
                 currentFilters.category === category.name
@@ -87,8 +70,6 @@ export default function FilterContent({
         )}
       </ul>
       <hr className={css.divider} />
-
-      {/* --- Розмір (тепер керований) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Розмір</h3>
@@ -119,8 +100,6 @@ export default function FilterContent({
         </ul>
       </div>
       <hr className={css.divider} />
-
-      {/* --- Ціна (тепер керована) --- */}
       <div className={css.filterHeader}>
         <h3>Ціна</h3>
         <button
@@ -138,8 +117,6 @@ export default function FilterContent({
         onChange={handlePriceChange}
       />
       <hr className={css.divider} />
-
-      {/* --- Колір (тепер керований) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Колір</h3>
@@ -170,14 +147,14 @@ export default function FilterContent({
         </ul>
       </div>
       <hr className={css.divider} />
-
-      {/* --- Стать (тепер керована) --- */}
       <div>
         <div className={css.filterHeader}>
           <h3>Стать</h3>
           <button
             type="button"
-            onClick={() => onFilterChange(prev => ({ ...prev, status: 'Всі' }))}
+            onClick={() =>
+              onFilterChange(prev => ({ ...prev, status: 'unisex' }))
+            }
             className={css.clearButtonInternal}
           >
             Очистити

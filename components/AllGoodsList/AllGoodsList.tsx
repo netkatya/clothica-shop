@@ -12,7 +12,7 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
       <ul className={css.list}>
         {goods.map(good => (
           <li key={good._id} className={css.listItem}>
-            <div>
+            <div className={css.card}>
               <Image
                 src={good.image}
                 alt={good.name}
@@ -37,7 +37,7 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
                   {good.feedbacks.length ?? 0}
                 </p>
               </div>
-              <Link href={`/goods/${good._id}`}>
+              <Link href={`/goods/${good._id}`} className={css.detailLink}>
                 <button className={css.detail}>Детальніше</button>
               </Link>
             </div>
