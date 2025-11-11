@@ -11,8 +11,9 @@
   justify-content: center;
   flex-wrap: wrap;
   z-index: 10000;
-  transition: all 250ms ease-in-out;
+  
   opacity: 0;
+  transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .show {
