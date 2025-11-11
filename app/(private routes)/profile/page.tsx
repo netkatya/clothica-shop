@@ -17,6 +17,7 @@ import {
   updateMe,
 } from '@/lib/api/clientApi';
 import { useAuthStore } from '@/lib/store/authStore';
+import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 
 export default function ProfilePage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -119,7 +120,15 @@ export default function ProfilePage() {
           </div>
           <div>
             <h2>Мої замовлення</h2>
-            <OrdersList orders={orders} />
+            {orders.length > 0 ? (
+              <OrdersList orders={orders} />
+            ) : (
+              <MessageNoInfo
+                text="У вас ще не було жодних замовлень! Мерщій до покупок!"
+                buttonText="До покупок"
+                route="/goods"
+              />
+            )}
           </div>
         </div>
 
