@@ -4,10 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import css from './CategoriesList.module.css';
-import { categoriesArray } from '@/components/PopularCategories/PopularCategories';
 import { fetchCategoriesClient } from '@/lib/api/clientApi';
 import { Category } from '@/types/category';
-import { mergeById } from '@/lib/utils';
 
 export default function CategoriesList() {
   const [showAll, setShowAll] = useState(false);
@@ -22,16 +20,9 @@ export default function CategoriesList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchCategoriesClient(1, 7);
+        const { categories } = await fetchCategoriesClient(1, 7);
 
-        const extendedData = mergeById(
-          data.data,
-          categoriesArray.map(({ img, _id }) => ({
-            _id,
-            img,
-          }))
-        );
-        setCategoriesData(extendedData);
+        setCategoriesData(categories);
       } catch {
         setCategoriesData([]);
       }

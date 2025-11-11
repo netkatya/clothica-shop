@@ -39,7 +39,7 @@ export default function ReviewsSlider({
 
         const goodsResponse = await fetchGoodsClient();
         const goodsMap: Record<string, string> = {};
-        goodsResponse.data.forEach(good => {
+        goodsResponse.goods.forEach(good => {
           goodsMap[good._id] = good.name;
         });
 
