@@ -13,6 +13,27 @@ export type OrderStatus =
   | 'completed'
   | 'cancelled';
 
+export interface CreateOrderForm {
+  name: string;
+  lastname: string;  
+  phone: string;
+  city: string;
+  branchnum_np: string;
+  email: string;
+  avatar: string;
+  comment?: string;
+}
+
+export type CreateOrderParams = {
+  goods: OrderGood[],
+  sum: number,
+  userName: string,
+  userLastName: string,
+  userPhone: string,
+  branchnum_np: string,
+  comment?: string
+}
+
 export type Order = {
   _id: string;
   goods: OrderGood[];

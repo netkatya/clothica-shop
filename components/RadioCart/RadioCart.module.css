@@ -1,0 +1,28 @@
+.radioInputs {
+    display: flex;
+    gap: 24px;
+}
+
+.radioLabel {
+    cursor: pointer;
+}
+
+.radioInput {
+    display: none;
+}
+
+.radioTile {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 250ms;
+}
+
+.radioInput:checked+.radioTile {
+    border-color: #0070f3;
+}
+
+
+
