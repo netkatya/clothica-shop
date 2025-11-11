@@ -1,0 +1,51 @@
+.wrapper {
+  position: fixed;
+  left: 0;
+  bottom: -200px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 20px;
+  background: #2b2b2b;
+  color: #fff;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 10000;
+  transition: bottom 0.4s ease;
+}
+
+.show {
+  bottom: 0;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  margin-right: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.accept {
+  background: #4caf50;
+  color: #fff;
+}
+
+.decline {
+  background: #e53935;
+  color: #fff;
+}
