@@ -12,7 +12,7 @@ export default function AuthNavigation() {
       {isAuthenticated ? (
         <>
           <li className={css.navigationItem}>
-            <Link href="/cabinet" className={css.authButton} prefetch={false}>
+            <Link href="/profile" className={css.authButton} prefetch={false}>
               Кабінет
             </Link>
           </li>
