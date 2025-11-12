@@ -9,7 +9,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  
 }
 
 .name {
@@ -17,7 +16,6 @@
   font-size: 18px;
   line-height: 150%;
   max-width: 230px;
-  
 }
 
 .price {
@@ -38,7 +36,6 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
-  
 }
 
 .ratenumber {
@@ -84,29 +81,18 @@
 }
 
 .paginationContainer {
-  
   margin: 0 auto;
-  /* text-align: center; */
 }
 
-.paginationContainer  {
+.paginationContainer {
   background-color: inherit;
-  /* opacity: 1; */
+
   transition: all 0.3s ease-in-out;
 }
 
 .paginationContainer :global(.swiper-pagination-bullet-active) {
   background-color: #000000;
 }
-
-/* .paginationContainer :global(.swiper-pagination-bullet-prev),
-.paginationContainer :global(.swiper-pagination-bullet-next) { */
-  /* background-color: #cccccc;
-  width: 10px;
-  height: 10px; */
-/* } */
-
-
 
 .buttonControls {
   display: flex;
@@ -157,8 +143,6 @@
     height: 380px;
   }
 
-  
-
   .buttonControls {
     position: absolute;
     top: 35%;
@@ -169,8 +153,6 @@
     justify-content: space-between;
     pointer-events: none;
     z-index: 10;
-  }
-  .paginationContainer {
   }
   .btnPrev,
   .btnNext {
@@ -185,9 +167,9 @@
     height: 354px;
   }
 
-    .name {
-      max-width: 200px;
-    }
+  .name {
+    max-width: 200px;
+  }
 
   .buttonControls {
     left: -28px;

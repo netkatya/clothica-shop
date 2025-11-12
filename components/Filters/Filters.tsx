@@ -3,23 +3,30 @@ import css from './Filters.module.css';
 
 import FilterContent from '../FilterContent/FilterContent';
 import { useState } from 'react';
-import { QueryClient } from '@tanstack/react-query';
+import { FilterContainerProps } from '@/types/filters';
 
-export default function Filters() {
+export default function Filters({
+  currentFilters,
+  onFilterChange,
+  onClearAll,
+  categories,
+  isLoadingCategories,
+  shown,
+  total,
+}: FilterContainerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className="container">
+    <div>
       <div className={css.filters}>
         <h3 className={css.filter}>Фільтри</h3>
-        <button
-          type="button"
-          className={css.button}
-          // onClick={onClearAll}
-        >
+        <button type="button" className={css.button} onClick={onClearAll}>
           Очистити всі
         </button>
       </div>
-      <p className={css.shown}> Показано X з Y</p>
+      <p className={css.shown}>
+        {' '}
+        Показано {shown} з {total}
+      </p>
 
       <div className={css.filterWrapper}>
         <div className={css.filterDropdownContainer}>
@@ -38,7 +45,14 @@ export default function Filters() {
               </svg>
             </button>
           </div>
-          {isOpen && <FilterContent />}
+          {isOpen && (
+            <FilterContent
+              currentFilters={currentFilters}
+              onFilterChange={onFilterChange}
+              isLoadingCategories={isLoadingCategories}
+              categories={categories}
+            />
+          )}
         </div>
       </div>
     </div>
