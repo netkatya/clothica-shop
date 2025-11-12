@@ -10,7 +10,7 @@ import {
 import { User } from '@/types/user';
 import { Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
-import { OrderGood, Order, OrderStatus } from '@/types/order';
+import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
 import { getCurrentDate } from '../utils';
 import { Feedback } from '@/types/feedback';
 
@@ -74,9 +74,19 @@ export async function updateMeAvatar(update: File): Promise<User> {
 }
 
 export interface FetchGoodsResponse {
-  data: Good[];
-  totalPages: number;
+  goods: Good[];
+  success: boolean;
+  message?: string;
+  page: number;
+  perPage: number;
   totalItems: number;
+  totalPages: number;
+}
+
+export interface FetchGoodByIdResponse {
+  good: Good;
+  success: boolean;
+  message?: string;
 }
 
 export interface FetchGoodsParam {
@@ -90,8 +100,8 @@ export interface FetchGoodsParam {
 }
 
 export interface FetchCategoriesResponse {
-  data: Category[];
-  totalPage: number;
+  categories: Category[];
+  totalPages: number;
 }
 
 export interface FetchCategoriesParam {
@@ -131,9 +141,14 @@ export async function fetchGoodsClient(
   }
 }
 
-export async function fetchGoodById(id: string): Promise<Good> {
+export async function fetchGoodById(
+  id: string
+): Promise<FetchGoodByIdResponse> {
   try {
-    const { data } = await nextServer.get<Good>(`/goods/${id}`);
+    const { data } = await nextServer.get<FetchGoodByIdResponse>(
+      `/goods/${id}`,
+      { withCredentials: false }
+    );
     return data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -171,25 +186,19 @@ export async function fetchCategoriesClient(
 }
 
 export const createOrderClient = async (
-  goods: OrderGood[],
-  sum: number,
-  userName: string,
-  userLastName: string,
-  userPhone: string,
-  branchnum_np: string,
-  comment?: string
+  CreateOrderParams: CreateOrderParams
 ): Promise<Order> => {
   try {
     const { data } = await nextServer.post<Order>('/orders', {
-      goods,
+      goods: CreateOrderParams.goods,
       date: getCurrentDate(),
-      sum,
+      sum: CreateOrderParams.sum,
       status: 'new',
-      userName,
-      userLastName,
-      userPhone,
-      branchnum_np,
-      ...(comment && { comment }),
+      userName: CreateOrderParams.userName,
+      userLastName: CreateOrderParams.userLastName,
+      userPhone: CreateOrderParams.userPhone,
+      branchnum_np: CreateOrderParams.branchnum_np,
+      ...(CreateOrderParams.comment && { comment: CreateOrderParams.comment }),
     });
     return data;
   } catch (error) {
@@ -270,6 +279,7 @@ export async function fetchFeedbacksClient({
 
     const { data } = await nextServer.get<FetchFeedbackResponse>('/feedbacks', {
       params,
+      withCredentials: false,
     });
     return data;
   } catch (error) {

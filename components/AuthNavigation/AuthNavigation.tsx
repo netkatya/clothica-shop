@@ -1,30 +1,30 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import css from './AuthNavigation.module.css';
+import { useAuthStore } from '@/lib/store/authStore';
 
 export default function AuthNavigation() {
-  // Імітація стану авторизації
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuthenticated, clearIsAuthenticated } = useAuthStore();
 
   return (
     <>
-      {isAuth ? (
+      {isAuthenticated ? (
         <>
           <li className={css.navigationItem}>
             <Link href="/cabinet" className={css.authButton} prefetch={false}>
               Кабінет
             </Link>
           </li>
-          <li className={css.navigationItem}>
-            <button className={css.authButton}>Вихід</button>
-          </li>
         </>
       ) : (
         <>
           <li className={css.navigationItem}>
-            <Link href="/auth/login" className={css.authButton} prefetch={false}>
+            <Link
+              href="/auth/login"
+              className={css.authButton}
+              prefetch={false}
+            >
               Вхід
             </Link>
           </li>

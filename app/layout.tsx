@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { Inter, Nunito_Sans } from 'next/font/google';
+import type { Metadata } from "next";
+import { Inter, Nunito_Sans } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import ScrollToTopBtn from "@/components/ScrollToTopBtn/ScrollToTopBtn";
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
-import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import DarkReaderClient from '@/components/DarkReaderClient/DarkReaderClient';
-import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import CookieBanner from '@/components/CookieBanner/CookieBanner';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -62,9 +62,12 @@ export default function RootLayout({
           <AuthProvider>
             <Header />
             <main>{children}</main>
+            <div id="modal-root"></div>
             <Footer />
+            <ScrollToTopBtn />
           </AuthProvider>
         </TanStackProvider>
+        <CookieBanner />
       </body>
     </html>
   );

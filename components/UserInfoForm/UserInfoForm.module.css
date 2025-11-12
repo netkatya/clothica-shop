@@ -23,14 +23,15 @@
 }
 
 .input {
-  height: 40px;
-  padding: 8px 16px;
-  border-radius: 16px;
-  border: 1px solid var(--opacity-neutral-darkest-15);
-  background-color: inherit;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.25s ease;
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #f3f9ed;
+    font-size: 15px;
+    outline: none;
+    color: var(--color-neutral-darkest);
+    transition: border-color 0.25s ease;
 }
 
 .input::placeholder {

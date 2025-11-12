@@ -1,3 +1,4 @@
+import { Size } from '@/types/good';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -7,7 +8,8 @@ export type CartItem = {
   rate: number;
   reviewsNumber: number;
   price: number;
-  quantity: number;
+  amount: number;
+  size: Size;
   image?: string;
 };
 
