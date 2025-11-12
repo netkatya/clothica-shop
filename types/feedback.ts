@@ -1,7 +1,12 @@
+export interface FieldPopulate {
+  _id: string;
+  name: string;
+}
+
 export interface Feedback {
   author: string;
   rate: number;
   comment: string;
-  goodId: string;
-  category: string;
+  good: FieldPopulate;
+  category: FieldPopulate;
 }

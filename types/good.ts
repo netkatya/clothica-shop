@@ -24,4 +24,6 @@ export interface Good {
   prevDescription: string;
   gender: Gender;
   characteristics: string[];
+  averageRate: number;
+  feedbackCount: number;
 }
