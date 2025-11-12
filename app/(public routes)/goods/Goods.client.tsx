@@ -19,10 +19,15 @@ import { AllFiltersState } from '@/types/filters';
 import { Category } from '@/types/category';
 import { useDebounce } from 'use-debounce';
 import { Gender } from '@/types/good';
+import { useSearchParams } from 'next/navigation';
 
 export default function GoodsClient() {
+  //me
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
   const [filters, setFilters] = useState<AllFiltersState>({
-    category: 'Усі',
+    category: categoryParam || 'Усі',
     sizes: [],
     priceRange: [1, 5499],
     colors: [],
