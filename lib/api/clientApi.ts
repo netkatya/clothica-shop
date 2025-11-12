@@ -73,8 +73,6 @@ export async function updateMeAvatar(update: File): Promise<User> {
   return data;
 }
 
-
-
 export interface FetchGoodsResponse {
   goods: Good[];
   success: boolean;
@@ -187,7 +185,9 @@ export async function fetchCategoriesClient(
   }
 }
 
-export const createOrderClient = async (CreateOrderParams: CreateOrderParams): Promise<Order> => {
+export const createOrderClient = async (
+  CreateOrderParams: CreateOrderParams
+): Promise<Order> => {
   try {
     const { data } = await nextServer.post<Order>('/orders', {
       goods: CreateOrderParams.goods,
