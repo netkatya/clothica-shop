@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import Stars from '../Stars/Stars';
 import { useEffect, useState } from 'react';
-import { fetchFeedbacksClient, fetchGoodsClient } from '@/lib/api/clientApi';
+import { fetchFeedbacksClient } from '@/lib/api/clientApi';
 
 interface SliderReview {
   name: string;
@@ -37,16 +37,17 @@ export default function ReviewsSlider({
         });
         const feedbacks = response.feedbacks || [];
 
-        const goodsResponse = await fetchGoodsClient();
-        const goodsMap: Record<string, string> = {};
-        goodsResponse.goods.forEach(good => {
-          goodsMap[good._id] = good.name;
-        });
+        // const goodsResponse = await fetchGoodsClient();
+        // const goodsMap: Record<string, string> = {};
+        // goodsResponse.goods.forEach(good => {
+        //   goodsMap[good._id] = good.name;
+        // });
 
         const mapped: SliderReview[] = feedbacks.map(feedback => ({
           name: feedback.author || 'Анонім',
           text: feedback.comment || '',
-          product: goodsMap[feedback.goodId] || 'Невідомий продукт',
+          // product: goodsMap[feedback.goodId] || 'Невідомий продукт',
+          product: feedback.good.name || 'Невідомий продукт',
           rating: feedback.rate || 0,
         }));
 
