@@ -9,7 +9,11 @@ import { fetchCategoriesClient } from '@/lib/api/clientApi';
 import { Category } from '@/types/category';
 import { mergeById } from '@/lib/utils';
 
+import { useTranslate } from "@tolgee/react";
+
 export default function CategoriesList() {
+  const { t } = useTranslate(); // initialize translate
+
   const [showAll, setShowAll] = useState(false);
   const [columns, setColumns] = useState(1);
   const [maxVisible, setMaxVisible] = useState(4);
@@ -108,7 +112,8 @@ export default function CategoriesList() {
     <section className={css.categoriesSection} ref={sectionRef}>
       <div className="container">
         <div className={css.containerWrapper}>
-          <h2 className={css.title}>Категорії</h2>
+          
+          <h2 className={css.title}>{t("categories")}</h2>
 
           <ul
             ref={listRef}
@@ -153,9 +158,10 @@ export default function CategoriesList() {
               className={css.moreBtn}
               onClick={() => setShowAll(prev => !prev)}
             >
-              {showAll ? 'Показати менше' : 'Показати більше'}
+              {showAll ? t("showLess") : t("showMore")}
             </button>
           </div>
+
         </div>
       </div>
     </section>

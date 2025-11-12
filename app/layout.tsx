@@ -1,12 +1,16 @@
+
 import type { Metadata } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ScrollToTopBtn from "@/components/ScrollToTopBtn/ScrollToTopBtn";
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
+import TolgeeProviderWrapper from "@/components/LanguageSwitcher/TolgeeProviderWrapper";
+import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 
 const inter = Inter({
   variable: '--font-inter',
@@ -24,14 +28,12 @@ export const metadata: Metadata = {
     'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
   openGraph: {
     type: 'website',
-    //change adress
     url: 'https://online-shop-chi-flame.vercel.app',
     title: 'Clothica',
     description:
       'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
     images: [
       {
-        //change
         url: 'https://online-shop-chi-flame.vercel.app/img/main-page.png',
         width: 1200,
         height: 630,
@@ -45,29 +47,29 @@ export const metadata: Metadata = {
     title: 'Clothica',
     description:
       'Відкрийте для себе широкий вибір якісних товарів у нашому онлайн-магазині. Швидка доставка, безпечна оплата та зручний шопінг.',
-    //change
     images: ['https://online-shop-chi-flame.vercel.app/img/main-page.png'],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk">
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
-        <TanStackProvider>
-          <AuthProvider>
-            <Header />
-            <main>{children}</main>
-            <div id="modal-root"></div>
-            <Footer />
-            <ScrollToTopBtn />
-          </AuthProvider>
-        </TanStackProvider>
-        <CookieBanner />
+        <TolgeeProviderWrapper>
+          <TanStackProvider>
+            <AuthProvider>
+              <Header />
+              <LanguageSwitcher />
+              <main>{children}</main>
+              <div id="modal-root"></div>
+              <Footer />
+              <ScrollToTopBtn />
+            </AuthProvider>
+          </TanStackProvider>
+
+          <CookieBanner />
+
+        </TolgeeProviderWrapper>
       </body>
     </html>
   );
