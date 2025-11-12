@@ -1,58 +1,164 @@
 .container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.checkWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-}
-
-.circle {
-  width: 156px;
-  height: 156px;
-  border-radius: 50%;
-  background: #d1fae5;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  text-align: center;
+  min-height: 100vh;
   position: relative;
 }
 
+/* Блок із галочкою */
+.checkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  min-height: 100px;
+
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #5cea97;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
+}
+
 .check {
-  width: 68px;
-  height: 68px;
-  fill: #059669;
+  width: 60px;
+  height: 60px;
+  fill: white;
+  stroke: white;
+  stroke-width: 2;
 }
 
 .glow {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 166px;
-  height: 166px;
+  width: 130%;
+  height: 130%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0) 70%);
-  animation: pulseGlow 1s ease-out infinite;
+  background: radial-gradient(circle,
+      rgba(46, 204, 113, 0.4) 0%,
+      transparent 70%);
+  filter: blur(10px);
+  z-index: 0;
 }
 
-@keyframes pulseGlow {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.6;
+/* Текст */
+.textWrapper {
+  margin-top: 10px;
+}
+
+.successText {
+font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 24px;
+}
+
+.subText {
+  font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: -0.01em;
+    color: var(--color-scheme-4-text);
+}
+
+/* Кнопки */
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.btn {
+  border: 1px solid var(--color-deco);
+  border-radius: 100px;
+  background: var(--color-deco);
+  height: 36px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  transition: all 250ms ease-in-out;
+  width: 275px;
+}
+
+.btn:hover {
+  border: 1px solid var(--color-deco-darker);
+  background: var(--color-deco-dark);
+}
+
+/* Адаптивність */
+@media screen and (min-width: 768px) {
+  .circle {
+    width: 100px;
+    height: 100px;
   }
 
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
+  .check {
+    width: 45px;
+    height: 45px;
   }
 
-  100% {
-    transform: scale(0.9);
-    opacity: 0.6;
+  
+
+  .subText {
+    font-size: 30px;
   }
+
+  .buttonWrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn {
+    width: 240px;
+  }
+
+    
+}
+
+@media screen and (min-width: 1440px) {
+  .circle {
+        width: 140px;
+        height: 140px;
+      }
+    
+  .check {
+        width: 65px;
+        height: 65px;
+      }
+
+  .successText {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    color: var(--color-scheme-4-text);
+    margin-bottom: 24px;
+  }
+
+    .subText {
+      font-size: 36px;
+    }
+
+    .btn {
+      font-size: 20px;
+      width: 300px;
+    }
 }
