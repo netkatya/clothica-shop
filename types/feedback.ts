@@ -10,3 +10,11 @@ export interface Feedback {
   good: FieldPopulate;
   category: FieldPopulate;
 }
+
+export interface FeedbackPost {
+  author: string;
+  rate: number;
+  comment: string;
+  good: string;
+  category: string;
+}

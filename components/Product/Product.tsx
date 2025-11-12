@@ -5,7 +5,7 @@ import css from './Product.module.css';
 import Image from 'next/image';
 import Stars from '@/components/Stars/Stars';
 import { Good, Size } from '@/types/good';
-import { fetchFeedbacksClient } from '@/lib/api/clientApi';
+// import { fetchFeedbacksClient } from '@/lib/api/clientApi';
 import { useShopStore } from '@/lib/store/cartSrore';
 
 interface ProductProps {
@@ -14,48 +14,48 @@ interface ProductProps {
 
 export default function Product({ good }: ProductProps) {
   const [value, setValue] = useState<number>(1);
-  const [averageRating, setAverageRating] = useState<number>(0);
-  const [feedbackCount, setFeedbackCount] = useState<number>(0);
+  // const [averageRating, setAverageRating] = useState<number>(0);
+  // const [feedbackCount, setFeedbackCount] = useState<number>(0);
   //size
   const [selectedSize, setSelectedSize] = useState<Size>(good.size[0]);
   // store
   const addToCart = useShopStore(state => state.addToCart);
 
-  useEffect(() => {
-    async function loadFeedbacks() {
-      // setAverageRating(0);
-      // setFeedbackCount(0);
+  // useEffect(() => {
+  //   async function loadFeedbacks() {
+  //     // setAverageRating(0);
+  //     // setFeedbackCount(0);
 
-      try {
-        const response = await fetchFeedbacksClient({
-          page: '1',
-          perPage: '10',
-          goodId: good._id,
-        });
+  //     try {
+  //       const response = await fetchFeedbacksClient({
+  //         page: '1',
+  //         perPage: '10',
+  //         good: good._id,
+  //       });
 
-        const feedbacks = response.feedbacks ?? [];
+  //       const feedbacks = response.feedbacks ?? [];
 
-        if (feedbacks.length > 0) {
-          const avg =
-            feedbacks.reduce((sum, f) => sum + f.rate, 0) / feedbacks.length;
-          setAverageRating(Number(avg.toFixed(1)));
-          setFeedbackCount(feedbacks.length);
-        }
-      } catch (err) {
-        console.error('Failed to fetch feedbacks:', err);
-      }
-    }
+  //       if (feedbacks.length > 0) {
+  //         const avg =
+  //           feedbacks.reduce((sum, f) => sum + f.rate, 0) / feedbacks.length;
+  //         setAverageRating(Number(avg.toFixed(1)));
+  //         setFeedbackCount(feedbacks.length);
+  //       }
+  //     } catch (err) {
+  //       console.error('Failed to fetch feedbacks:', err);
+  //     }
+  //   }
 
-    if (good?._id) loadFeedbacks();
-  }, [good._id]);
+  //   if (good?._id) loadFeedbacks();
+  // }, [good._id]);
 
   const handleAddToCart = () => {
     if (!good) return;
     addToCart({
       goodId: good._id,
       name: good.name,
-      rate: averageRating,
-      reviewsNumber: feedbackCount,
+      rate: good.averageRate,
+      reviewsNumber: good.feedbackCount,
       price: good.price.value,
       amount: value,
       size: selectedSize,
@@ -87,11 +87,11 @@ export default function Product({ good }: ProductProps) {
                 </p>
                 <div className={css.verticalLine} />
                 <div className={css.reviews}>
-                  {good.feedbacks.length > 0 ? (
+                  {good.feedbackCount > 0 ? (
                     <>
-                      <Stars rating={averageRating} />
+                      <Stars rating={good.averageRate} />
                       <span className={css.ratingText}>
-                        ({averageRating}) • {feedbackCount} відгуків
+                        ({good.averageRate}) • {good.feedbackCount} відгуків
                       </span>
                     </>
                   ) : (
