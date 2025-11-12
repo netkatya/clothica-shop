@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkServerSession, setCookiesOnResponse } from './lib/api/serverApi';
 
-const publicRoutes = ['/auth', '/goods'];
+const publicRoutes = ['/auth'];
 const privateRoutes = ['/profile'];
 
 export async function middleware(request: NextRequest) {
@@ -56,5 +56,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/auth/:authType', '/profile/:path*'],
+  matcher: ['/auth/:authType', '/profile/:path*', '/goods/:path*'],
 };
