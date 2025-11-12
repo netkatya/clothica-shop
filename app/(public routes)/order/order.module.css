@@ -26,12 +26,14 @@
     align-items: center;
     gap: 24px;
     width: 100%;
+    max-width: 335px;
 }
 
 .order_form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 335px;
 }
 
 .form {
@@ -100,6 +102,20 @@
         max-width: none;
     }
 
+    .order_form {
+        align-items: center;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .goods_list {
+        max-width: 704px;
+    }
+    
+    .order_form {
+        max-width: 704px;
+    }
 }
 
 @media only screen and (min-width: 1440px) {

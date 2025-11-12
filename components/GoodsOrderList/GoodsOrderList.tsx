@@ -16,36 +16,49 @@ const GoodsOrderList = () => {
 
     return (
         <div className={css.container}>
-            {cartItems.map((good) => (
-                <div key={good.goodId} className={css.good_item}>
-                    <div className={css.good_info}>
-                    {good.image && <Image src={good.image} alt={good.name} width={82} height={101} />}                    
-                        <div className={css.info_wrapper}>
-                        <h3 className={css.good_name}>{good.name}</h3>
-                            <div className={css.good_numbers}>
-                                <AiFillStar className={css.star_full}>
-                                    <span>{good.rate}</span>
-                                </AiFillStar>
-                                <svg width="13" height="12" aria-hidden="true">
-                                    <use href="/symbol-defs.svg#icon-comment"></use>
-                                </svg>
-                                <span>{good.reviewsNumber}</span>
+            <div className={css.goods_list}>
+                {cartItems.map((good) => (
+                    <div key={good.goodId} className={css.good_item}>
+                        {good.image &&
+                        <Image
+                        className={css.good_image}
+                        src={good.image}
+                        alt={good.name}
+                        width={82}
+                        height={101} />
+                        }
+                        <div className={css.good_info}>
+                            <div className={css.info_wrapper}>
+                            <h3 className={css.good_name}>{good.name}</h3>
+                                <ul className={css.good_numbers}>
+                                    <li className={css.good_number}>
+                                        <AiFillStar className={css.star_full}>
+                                            {good.rate}
+                                        </AiFillStar>
+                                    </li>
+                                    <li className={css.good_number}>
+                                        <svg width="16" height="16" aria-hidden="true">
+                                            <use href="/symbol-defs.svg#icon-comment"></use>
+                                        </svg>
+                                        {good.reviewsNumber}
+                                    </li>
+                                </ul>
+                            </div>
+                        <div className={css.good_right}>
+                            <p className={css.good_price}>{good.price} грн</p>
+                            <div className={css.good_right_actions}>
+                                <p className={css.good_quantity}>{good.amount}</p>
+                                <button onClick={() => removeFromCart(good.goodId)} className={css.delete_button}>
+                                    <svg width="20" height="20" aria-hidden="true">
+                                        <use href="/symbol-defs.svg#icon-trash-can"></use>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <div className={css.good_right}>
-                        <p className={css.good_price}>{good.price} грн</p>
-                        <div className={css.good_right_actions}>
-                            <p className={css.good_quantity}>{good.amount}</p>
-                            <button onClick={() => removeFromCart(good.goodId)}>
-                                <svg width="17" height="19" aria-hidden="true">
-                                    <use href="/symbol-defs.svg#icon-trash-can"></use>
-                                </svg>
-                            </button>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
             <ul className={css.total_price_wrapper}>
                 <li className={css.price_item}>
                     <p className={css.provisional_price}>Проміжний підсумок </p>

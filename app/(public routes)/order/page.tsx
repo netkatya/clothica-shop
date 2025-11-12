@@ -10,6 +10,7 @@ import { createOrderClient } from "@/lib/api/clientApi";
 import { useAuthStore } from '@/lib/store/authStore';
 
 import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
 
 const OrderSchema = Yup.object().shape({
     name: Yup.string()
@@ -35,8 +36,10 @@ const OrderSchema = Yup.object().shape({
 
 const OrderPage = () => {
 
-    const { user: authUser } = useAuthStore();
+    const router = useRouter();
+
     const { cartItems } = useShopStore();
+    const { user: authUser } = useAuthStore();
 
     const transformCartToOrderGoods = (cartItems: CartItem[]): OrderGood[] => {
         return cartItems.map(item => ({
@@ -45,17 +48,6 @@ const OrderPage = () => {
             size: item.size
         }));
     }
-
-    const initialValues: CreateOrderForm = {
-            name: authUser?.name || "",
-            lastname: authUser?.lastname || "",
-            phone: authUser?.phone || "",
-            city: authUser?.city || "",
-            branchnum_np: authUser?.branchnum_np || "",
-            email: authUser?.email || "",
-            avatar: authUser?.avatar || "",
-            comment: "",
-        }
 
     const handleCreateOrder = async (values: CreateOrderForm) => {
             try {
@@ -69,11 +61,23 @@ const OrderPage = () => {
             sum: cartItems.reduce((total, item) => total + item.price * item.amount, 0)
         };
             console.log(orderPayload);
-            createOrderClient(orderPayload)
+            createOrderClient(orderPayload);
+            router.push("/payment");
         }
             catch (error) {
                 console.error("Error creating order:", error);
         }
+        }
+
+    const initialValues: CreateOrderForm = {
+            name: authUser?.name || "",
+            lastname: authUser?.lastname || "",
+            phone: authUser?.phone || "",
+            city: authUser?.city || "",
+            branchnum_np: authUser?.branchnum_np || "",
+            email: authUser?.email || "",
+            avatar: authUser?.avatar || "",
+            comment: "",
         }
 
     return (

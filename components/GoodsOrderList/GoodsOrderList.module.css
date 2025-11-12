@@ -3,6 +3,13 @@
     width: 100%;
 }
 
+.goods_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
 .good_quantity, .good_price {
     font-family: "Inter", sans-serif;
     font-weight: 400;
@@ -17,6 +24,26 @@
     line-height: 150%;
 }
 
+.good_number {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.good_item {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: center
+}
+
+.good_image {
+    border-radius: 16px;
+    width: 82px;
+    height: 101px;  
+}
+
 .good_name {
     font-family: "Inter", sans-serif;
     font-weight: 600;
@@ -26,8 +53,13 @@
 
 .good_info {
     display: flex;
-    flex-direction: row;
-    gap: 24px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info_wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .good_numbers {
@@ -37,8 +69,16 @@
 }
 .good_right {
     display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.good_right_actions {
+    display: flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .good_quantity {
@@ -48,6 +88,15 @@
     text-align: start;
     width: 64px;
     height: 40px;
+}
+
+.delete_button {
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 100px;
+    padding: 4px;
+    width: 40px;
+    height: 40px;   
+    background: var(--opacity-neutral-darkest-5);
 }
 
 .total_price_wrapper {
@@ -76,9 +125,24 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .container {
-        max-width: 704px;
+
+    .good_info {
+        gap: 0;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
     }
+    
+    .info_wrapper {
+        flex: 0 0 auto;  /* Не розтягувати */
+    }
+
+    .good_right, .good_right_actions {
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+    }
+
 }
 
 /* @media only screen and (min-width: 1440px) {

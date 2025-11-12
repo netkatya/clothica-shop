@@ -7,6 +7,9 @@ import { useState } from 'react';
 import MotionCheck from '@/components/PaymentStatus/PaymentStatus';
 import RadioCart from '@/components/RadioCart/RadioCart';
 import { useShopStore } from '@/lib/store/cartSrore';
+import { useAuthStore } from '@/lib/store/authStore';
+import { useRouter } from 'next/navigation';
+
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
@@ -36,9 +39,12 @@ const validationSchema = Yup.object({
 });
 
 export default function CheckoutForm() {
+
+  const router = useRouter();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { cartItems } = useShopStore();
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.amount, 0);
+  const { isAuthenticated } = useAuthStore();
 
   if (status === 'success') {
     return <MotionCheck status="success" />;
@@ -53,10 +59,15 @@ export default function CheckoutForm() {
           cvv: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={values => {
+        onSubmit={(values) => {
           console.log('Payment submitted:', values);
           setTimeout(() => {
             setStatus('success');
+            if (isAuthenticated) {
+              router.push('/profile');
+              return;
+            }
+            router.push('/');
           }, 1000);
         }}
       >
