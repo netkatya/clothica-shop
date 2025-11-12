@@ -47,7 +47,7 @@ export default function GoodPage() {
     fetchGoodById(goodId)
       .then(data => {
         if (!cancelled) {
-          setGood(data.data);
+          setGood(data.good);
         }
       })
       .catch(err => {
