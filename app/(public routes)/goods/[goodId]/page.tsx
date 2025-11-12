@@ -8,16 +8,19 @@ import ProductModal from '../../../../components/ProductModal/ProductModal';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import StarPicker from '../../../../components/StarRating/StarRating';
-import { fetchGoodById } from '@/lib/api/clientApi';
+import { createFeedbackClient, fetchGoodById } from '@/lib/api/clientApi';
 import { Good } from '@/types/good';
+import { FeedbackPost } from '@/types/feedback';
 
 const ReviewSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, "Ім'я занадто коротке")
-    .required("Введіть ім'я"),
-  message: Yup.string()
+  author: Yup.string().min(2, "Ім'я занадто коротке").required("Введіть ім'я"),
+  comment: Yup.string()
     .min(5, 'Відгук занадто короткий')
     .required('Введіть відгук'),
+  rate: Yup.number()
+    .min(1, 'Оцініть товар')
+    .max(5, 'Оцінка не може бути більше 5')
+    .required('Оцініть товар'),
 });
 
 export default function GoodPage() {
@@ -29,13 +32,22 @@ export default function GoodPage() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const [reviews, setReviews] = useState<
-    { username: string; message: string }[]
-  >([]);
+  const handleSubmit = async (values: {
+    author: string;
+    comment: string;
+    rate: number;
+  }) => {
+    const feedback: FeedbackPost = {
+      author: values.author,
+      comment: values.comment,
+      rate: values.rate,
+      good: goodId,
+      category: good?.category as string,
+    };
+    await createFeedbackClient(feedback);
 
-  const handleSubmit = (values: { username: string; message: string }) => {
-    setReviews(prev => [...prev, values]);
-    console.log('Новий відгук:', values);
+    const updatedData = await fetchGoodById(goodId);
+    setGood(updatedData.good);
     closeModal();
   };
 
@@ -73,9 +85,9 @@ export default function GoodPage() {
             Залишити відгук
           </button>
         </div>
-        {reviews.length > 0 ? (
+        {good.feedbackCount > 0 ? (
           <ReviewsSlider
-            reviews={reviews}
+            goodId={goodId}
             hasProductText={false}
             hasCenteredButtons={true}
           />
@@ -102,56 +114,57 @@ export default function GoodPage() {
 
             <h2 className={css.titleModal}>Залишити відгук</h2>
             <Formik
-              initialValues={{ username: '', message: '' }}
+              initialValues={{ author: '', comment: '', rate: 0 }}
               validationSchema={ReviewSchema}
               onSubmit={handleSubmit}
             >
-              {({ errors, touched, isSubmitting }) => (
+              {({ errors, touched, isSubmitting, setFieldValue, values }) => (
                 <Form className={css.form}>
                   <div className={css.inpBox}>
-                    <label htmlFor="username" className={css.inpName}>
+                    <label htmlFor="author" className={css.inpName}>
                       Ваше ім’я
                     </label>
                     <Field
                       type="text"
-                      id="username"
-                      name="username"
+                      id="author"
+                      name="author"
                       className={`${css.input} ${
-                        errors.username && touched.username
-                          ? css.inputError
-                          : ''
+                        errors.author && touched.author ? css.inputError : ''
                       }`}
                       placeholder="Ваше ім’я"
                     />
                     <ErrorMessage
-                      name="username"
-                      component="div"
+                      name="author"
+                      component="span"
                       className={css.error}
                     />
                   </div>
                   <div className={css.inpBox}>
-                    <label htmlFor="message" className={css.inpName}>
+                    <label htmlFor="comment" className={css.inpName}>
                       Ваш відгук
                     </label>
                     <Field
                       as="textarea"
-                      id="message"
-                      name="message"
+                      id="comment"
+                      name="comment"
                       rows={5}
                       className={`${css.textarea} ${
-                        errors.message && touched.message
+                        errors.comment && touched.comment
                           ? css.textareaError
                           : ''
                       }`}
                       placeholder="Ваш відгук"
                     />
                     <ErrorMessage
-                      name="message"
-                      component="div"
+                      name="comment"
+                      component="span"
                       className={css.error}
                     />
                   </div>
-                  <StarPicker />
+                  <StarPicker
+                    defaultValue={values.rate}
+                    onChange={value => setFieldValue('rate', value)}
+                  />
                   <button
                     className={css.btnReviews}
                     type="submit"

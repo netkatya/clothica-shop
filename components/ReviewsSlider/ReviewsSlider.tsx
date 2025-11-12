@@ -20,11 +20,13 @@ interface SliderReview {
 type ReviewsSliderProps = {
   hasProductText?: boolean;
   hasCenteredButtons?: boolean;
+  goodId?: string;
 };
 
 export default function ReviewsSlider({
   hasProductText = true,
   hasCenteredButtons = false,
+  goodId = '',
 }: ReviewsSliderProps) {
   const [reviews, setReviews] = useState<SliderReview[]>([]);
 
@@ -34,6 +36,7 @@ export default function ReviewsSlider({
         const response = await fetchFeedbacksClient({
           page: '1',
           perPage: '9',
+          good: goodId ? goodId : undefined,
         });
         const feedbacks = response.feedbacks || [];
 

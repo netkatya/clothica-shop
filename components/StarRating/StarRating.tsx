@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import css from './StarRating.module.css';
 
@@ -16,6 +16,10 @@ export default function StarPicker({
 }: StarPickerProps) {
   const [selected, setSelected] = useState(defaultValue);
   const [hovered, setHovered] = useState(0);
+
+  useEffect(() => {
+    setSelected(defaultValue);
+  }, [defaultValue]);
 
   return (
     <div className={css.stars}>

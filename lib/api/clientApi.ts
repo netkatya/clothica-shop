@@ -12,7 +12,7 @@ import { Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
 import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
 import { getCurrentDate } from '../utils';
-import { Feedback } from '@/types/feedback';
+import { Feedback, FeedbackPost } from '@/types/feedback';
 
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>('/auth/register', data);
@@ -293,7 +293,7 @@ export async function fetchFeedbacksClient({
 }
 
 export const createFeedbackClient = async (
-  feedback: Partial<Feedback>
+  feedback: Partial<FeedbackPost>
 ): Promise<Feedback> => {
   try {
     const { data } = await nextServer.post<Feedback>('/feedbacks', feedback);
