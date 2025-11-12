@@ -1,7 +1,7 @@
 import { Gender, Size } from '../types/good';
 
 export const SIZES: Size[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-export const GENDERS: Gender[] = ['men', 'women', 'unisex'];
+export const GENDERS: Gender[] = ['man', 'women', 'unisex'];
 export const COLORS = [
   'Білий',
   'Чорний',

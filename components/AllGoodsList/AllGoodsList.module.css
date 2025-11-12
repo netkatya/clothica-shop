@@ -6,7 +6,7 @@
 .image {
   border-radius: 16px;
   width: 335px;
-  height: 412px;
+  height: 320px;
   margin-bottom: 16px;
 }
 
@@ -64,7 +64,7 @@
   width: 335px;
   height: 40px;
   background: rgba(0, 0, 0, 0.05);
-  transition: background 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
   color: var(--color-neutral-darkest);
   font-weight: 500;
   font-size: 16px;
@@ -73,8 +73,8 @@
 
 .detail:hover,
 .detail:focus {
-  border: 1px solid var(--color-deco);
-  background: var(--opacity-neutral-darkest-50);
+  border: 1px solid var(--opacity-neutral-darkest-50);
+  background: var(--opacity-neutral-darkest-15);
 }
 @media screen and (min-width: 768px) {
   .card {
@@ -88,11 +88,11 @@
   }
   .listItem {
     width: 198px;
-    height: 423px;
+    height: 380px;
   }
   .image {
     width: 198px;
-    height: 244px;
+    height: 200px;
   }
   .info {
     flex-wrap: wrap;
@@ -122,11 +122,11 @@
 @media screen and (min-width: 1440px) {
   .listItem {
     width: 304px;
-    height: 519px;
+    height: 459px;
   }
   .image {
     width: 304px;
-    height: 375px;
+    height: 315px;
   }
   .info {
     flex-direction: row;

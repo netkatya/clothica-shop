@@ -5,7 +5,7 @@ export interface Price {
 
 export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
 
-export type Gender = 'men' | 'women' | 'unisex';
+export type Gender = 'man' | 'women' | 'unisex';
 
 export interface CategoryField {
   _id: string;

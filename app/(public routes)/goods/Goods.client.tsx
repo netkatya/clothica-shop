@@ -41,7 +41,7 @@ export default function GoodsClient() {
     queryFn: () => fetchCategoriesClient(1, 7),
     refetchOnWindowFocus: false,
   });
-  const categories: Category[] = categoriesData?.data ?? [];
+  const categories: Category[] = categoriesData?.categories ?? [];
   const {
     data,
     isLoading,
@@ -98,7 +98,7 @@ export default function GoodsClient() {
     });
   };
 
-  const goods = data?.pages.flatMap(page => page.data) ?? [];
+  const goods = data?.pages.flatMap(page => page.goods) ?? [];
   const shown = goods.length;
   const total = data?.pages[0]?.totalItems ?? 0;
   return (

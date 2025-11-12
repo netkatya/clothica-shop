@@ -5,6 +5,13 @@ import { SIZES, COLORS, GENDERS } from '@/constants/goods';
 import { FilterContentProps } from '@/types/filters';
 import { Gender, Size } from '@/types/good';
 
+const GENDER_MAP: Record<Gender | 'Всі', string> = {
+  Всі: 'Всі',
+  man: 'Чоловічий',
+  women: 'Жіночий',
+  unisex: 'Унісекс',
+};
+
 const STATUS_OPTIONS: (Gender | 'Всі')[] = ['Всі', ...GENDERS];
 export default function FilterContent({
   currentFilters,
@@ -152,9 +159,7 @@ export default function FilterContent({
           <h3>Стать</h3>
           <button
             type="button"
-            onClick={() =>
-              onFilterChange(prev => ({ ...prev, status: 'unisex' }))
-            }
+            onClick={() => onFilterChange(prev => ({ ...prev, status: 'Всі' }))}
             className={css.clearButtonInternal}
           >
             Очистити
@@ -173,7 +178,7 @@ export default function FilterContent({
                 className={css.customRadio}
               />
               <label htmlFor={`status-${status}`} className={css.radioLabel}>
-                {status}
+                {GENDER_MAP[status]}
               </label>
             </li>
           ))}
