@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import css from './Product.module.css';
 import Image from 'next/image';
 import Stars from '@/components/Stars/Stars';
-import { Good } from '@/types/good';
+import { Good, Size } from '@/types/good';
 import { fetchFeedbacksClient } from '@/lib/api/clientApi';
+import { useShopStore } from '@/lib/store/cartSrore';
 
 interface ProductProps {
   good: Good;
@@ -15,12 +16,15 @@ export default function Product({ good }: ProductProps) {
   const [value, setValue] = useState<number>(1);
   const [averageRating, setAverageRating] = useState<number>(0);
   const [feedbackCount, setFeedbackCount] = useState<number>(0);
+  //size
+  const [selectedSize, setSelectedSize] = useState<Size>(good.size[0]);
+  // store
+  const addToCart = useShopStore(state => state.addToCart);
 
-  console.log(good);
   useEffect(() => {
     async function loadFeedbacks() {
-      setAverageRating(0);
-      setFeedbackCount(0);
+      // setAverageRating(0);
+      // setFeedbackCount(0);
 
       try {
         const response = await fetchFeedbacksClient({
@@ -44,6 +48,20 @@ export default function Product({ good }: ProductProps) {
 
     if (good?._id) loadFeedbacks();
   }, [good._id]);
+
+  const handleAddToCart = () => {
+    if (!good) return;
+    addToCart({
+      goodId: good._id,
+      name: good.name,
+      rate: averageRating,
+      reviewsNumber: feedbackCount,
+      price: good.price.value,
+      amount: value,
+      size: selectedSize,
+      image: good.image,
+    });
+  };
 
   return (
     <section className={css.section}>
@@ -85,14 +103,20 @@ export default function Product({ good }: ProductProps) {
               <p className={css.text}>{good.prevDescription}</p>
               <div className={css.sizeSelect}>
                 <label className={css.label}>Розмір :</label>
-                <select className={css.size}>
+                <select
+                  className={css.size}
+                  value={selectedSize}
+                  onChange={e => setSelectedSize(e.target.value as Size)}
+                >
                   {good.size.map(item => (
                     <option key={item}>{item}</option>
                   ))}
                 </select>
               </div>
               <div className={css.inputContainer}>
-                <button className={css.addToBucket}>Додати в кошик</button>
+                <button className={css.addToBucket} onClick={handleAddToCart}>
+                  Додати в кошик
+                </button>
                 <input
                   type="number"
                   min={1}

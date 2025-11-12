@@ -1,0 +1,149 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.image {
+  border-radius: 16px;
+  width: 335px;
+  height: 320px;
+  margin-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  width: 260px;
+  margin-right: 16px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.star {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+}
+.feedbacks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+}
+
+.detail {
+  cursor: pointer;
+  outline: none;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 100px;
+  padding: 4px 10px;
+  width: 335px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 250ms ease-in-out;
+  color: var(--color-neutral-darkest);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.detail:hover,
+.detail:focus {
+  border: 1px solid var(--opacity-neutral-darkest-50);
+  background: var(--opacity-neutral-darkest-15);
+}
+@media screen and (min-width: 768px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .listItem {
+    width: 198px;
+    height: 380px;
+  }
+  .image {
+    width: 198px;
+    height: 200px;
+  }
+  .info {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .name {
+    font-size: 16px;
+    width: 198px;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  .price {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    margin-bottom: 16px;
+  }
+  .detail {
+    margin-top: 0;
+    width: 198px;
+    height: 40px;
+  }
+  .detailLink {
+    margin-top: auto;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .listItem {
+    width: 304px;
+    height: 459px;
+  }
+  .image {
+    width: 304px;
+    height: 315px;
+  }
+  .info {
+    flex-direction: row;
+  }
+  .name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+  }
+  .price {
+    font-weight: 600;
+    font-size: 20px;
+
+    line-height: 150%;
+  }
+  .detail {
+    width: 304px;
+    height: 40px;
+  }
+}

@@ -1,21 +1,17 @@
-'use client';
-
-import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import css from './PriceFilter.module.css';
+import { PriceFilterProps } from '@/types/filters';
 
-export default function PriceFilter() {
-  const [priceValues, setPriceValues] = useState<number[]>([1, 1500]);
-
+export default function PriceFilter({ values, onChange }: PriceFilterProps) {
   return (
     <div>
       <div className={css.rangeContainer}>
         <Range
           min={1}
-          max={5000}
+          max={5500}
           step={10}
-          values={priceValues}
-          onChange={values => setPriceValues(values)}
+          values={values}
+          onChange={newValues => onChange(newValues)}
           renderTrack={({ props, children }) => {
             const { ref, ...trackProps } = props;
             return (
@@ -26,10 +22,10 @@ export default function PriceFilter() {
                 style={{
                   ...props.style,
                   background: getTrackBackground({
-                    values: priceValues,
+                    values: values,
                     colors: ['#ccc', '#000', '#ccc'],
                     min: 1,
-                    max: 5000,
+                    max: 5500,
                   }),
                 }}
               >
@@ -42,10 +38,9 @@ export default function PriceFilter() {
             return <div key={key} {...thumbProps} className={css.rangeThumb} />;
           }}
         />
-
         <div className={css.rangeLabels}>
-          <span>{Math.round(priceValues[0])}</span>
-          <span>{Math.round(priceValues[1])}</span>
+          <span>{Math.round(values[0])}</span>
+          <span>{Math.round(values[1])}</span>
         </div>
       </div>
     </div>

@@ -124,7 +124,11 @@ export default function CategoriesList() {
                     transition: 'opacity 0.4s ease, transform 0.4s ease',
                   }}
                 >
-                  <Link href={`/categories/${slug}`} className={css.card}>
+                  <Link
+                    //me
+                    href={`/goods?category=${encodeURIComponent(item.name)}`}
+                    className={css.card}
+                  >
                     <Image
                       src={item.img}
                       alt={item.name}
