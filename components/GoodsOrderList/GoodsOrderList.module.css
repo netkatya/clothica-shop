@@ -8,6 +8,32 @@
     flex-direction: column;
     gap: 12px;
     margin-bottom: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.goods_list::-webkit-scrollbar {
+    width: 14px;
+    height: 64px;
+}
+
+.goods_list::-webkit-scrollbar-track {
+    background: var(--color-deco);
+    border: 5px solid var(--color-deco-lighter);
+    border-radius: 8px;
+    background-clip: content-box;
+}
+
+.goods_list::-webkit-scrollbar-thumb {
+    background: var(--color-deco-dark);
+    border-radius: 8px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .good_quantity, .good_price {
@@ -93,10 +119,12 @@
 .delete_button {
     border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 100px;
-    padding: 4px;
     width: 40px;
     height: 40px;   
     background: var(--opacity-neutral-darkest-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .total_price_wrapper {
@@ -110,19 +138,37 @@
     line-height: 150%;
 }
 
+.provisional_price, .provisional_price_value {
+    margin-top: 13.5px;
+    margin-bottom: 5.5px;
+}
+
+.delivery_price, .delivery_price_value {
+    margin: 4px 0;
+}
+
+.total_price, .total_price_value {
+    margin: 12px 0;
+}
+
 .total_price {
     font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 150%;
-    text-align: right;
+}
+
+.total_price_value, .delivery_price_value, .provisional_price_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .price_item {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
 }
+
 
 @media only screen and (min-width: 768px) {
 
@@ -145,6 +191,12 @@
 
 }
 
-/* @media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1440px) {
+    .wrapper {
+        min-height: 503px;
+    }
 
-} */
+    .goods_list {
+        max-height: 452px;
+    }
+}

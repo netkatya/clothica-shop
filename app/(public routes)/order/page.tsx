@@ -11,6 +11,7 @@ import { useAuthStore } from '@/lib/store/authStore';
 
 import * as Yup from 'yup';
 import { useRouter } from "next/navigation";
+import MessageNoInfo from "@/components/MessageNoInfo/MessageNoInfo";
 
 const OrderSchema = Yup.object().shape({
     name: Yup.string()
@@ -56,6 +57,7 @@ const OrderPage = () => {
             userName: values.name,
             userLastName: values.lastname,
             userPhone: values.phone,
+            city: values.city,
             branchnum_np: values.branchnum_np,
             comment: values.comment,
             sum: cartItems.reduce((total, item) => total + item.price * item.amount, 0)
@@ -98,16 +100,19 @@ const OrderPage = () => {
                         {(formik) => (
                             <Form className={css.form}>
                                 <UserInfoForm formik={formik} />
-                                <label className={css.comment}>
-                                    <textarea
-                                        name="comment"
-                                        className={css.comment_text}
-                                        placeholder="Введіть ваш коментар"
-                                        value={formik.values.comment || ''}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    />
-                                </label>
+                                <div className={css.comment_block}>
+                                    <label className={css.comment}>
+                                        Коментар
+                                    </label>
+                                        <textarea
+                                            name="comment"
+                                            className={css.comment_text}
+                                            placeholder="Введіть ваш коментар"
+                                            value={formik.values.comment || ''}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                </div>                              
                                 <button type="submit" className={css.submit_button}>
                                     Оформити замовлення
                                 </button>

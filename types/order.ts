@@ -31,6 +31,7 @@ export type CreateOrderParams = {
   userLastName: string,
   userPhone: string,
   branchnum_np: string,
+  city: string,
   comment?: string
 }
 
