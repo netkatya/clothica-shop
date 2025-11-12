@@ -3,6 +3,39 @@
     width: 100%;
 }
 
+.goods_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.goods_list::-webkit-scrollbar {
+    width: 14px;
+    height: 64px;
+}
+
+.goods_list::-webkit-scrollbar-track {
+    background: var(--color-deco);
+    border: 5px solid var(--color-deco-lighter);
+    border-radius: 8px;
+    background-clip: content-box;
+}
+
+.goods_list::-webkit-scrollbar-thumb {
+    background: var(--color-deco-dark);
+    border-radius: 8px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .good_quantity, .good_price {
     font-family: "Inter", sans-serif;
     font-weight: 400;
@@ -17,6 +50,26 @@
     line-height: 150%;
 }
 
+.good_number {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.good_item {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: center
+}
+
+.good_image {
+    border-radius: 16px;
+    width: 82px;
+    height: 101px;  
+}
+
 .good_name {
     font-family: "Inter", sans-serif;
     font-weight: 600;
@@ -26,8 +79,13 @@
 
 .good_info {
     display: flex;
-    flex-direction: row;
-    gap: 24px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info_wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .good_numbers {
@@ -37,8 +95,16 @@
 }
 .good_right {
     display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.good_right_actions {
+    display: flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .good_quantity {
@@ -48,6 +114,17 @@
     text-align: start;
     width: 64px;
     height: 40px;
+}
+
+.delete_button {
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;   
+    background: var(--opacity-neutral-darkest-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .total_price_wrapper {
@@ -61,26 +138,65 @@
     line-height: 150%;
 }
 
+.provisional_price, .provisional_price_value {
+    margin-top: 13.5px;
+    margin-bottom: 5.5px;
+}
+
+.delivery_price, .delivery_price_value {
+    margin: 4px 0;
+}
+
+.total_price, .total_price_value {
+    margin: 12px 0;
+}
+
 .total_price {
     font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 150%;
-    text-align: right;
+}
+
+.total_price_value, .delivery_price_value, .provisional_price_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .price_item {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
 }
+
 
 @media only screen and (min-width: 768px) {
-    .container {
-        max-width: 704px;
+
+    .good_info {
+        gap: 0;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
     }
+    
+    .info_wrapper {
+        flex: 0 0 auto;  /* Не розтягувати */
+    }
+
+    .good_right, .good_right_actions {
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+    }
+
 }
 
-/* @media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1440px) {
+    .wrapper {
+        min-height: 503px;
+    }
 
-} */
+    .goods_list {
+        max-height: 452px;
+    }
+}

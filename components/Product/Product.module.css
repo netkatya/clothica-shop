@@ -79,6 +79,7 @@
   height: 40px;
   background: var(--opacity-transparent);
   background-position: right 20px center;
+  color: var(--color-neutral-darkest)
 }
 
 .inputContainer {
@@ -121,6 +122,7 @@
   width: 64px;
   height: 40px;
   background: var(--opacity-transparent);
+  color: var(--color-neutral-darkest);
 }
 
 .buyNow {

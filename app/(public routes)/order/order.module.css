@@ -1,5 +1,6 @@
 .container {
     padding: 20px;
+    margin-bottom: 64px;    
 }
 
 .title {
@@ -12,26 +13,40 @@
     margin-bottom: 48px;
 }
 
+.form_title {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 32px;
+    align-items: center;
 }
 
 .goods_list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
     width: 100%;
+    max-width: 335px;
+    min-height: 258px;
+    justify-content: space-between;
 }
 
 .order_form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 335px;
 }
 
 .form {
@@ -39,6 +54,14 @@
     gap: 24px;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.comment {
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
 }
 
 .comment_text {
@@ -90,6 +113,13 @@
     border-color: var(--color-deco-darkest);
 }
 
+.comment_block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
     .comment_text {
         max-width: 704px;
@@ -100,6 +130,26 @@
         max-width: none;
     }
 
+    .order_form {
+        align-items: center;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .goods_list {
+        max-width: 704px;
+    }
+    
+    .order_form {
+        max-width: 704px;
+    }
+
+    .submit_button {
+        min-width: 0;
+        max-width: none;
+        width: fit-content;
+    }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -108,10 +158,15 @@
         flex-direction: row;
         justify-content: center;
         gap: 32px;
+        align-items: start;
     }
 
     .goods_list, .comment_text {
         max-width: 640px;
+    }
+
+    .goods_list {
+        min-height: 547px;
     }
 
 }

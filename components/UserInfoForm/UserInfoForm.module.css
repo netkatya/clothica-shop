@@ -1,4 +1,4 @@
-.formWrapper {
+/* .formWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px 32px;
@@ -14,12 +14,55 @@
 
 .fullWidthField {
   grid-column: span 2;
+} */
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;    /* Mobile-first: стовпчик */
+  gap: 24px;
+  width: 100%;               /* Займає всю доступну ширину */
+  max-width: 335px;          /* Але не більше 335px */
+  min-width: 280px;          /* Мінімум 280px */
+  margin: 16px auto 0;       /* Центрування */
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;               /* Mobile-first: повна ширина */
+}
+
+@media (min-width: 768px) {
+  .formWrapper {
+    flex-direction: row;     /* Рядок на великих екранах */
+    flex-wrap: wrap;
+    gap: 24px 32px;
+    max-width: 704px;
+  }
+
+  .field {
+    flex: 1 1 300px;        /* Гнучка ширина */
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .formWrapper {
+    max-width: 640px;
+  }
+}
+
+.fullWidthField {
+  flex: 1 1 100%;           /* На всю ширину */
 }
 
 .label {
-  font-size: 14px;
+  font-family: var(--font-inter);
+  font-size: 16px;
   font-weight: 400;
+  line-height: 150%;
   color: var(--color-neutral-darkest);
+
 }
 
 .input {
@@ -42,12 +85,13 @@
   border-color: var(--color-deco-dark);
 }
 
-@media (max-width: 768px) {
-  .formWrapper {
+/* @media (max-width: 767px) {
+  /* .formWrapper {
     grid-template-columns: 1fr;
   }
 
   .fullWidthField {
     grid-column: span 1;
-  }
-}
+  } */
+
+  

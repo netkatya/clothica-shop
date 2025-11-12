@@ -191,12 +191,12 @@ export const createOrderClient = async (
   try {
     const { data } = await nextServer.post<Order>('/orders', {
       goods: CreateOrderParams.goods,
-      date: getCurrentDate(),
       sum: CreateOrderParams.sum,
       status: 'new',
       userName: CreateOrderParams.userName,
       userLastName: CreateOrderParams.userLastName,
       userPhone: CreateOrderParams.userPhone,
+      city: CreateOrderParams.city,
       branchnum_np: CreateOrderParams.branchnum_np,
       ...(CreateOrderParams.comment && { comment: CreateOrderParams.comment }),
     });
