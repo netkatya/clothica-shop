@@ -4,16 +4,19 @@ import css from './Header.module.css';
 import Link from 'next/link';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { useShopStore } from '@/lib/store/cartSrore';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  const [count, setCount] = useState(0);
+  //store
+  const cartItems = useShopStore(state => state.cartItems);
+  const count = cartItems.reduce((sum, item) => sum + item.amount, 0);
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
-     document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
+    document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
 
   // Слідкуємо за зміною розміру екрану
@@ -147,6 +150,7 @@ export default function Header() {
                       >
                         <use href="/symbol-defs.svg#icon-basket"></use>
                       </svg>
+                      {count > 0 && <span className={css.badge}>{count}</span>}
                     </Link>
                   </li>
                 </ul>
