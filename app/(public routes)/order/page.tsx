@@ -2,28 +2,41 @@
 
 import GoodsOrderList from "@/components/GoodsOrderList/GoodsOrderList";
 import css from "./order.module.css";
-import { useFormik } from "formik";
+import { Formik, Form } from "formik";
 import UserInfoForm from "@/components/UserInfoForm/UserInfoForm";
 import { CartItem, useShopStore } from "@/lib/store/cartSrore";
 import { CreateOrderForm, OrderGood } from "@/types/order";
 import { createOrderClient } from "@/lib/api/clientApi";
 import { useAuthStore } from '@/lib/store/authStore';
-import { useEffect } from "react";
+
+import * as Yup from 'yup';
+
+const OrderSchema = Yup.object().shape({
+    name: Yup.string()
+    .min(3, 'Ім\'я не повинно бути менше за 3 символи!')
+    .max(32, 'Ім\'я не повинно перевищувати 32 символи')
+    .required("Ім'я обов'язкове"),
+    lastname: Yup.string()
+    .min(1, 'Прізвище не повинно бути менше за 1 символ!')
+    .max(128, 'Прізвище не повинно перевищувати 32 символи')
+    .required("Прізвище обов'язкове"),
+    phone: Yup.string()
+    .matches(/^\+380\d{9}$/, 'Введіть номер у форматі +380XXXXXXXXX')
+    .required("Номер телефону обов'язковий"),
+    city: Yup.string()
+    .min(2, 'Місто не повинно бути менше за 2 символи!')
+    .max(100, 'Місто не повинно перевищувати 64 символи')
+    .required("Місто доставки обов'язкове"),
+    branchnum_np: Yup.string()
+    .min(1, 'Номер відділення НП не повинно бути менше за 1 символ!')
+    .max(10, 'Номер відділення НП не повинно перевищувати 10 символів')
+    .required("Номер відділення НП обов'язковий"),
+});
 
 const OrderPage = () => {
 
     const { user: authUser } = useAuthStore();
     const { cartItems } = useShopStore();
-
-    useEffect(() => {
-    if (authUser) {
-        formik.setFieldValue('name', authUser.name || '');
-        formik.setFieldValue('lastname', authUser.lastname || '');
-        formik.setFieldValue('phone', authUser.phone || '');
-        formik.setFieldValue('city', authUser.city || '');
-        formik.setFieldValue('branchnum_np', authUser.branchnum_np || '');
-    }
-}, [authUser]);
 
     const transformCartToOrderGoods = (cartItems: CartItem[]): OrderGood[] => {
         return cartItems.map(item => ({
@@ -33,8 +46,7 @@ const OrderPage = () => {
         }));
     }
 
-    const formik = useFormik<CreateOrderForm>({
-        initialValues: {
+    const initialValues: CreateOrderForm = {
             name: authUser?.name || "",
             lastname: authUser?.lastname || "",
             phone: authUser?.phone || "",
@@ -43,8 +55,10 @@ const OrderPage = () => {
             email: authUser?.email || "",
             avatar: authUser?.avatar || "",
             comment: "",
-        },
-        onSubmit: (values) => {
+        }
+
+    const handleCreateOrder = async (values: CreateOrderForm) => {
+            try {
             const orderPayload = {
             goods: transformCartToOrderGoods(cartItems),
             userName: values.name,
@@ -57,7 +71,10 @@ const OrderPage = () => {
             console.log(orderPayload);
             createOrderClient(orderPayload)
         }
-    });
+            catch (error) {
+                console.error("Error creating order:", error);
+        }
+        }
 
     return (
         <div className={css.container}>
@@ -69,22 +86,30 @@ const OrderPage = () => {
                 </div>
                 <div className={css.order_form}>
                     <p className={css.form_title}>Особиста Інформація</p>
-                    <form className={css.form} onSubmit={formik.handleSubmit}>
-                        <UserInfoForm formik={formik} />
-                        <label className={css.comment}>
-                            <textarea 
-                                name="comment"
-                                className={css.comment_text} 
-                                placeholder="Введіть ваш коментар"
-                                value={formik.values.comment || ''}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                            />
-                        </label>
-                        <button type="submit" className={css.submit_button}>
-                            Оформити замовлення
-                        </button>
-                    </form>
+                    <Formik 
+                    enableReinitialize={true}
+                    initialValues={initialValues} 
+                    validationSchema={OrderSchema} 
+                    onSubmit={handleCreateOrder}>
+                        {(formik) => (
+                            <Form className={css.form}>
+                                <UserInfoForm formik={formik} />
+                                <label className={css.comment}>
+                                    <textarea
+                                        name="comment"
+                                        className={css.comment_text}
+                                        placeholder="Введіть ваш коментар"
+                                        value={formik.values.comment || ''}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                    />
+                                </label>
+                                <button type="submit" className={css.submit_button}>
+                                    Оформити замовлення
+                                </button>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
             </div>
         </div>

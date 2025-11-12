@@ -1,6 +1,8 @@
 .radioInputs {
     display: flex;
     gap: 24px;
+    justify-content:space-around;
+    margin-bottom: 24px;
 }
 
 .radioLabel {
@@ -16,7 +18,7 @@
     align-items: center;
     padding: 8px 12px;
     border: 2px solid #ccc;
-    border-radius: 8px;
+    border-radius: 16px;
     transition: border-color 250ms;
 }
 

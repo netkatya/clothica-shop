@@ -77,6 +77,17 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
+    transition: all .25s ease-in-out
+}
+
+.submit_button:hover {
+    background-color: var(--color-deco-dark);
+    border-color: var(--color-deco-dark);
+}
+
+.submit_button:active {
+    background-color: var(--color-deco-darkest);
+    border-color: var(--color-deco-darkest);
 }
 
 @media only screen and (min-width: 768px) {
