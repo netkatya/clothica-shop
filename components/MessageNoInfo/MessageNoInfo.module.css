@@ -11,10 +11,10 @@
 }
 
 .messageText {
-    font-family: "Nunito Sans", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #000;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--color-neutral-darkest);
     text-align: center;
 }
 
@@ -40,6 +40,6 @@
 
 @media screen and (min-width: 1440px) {
     .noOrdersWrapper {
-        width: 640px;
+        
     }
 }
