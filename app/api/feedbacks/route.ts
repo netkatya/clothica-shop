@@ -7,14 +7,14 @@ export async function GET(request: NextRequest) {
   try {
     const page = Number(request.nextUrl.searchParams.get('page') ?? 1);
     const perPage = Number(request.nextUrl.searchParams.get('perPage') ?? 3);
-    const goodId = request.nextUrl.searchParams.get('goodId') ?? '';
+    const good = request.nextUrl.searchParams.get('good') ?? '';
     const category = request.nextUrl.searchParams.get('category') ?? '';
     const rate = request.nextUrl.searchParams.get('rate') ?? '';
     const res = await api('/api/feedbacks', {
       params: {
         page,
         perPage,
-        ...(goodId && { goodId }),
+        ...(good && { good }),
         ...(category && { category }),
         ...(rate && { rate }),
       },
