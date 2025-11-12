@@ -73,8 +73,6 @@ export async function updateMeAvatar(update: File): Promise<User> {
   return data;
 }
 
-
-
 export interface FetchGoodsResponse {
   goods: Good[];
   success: boolean;
@@ -187,7 +185,9 @@ export async function fetchCategoriesClient(
   }
 }
 
-export const createOrderClient = async (CreateOrderParams: CreateOrderParams): Promise<Order> => {
+export const createOrderClient = async (
+  CreateOrderParams: CreateOrderParams
+): Promise<Order> => {
   try {
     const { data } = await nextServer.post<Order>('/orders', {
       goods: CreateOrderParams.goods,
@@ -246,7 +246,7 @@ export const updateOrderClient = async (
 export interface FetchFeedbackParam {
   page: string;
   perPage: string;
-  goodId?: string;
+  good?: string;
   category?: string;
   rate?: string;
 }
@@ -264,7 +264,7 @@ export interface FetchFeedbackResponse {
 export async function fetchFeedbacksClient({
   page,
   perPage,
-  goodId,
+  good,
   category,
   rate,
 }: FetchFeedbackParam): Promise<FetchFeedbackResponse> {
@@ -273,7 +273,7 @@ export async function fetchFeedbacksClient({
       page: String(page),
       perPage: String(perPage),
     };
-    if (goodId) params.goodId = goodId;
+    if (good) params.good = good;
     if (category) params.category = category;
     if (rate) params.rate = rate;
 
