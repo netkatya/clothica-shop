@@ -4,6 +4,16 @@ import css from './Header.module.css';
 import Link from 'next/link';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+// import LangToggle from '../LangToggle/LangToggle';
+
+function ThemeLangSwitchers() {
+  return (
+    <div className={css.switchers}>
+      <ThemeToggle />
+      {/* <LangToggle /> */}
+    </div>
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,7 +23,7 @@ export default function Header() {
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
-     document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
+    document.documentElement.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
 
   // Слідкуємо за зміною розміру екрану
@@ -35,11 +45,11 @@ export default function Header() {
             </svg>
           </Link>
 
-          <ThemeToggle />
-
           {isMobile ? (
             <>
               <div className={css.mobileButtons}>
+                <ThemeLangSwitchers />
+
                 <button
                   type="button"
                   aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -134,6 +144,9 @@ export default function Header() {
 
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
+                  <li>
+                    <ThemeLangSwitchers />
+                  </li>
                   <li className={css.navigationItem}>
                     <Link
                       href="/basket"
