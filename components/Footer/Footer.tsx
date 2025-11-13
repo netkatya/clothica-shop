@@ -1,10 +1,34 @@
+'use client';
 import Link from 'next/link';
 import css from './Footer.module.css';
+import toast, { Toaster } from 'react-hot-toast';
+import { createSubscriptionClient } from '@/lib/api/clientApi';
+import { useState } from 'react';
 
 export default function Footer() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+    const email = emailInput.value;
+    if (!email) {
+      return toast.error('Please, write email');
+    }
+    setIsLoading(true);
+    try {
+      const res = await createSubscriptionClient({ email });
+      toast.success('You have been subscribed!');
+    } catch (error) {
+      toast.error('Ops, something went wrong. Please, try again later');
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <footer className={css.section}>
       <div className="container">
+        <Toaster position="top-right" reverseOrder={false} />
         <div className={css.containerWrap}>
           <div className={css.linksContainer}>
             <a href="" aria-label="На головну" className={css.logo}>
@@ -16,13 +40,13 @@ export default function Footer() {
               <h2 className={css.menu}>Меню</h2>
               <ul className={css.navigationList}>
                 <li className={css.navigation}>
-                  <a href="">Головна</a>
+                  <Link href="/">Головна</Link>
                 </li>
                 <li className={css.navigation}>
-                  <a href="">Товари</a>
+                  <Link href="/goods">Товари</Link>
                 </li>
                 <li className={css.navigation}>
-                  <a href="">Категорії</a>
+                  <Link href="/categories">Категорії</Link>
                 </li>
               </ul>
             </div>
@@ -33,15 +57,20 @@ export default function Footer() {
               Приєднуйтесь до нашої розсилки, щоб бути в курсі новин та акцій.
             </p>
             <div className={css.containerSubscribe}>
-              <form action="" className={css.containerSubscribe}>
+              <form onSubmit={handleSubmit} className={css.containerSubscribe}>
                 <input
-                  type="mail"
+                  type="email"
+                  name="email"
                   placeholder="Введіть ваш email"
                   className={css.input}
                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                 />
-                <button type="submit" className={css.button}>
-                  Підписатися
+                <button
+                  type="submit"
+                  className={css.button}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Надсилання...' : 'Підписатися'}
                 </button>
               </form>
             </div>
