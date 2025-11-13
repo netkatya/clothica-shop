@@ -120,7 +120,7 @@ export default function Product({ good }: ProductProps) {
                 <input
                   type="number"
                   min={1}
-                  value={value || 1}
+                  value={value || ""}
                   className={css.quantityInput}
                   onChange={e => setValue(Number(e.target.value))}
                 ></input>
