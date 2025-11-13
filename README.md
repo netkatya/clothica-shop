@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clothica — Online Clothing Store
 
-## Getting Started
+**Clothica** — це сучасна платформа для онлайн-замовлення стильного одягу.  
+Ми створили інтуїтивний, адаптивний і швидкий сайт, що поєднує естетику та
+функціональність.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🛍️ **Каталог товарів** із фільтрами за розміром, кольором і ціною
+- 🔍 **Категорії** для швидкої навігації
+- 🧾 **Система замовлення** з валідацією форм (Formik + Yup)
+- 🌗 **Темна / світла тема** (Next Themes + DarkReader)
+- 💾 **Керування станом** через Zustand та React Query
+- ⚡ **Динамічне завантаження компонентів** для підвищеної продуктивності
+- 💬 **Адаптивний дизайн** для мобільних і десктопних пристроїв
+- 🎠 **Слайдери та галереї** (Swiper, Framer Motion)
+
+---
+
+## 🧠 Tech Stack
+
+### 🖥️ Frontend
+
+- ⚛️ **React 19**
+- 🧭 **Next.js 15**
+- 💅 **Chakra UI**, **Emotion (styled components)**
+- 🎬 **Framer Motion**
+- 🌗 **Next Themes**, **DarkReader**
+- 🧩 **Zustand**, **TanStack React Query**
+- 🧮 **Formik**, **Yup**
+- ⚙️ **Axios**
+- 🎨 **modern-normalize**, **clsx**
+- 🧱 **Swiper**, **React Icons**, **React Range**, **React Rating**
+
+### ⚙️ Backend
+
+- 🚀 **Node.js**
+- 🚏 **Express.js**
+- 📦 **REST API**
+- 🗄️ **MongoDB + Mongoose**
+- 🔐 **JWT (jsonwebtoken)**
+- 🧂 **bcrypt**
+- ✅ **Celebrate (Joi wrapper)**
+- 🛡️ **Helmet, CORS, express-rate-limit**
+- 📘 **Swagger**
+- 📦 **ES Modules**
+- 🧠 **Functional Programming Architecture**
+- 🔗 **Backend repository:**
+  [github.com/neuropunk87/clothica-shop-backend](https://github.com/neuropunk87/clothica-shop-backend)
+
+### 🧰 Dev Tools
+
+- 🧹 **ESLint**, **Prettier**
+- 🔡 **TypeScript**
+- 📦 **@types/react**, **@types/node**
+- ⚙️ **eslint-config-next**, **eslint-config-prettier**
+
+---
+
+## 👩‍💻 Developers
+
+| Name                    | Role                             | Email                                                                               |
+| ----------------------- | -------------------------------- | ----------------------------------------------------------------------------------- |
+| **Катерина Пригода**    | Team-Lead and Frontend Developer | [e.klimochenkova@gmail.com](mailto:e.klimochenkova@gmail.com)                       |
+| **Ангеліна Пушкаш**     | ScrUm and Frontend Developer     | [bogdanangelina@gmail.com](mailto:bogdanangelina@gmail.com)                         |
+| **Володимир Буглак**    | Frontend Developer               | [suedanny2@yahoo.com](mailto:suedanny2@yahoo.com)                                   |
+| **Владислав Корнієнко** | Frontend Developer               | [vladyslav.korniienko@stud.onu.edu.ua](mailto:vladyslav.korniienko@stud.onu.edu.ua) |
+| **Андрій Бутенко**      | Frontend Developer               | [andrejbutik@gmail.com](mailto:andrejbutik@gmail.com)                               |
+| **Вікторія Романченко** | Frontend Developer               | [victoromanchenko@gmail.com](mailto:victoromanchenko@gmail.com)                     |
+| **Віктор Люльчик**      | Frontend and Backend Developer   | [ViktoL@ukr.net](mailto:ViktoL@ukr.net)                                             |
+| **Наталія Заболотна**   | Frontend Developer               | [zanatav78@gmail.com](mailto:zanatav78@gmail.com)                                   |
+| **Світлана Шевченко**   | Frontend Developer               | [920314ss@gmail.com](mailto:920314ss@gmail.com)                                     |
+| **Ануш Білошитська**    | Frontend Developer               | [biloshytska.anush@icloud.com](mailto:biloshytska.anush@icloud.com)                 |
+| **Любов Запорожець**    | Team-Lead and Backend Developer  | [neurosoldier@gmail.com](mailto:neurosoldier@gmail.com)                             |
+| **Максим Семенов**      | Backend Developer                | [max_semenov@ukr.net](mailto:max_semenov@ukr.net)                                   |
+| **Владислав Білоног**   | Backend Developer                | [maodzhedun@gmail.com](mailto:maodzhedun@gmail.com)                                 |
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Клонування репозиторію
+
+```bash
+git clone https://github.com/your-username/clothica.git
+cd clothica
+```
+
+### 2️⃣ Встановлення залежностей
+
+```bash
+npm install
+```
+
+### 3️⃣ Запуск у режимі розробки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4️⃣ Відкрий у браузері
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# 🌿 Design Concept
 
-To learn more about Next.js, take a look at the following resources:
+Мінімалізм, легкість і натуральні кольори. Інтерфейс розроблено у
+біло-оливковому стилі — спокійна палітра, що створює відчуття гармонії та
+комфорту під час покупок.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# ❤️ Вдячність
 
-## Deploy on Vercel
+Творимо разом, щоб ваш досвід був легким, стильним і приємним. Дякуємо команді
+та користувачам — ви надихаєте нас вдосконалювати кожну деталь.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

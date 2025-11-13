@@ -119,6 +119,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.switchers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
 @media screen and (min-width: 768px) {
   .basketBtn:hover {
     transform: scale(1.3);
@@ -155,6 +162,9 @@
   .navigationItem:active {
     color: var(--color-deco-dark);
   }
+    .switchers {
+      gap: 16px;
+    }
 }
 @media screen and (min-width: 1440px) {
   .navigationLink {
