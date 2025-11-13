@@ -109,6 +109,34 @@
   cursor: not-allowed;
 }
 
+.errorMessage {
+  text-align: center;
+  padding: 11px 8px;
+  background-color: #fdecec;
+  color: #b42318;
+  border: 1px solid #f5c2c0;
+  border-radius: 16px;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 11px 8px;
+  background-color: var(--color-deco-lighter);
+  color: #027a48;
+  border: 1px solid #a9e2c1;
+  border-radius: 16px;
+  font-family: var(--font-inter);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
 @media screen and (min-width: 768px) {
   .mainContent {
     max-width: 480px;
