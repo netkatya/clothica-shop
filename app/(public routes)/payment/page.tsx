@@ -10,7 +10,6 @@ import { useShopStore } from '@/lib/store/cartSrore';
 import { useAuthStore } from '@/lib/store/authStore';
 import { useRouter } from 'next/navigation';
 
-
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
     .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Номер має містити 16 цифр')
@@ -29,7 +28,6 @@ const validationSchema = Yup.object({
       const expiryDate = new Date(year, month - 1, 1);
       const current = new Date(now.getFullYear(), now.getMonth(), 1);
 
-
       return expiryDate >= current;
     })
     .required('Введіть строк дії'),
@@ -39,11 +37,13 @@ const validationSchema = Yup.object({
 });
 
 export default function CheckoutForm() {
-
   const router = useRouter();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { cartItems } = useShopStore();
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.amount, 0);
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.amount,
+    0
+  );
   const { isAuthenticated } = useAuthStore();
 
   if (status === 'success') {
@@ -59,7 +59,7 @@ export default function CheckoutForm() {
           cvv: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
+        onSubmit={values => {
           console.log('Payment submitted:', values);
           setTimeout(() => {
             setStatus('success');

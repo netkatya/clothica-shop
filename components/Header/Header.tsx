@@ -142,6 +142,7 @@ export default function Header() {
                       href="/basket"
                       aria-label="Basket"
                       className={css.basketBtn}
+                      scroll={false}
                     >
                       <svg
                         width="20"
