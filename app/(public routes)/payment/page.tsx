@@ -80,7 +80,7 @@ export default function CheckoutForm() {
               name="cardNumber"
               placeholder="1234 5678 9012 3456"
               className={css.input}
-              onChange={(e: any) => {
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const digits = e.target.value.replace(/\D/g, '').slice(0, 16);
                 const grouped = digits.replace(/(.{4})/g, '$1 ').trim();
                 setFieldValue('cardNumber', grouped);
@@ -99,7 +99,7 @@ export default function CheckoutForm() {
                   name="expiry"
                   placeholder="12/25"
                   className={css.input}
-                  onChange={(e: any) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const digits = e.target.value
                       .replace(/\D/g, '')
                       .slice(0, 4);
@@ -123,7 +123,7 @@ export default function CheckoutForm() {
                   name="cvv"
                   placeholder="123"
                   className={css.input}
-                  onChange={(e: any) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const digits = e.target.value
                       .replace(/\D/g, '')
                       .slice(0, 3);
