@@ -1,27 +1,26 @@
-import Link from "next/link";
 import styles from "./MessageNoInfo.module.css";
 
 type MessageNoInfoProps = {
   text: string;
   buttonText: string;
   route?: string | null;
-  onClick?: (() => void) | null;
+  onClick?: (() => void);
 };
 
 export default function MessageNoInfo({
   text,
   buttonText,
   route = null,
-  onClick = null,
+  onClick,
 }: MessageNoInfoProps) {
   return (
     <div className={styles.noOrdersWrapper}>
       <p className={styles.messageText}>{text}</p>
 
       {route ? (
-        <Link href={route} className={styles.shopButton}>
+        <button className={styles.shopButton} onClick={onClick}>
           {buttonText}
-        </Link>
+        </button>
       ) : (
         <button onClick={onClick!} className={styles.shopButton}>
           {buttonText}
