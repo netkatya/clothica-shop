@@ -2,20 +2,30 @@ import { nextServer } from './api';
 import { NextResponse } from 'next/server';
 import { parse } from 'cookie';
 import { RequestCookies } from 'next/dist/server/web/spec-extension/cookies';
+import { useAuthStore } from '../store/authStore';
 
 export const checkServerSession = async (cookieStore: RequestCookies) => {
   const accessToken = cookieStore.get('accessToken')?.value;
   const refreshToken = cookieStore.get('refreshToken')?.value;
 
+  const user = useAuthStore.getState().user;
+  if (!user) {
+    throw new Error('User not found in auth store');
+  }
+
   let cookieString = '';
   if (accessToken) cookieString += `accessToken=${accessToken}; `;
   if (refreshToken) cookieString += `refreshToken=${refreshToken}`;
 
-  const res = await nextServer.get('/auth/session', {
-    headers: {
-      Cookie: cookieString,
-    },
-  });
+  const res = await nextServer.post(
+    '/auth/session',
+    { phone: user.phone },
+    {
+      headers: {
+        Cookie: cookieString,
+      },
+    }
+  );
   return res;
 };
 
