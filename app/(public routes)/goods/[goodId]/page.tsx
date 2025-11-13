@@ -42,7 +42,7 @@ export default function GoodPage() {
         }, 300);
       }
     }
-  }, [good]);
+  }, []);
 
   const handleSubmit = async (values: {
     author: string;

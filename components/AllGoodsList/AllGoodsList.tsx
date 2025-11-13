@@ -14,13 +14,15 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
         {goods.map(good => (
           <li key={good._id} className={css.listItem}>
             <div className={css.card}>
-              <Image
-                src={good.image}
-                alt={good.name}
-                width={335}
-                height={223}
-                className={css.image}
-              />
+              <Link href={`/goods/${good._id}`} className={css.detailLink}>
+                <Image
+                  src={good.image}
+                  alt={good.name}
+                  width={335}
+                  height={223}
+                  className={css.image}
+                />
+              </Link>
               <div className={css.info}>
                 <p className={css.name}>{good.name}</p>
                 <p className={css.price}>

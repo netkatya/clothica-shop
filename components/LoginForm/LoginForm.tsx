@@ -51,10 +51,8 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
       }
     } catch (err) {
       const errorAPI = err as ApiError;
-      if (errorAPI.response?.status === 400) {
-        setError('Користувач з таким номером телефону вже існує');
-      } else if (errorAPI.response?.status === 401) {
-        setError('Користувач з таким номером телефону не знайдений');
+      if (errorAPI.response?.status === 401) {
+        setError('Невірний номер телефону або пароль');
       } else {
         setError(
           errorAPI.response?.data?.error ??
