@@ -11,6 +11,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
+    padding-right: 8px;
 }
 
 .goods_list::-webkit-scrollbar {
@@ -41,6 +42,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
+    white-space: nowrap;
 }
 
 .good_numbers {
@@ -75,17 +77,28 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 150%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .good_info {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
+    min-width: 0;
 }
 
 .info_wrapper {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    max-width: 150px;
 }
 
 .good_numbers {
@@ -93,6 +106,7 @@
     flex-direction: row;
     gap: 12px;
 }
+
 .good_right {
     display: flex;
     flex-direction: column;
@@ -114,6 +128,8 @@
     text-align: start;
     width: 64px;
     height: 40px;
+    background: transparent;
+    color: var(--color-neutral-darkest);
 }
 
 .delete_button {
