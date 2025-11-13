@@ -5,7 +5,8 @@ import { parse } from 'cookie';
 import { isAxiosError } from 'axios';
 import { logErrorResponse } from '@/app/api/_utils/utils';
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { body } = await request.json();
   try {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get('accessToken')?.value;
@@ -16,7 +17,7 @@ export async function GET() {
     }
 
     if (refreshToken) {
-      const apiRes = await api.get('api/auth/refresh', {
+      const apiRes = await api.post('api/auth/refresh', body, {
         headers: {
           Cookie: cookieStore.toString(),
         },
