@@ -103,7 +103,7 @@ export default function GoodsClient() {
     });
   };
 
-  const goods = data?.pages.flatMap(page => page.goods) ?? [];
+  const goods = data?.pages.flatMap(page => page.data) ?? [];
   const shown = goods.length;
   const total = data?.pages[0]?.totalItems ?? 0;
   return (

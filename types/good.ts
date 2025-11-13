@@ -15,7 +15,7 @@ export interface CategoryField {
 export interface Good {
   _id: string;
   name: string;
-  category: CategoryField | string;
+  category: CategoryField;
   image: string;
   price: Price;
   size: Size[];

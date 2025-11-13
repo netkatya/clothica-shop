@@ -42,12 +42,12 @@ export default function GoodPage() {
       comment: values.comment,
       rate: values.rate,
       good: goodId,
-      category: good?.category as string,
+      category: good?.category._id || '',
     };
     await createFeedbackClient(feedback);
 
     const updatedData = await fetchGoodById(goodId);
-    setGood(updatedData.good);
+    setGood(updatedData.data);
     closeModal();
   };
 
@@ -59,7 +59,7 @@ export default function GoodPage() {
     fetchGoodById(goodId)
       .then(data => {
         if (!cancelled) {
-          setGood(data.good);
+          setGood(data.data);
         }
       })
       .catch(err => {

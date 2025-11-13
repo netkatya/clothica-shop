@@ -74,7 +74,7 @@ export async function updateMeAvatar(update: File): Promise<User> {
 }
 
 export interface FetchGoodsResponse {
-  goods: Good[];
+  data: Good[];
   success: boolean;
   message?: string;
   page: number;
@@ -84,7 +84,7 @@ export interface FetchGoodsResponse {
 }
 
 export interface FetchGoodByIdResponse {
-  good: Good;
+  data: Good;
   success: boolean;
   message?: string;
 }
