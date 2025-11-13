@@ -73,14 +73,18 @@ export async function updateMeAvatar(update: File): Promise<User> {
   return data;
 }
 
-export interface FetchGoodsResponse {
-  data: Good[];
-  success: boolean;
-  message?: string;
+export interface paginationMeta {
   page: number;
   perPage: number;
   totalItems: number;
   totalPages: number;
+}
+
+export interface FetchGoodsResponse {
+  data: Good[];
+  success: boolean;
+  message?: string;
+  meta: paginationMeta;
 }
 
 export interface FetchGoodByIdResponse {

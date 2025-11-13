@@ -86,7 +86,10 @@ export default function GoodsClient() {
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const currentPage = allPages.length;
-      if (!lastPage?.totalPages || currentPage >= lastPage.totalPages) {
+      if (
+        !lastPage?.meta.totalPages ||
+        currentPage >= lastPage.meta.totalPages
+      ) {
         return undefined;
       }
       return currentPage + 1;
@@ -105,7 +108,7 @@ export default function GoodsClient() {
 
   const goods = data?.pages.flatMap(page => page.data) ?? [];
   const shown = goods.length;
-  const total = data?.pages[0]?.totalItems ?? 0;
+  const total = data?.pages[0]?.meta?.totalItems ?? 0;
   return (
     <div className="container">
       <h1 className={css.heading}>
