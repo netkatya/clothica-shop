@@ -63,10 +63,10 @@ const GoodsOrderList = () => {
                                     min={1}
                                     value={good.amount || 1}
                                     className={css.good_quantity}
-                                    onChange={e => updateAmount(good.goodId, Number(e.target.value))}
+                                    onChange={e => updateAmount(good.goodId, good.size, Number(e.target.value))}
                                     ></input>
                                     {/* <p className={css.good_quantity}>{good.amount}</p> */}
-                                    <button onClick={() => removeFromCart(good.goodId)} className={css.delete_button}>
+                                    <button onClick={() => removeFromCart(good.goodId, good.size)} className={css.delete_button}>
                                         <svg width="20" height="20" aria-hidden="true">
                                             <use href="/symbol-defs.svg#icon-trash-can"></use>
                                         </svg>
