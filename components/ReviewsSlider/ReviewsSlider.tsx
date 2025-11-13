@@ -9,11 +9,13 @@ import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import Stars from '../Stars/Stars';
 import { useEffect, useState } from 'react';
 import { fetchFeedbacksClient } from '@/lib/api/clientApi';
+import Link from 'next/link';
 
 interface SliderReview {
   name: string;
   text: string;
   product: string;
+  goodId?: string;
   rating: number;
 }
 
@@ -40,16 +42,10 @@ export default function ReviewsSlider({
         });
         const feedbacks = response.feedbacks || [];
 
-        // const goodsResponse = await fetchGoodsClient();
-        // const goodsMap: Record<string, string> = {};
-        // goodsResponse.goods.forEach(good => {
-        //   goodsMap[good._id] = good.name;
-        // });
-
         const mapped: SliderReview[] = feedbacks.map(feedback => ({
           name: feedback.author || 'Анонім',
           text: feedback.comment || '',
-          // product: goodsMap[feedback.goodId] || 'Невідомий продукт',
+          goodId: feedback.good._id,
           product: feedback.good.name || 'Невідомий продукт',
           rating: feedback.rate || 0,
         }));
@@ -64,7 +60,7 @@ export default function ReviewsSlider({
   }, []);
 
   return (
-    <div>
+    <div id="reviews-slider">
       <Swiper
         modules={[Navigation, Keyboard, A11y, Autoplay]}
         navigation={{ nextEl: `.${css.btnNext}`, prevEl: `.${css.btnPrev}` }}
@@ -82,11 +78,13 @@ export default function ReviewsSlider({
       >
         {reviews.map((item, index) => (
           <SwiperSlide key={index} className={css.item}>
-            <div className={css.stars}>
-              <Stars rating={item.rating} />
-            </div>
-            <p className={css.text}>{item.text}</p>
-            <p className={css.name}>{item.name}</p>
+            <Link href={`/goods/${item.goodId}#reviews-slider`} key={index}>
+              <div className={css.stars}>
+                <Stars rating={item.rating} />
+              </div>
+              <p className={css.text}>{item.text}</p>
+              <p className={css.name}>{item.name}</p>
+            </Link>
             {hasProductText && <p className={css.product}>{item.product}</p>}
           </SwiperSlide>
         ))}
