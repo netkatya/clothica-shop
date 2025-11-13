@@ -18,7 +18,7 @@ export default function GoodsList() {
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
-  const goods = data?.goods ?? [];
+  const goods = data?.data ?? [];
   return (
     <div className={css.sliderContainer}>
       <Swiper
