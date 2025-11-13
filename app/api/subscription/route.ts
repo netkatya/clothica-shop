@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { data } = await api.post('/api/subscription', body);
+    const { data } = await api.post('/api/subscriptions', body);
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
