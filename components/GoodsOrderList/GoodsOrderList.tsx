@@ -5,16 +5,17 @@ import { useShopStore } from "@/lib/store/cartSrore"
 import Image from "next/image"
 import { AiFillStar } from "react-icons/ai"
 import MessageNoInfo from "../MessageNoInfo/MessageNoInfo";
+import { useState } from "react";
 
 
 const GoodsOrderList = () => {
 
-    const { cartItems, removeFromCart } = useShopStore();
+    const { cartItems, removeFromCart, updateAmount } = useShopStore();
 
     const goodPrice = cartItems.reduce((total, good) => total + good.price * good.amount, 0);
     const deliveryPrice = goodPrice > 0 ? 50 : 0;
     const totalPrice = goodPrice + deliveryPrice;
-
+    
     return (
         <div className={css.container}>
             <div className={css.wrapper}>
@@ -57,7 +58,14 @@ const GoodsOrderList = () => {
                             <div className={css.good_right}>
                                 <p className={css.good_price}>{good.price} грн</p>
                                 <div className={css.good_right_actions}>
-                                    <p className={css.good_quantity}>{good.amount}</p>
+                                    <input
+                                    type="number"
+                                    min={1}
+                                    value={good.amount || 1}
+                                    className={css.good_quantity}
+                                    onChange={e => updateAmount(good.goodId, Number(e.target.value))}
+                                    ></input>
+                                    {/* <p className={css.good_quantity}>{good.amount}</p> */}
                                     <button onClick={() => removeFromCart(good.goodId)} className={css.delete_button}>
                                         <svg width="20" height="20" aria-hidden="true">
                                             <use href="/symbol-defs.svg#icon-trash-can"></use>

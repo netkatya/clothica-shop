@@ -17,6 +17,7 @@ interface ShopStore {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (productId: string) => void;
+  updateAmount: (goodId: string, amount: number) => void;
   clearCart: () => void;
 }
 
@@ -26,6 +27,10 @@ export const useShopStore = create<ShopStore>()(persist(set => ({
   removeFromCart: goodId =>
     set(state => ({
       cartItems: state.cartItems.filter(i => i.goodId !== goodId),
+    })),
+  updateAmount: (goodId, amount) =>
+    set(state => ({
+      cartItems: state.cartItems.map(i => i.goodId === goodId ? { ...i, amount } : i),
     })),
   clearCart: () => set({ cartItems: [] }), }),
   {
