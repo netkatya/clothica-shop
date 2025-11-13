@@ -48,6 +48,7 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
       if (res) {
         setUser(res);
         router.push('/profile');
+        formikHelpers.resetForm();
       } else {
         setError('Помилка реєстрації користувача!');
       }
@@ -62,10 +63,8 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
             'Невідома помилка!'
         );
       }
-      setTimeout(() => setError(''), 3000);
+      setTimeout(() => setError(''), 5000);
     }
-
-    formikHelpers.resetForm();
   };
 
   return (
@@ -153,7 +152,11 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
               />
             </div>
 
-            {error && <p className={css.apiErrorMessage}>{error}</p>}
+            {error && (
+              <p className={error ? css.errorMessage : css.successMessage}>
+                {error}
+              </p>
+            )}
 
             <div className={css.actions}>
               <button type="submit" className={css.submitButton}>

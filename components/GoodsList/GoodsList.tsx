@@ -48,13 +48,15 @@ export default function GoodsList() {
         {goods.map(good => (
           <SwiperSlide key={good._id} className={css.item}>
             <div>
-              <Image
-                src={good.image}
-                alt={good.name}
-                width={335}
-                height={223}
-                className={css.image}
-              />
+              <Link href={`/goods/${good._id}`}>
+                <Image
+                  src={good.image}
+                  alt={good.name}
+                  width={335}
+                  height={223}
+                  className={css.image}
+                />
+              </Link>
               <div className={css.info}>
                 <p className={css.name}>{good.name}</p>
                 <p className={css.price}>
@@ -64,13 +66,13 @@ export default function GoodsList() {
               <div className={css.reviews}>
                 <div className={css.rate}>
                   <AiFillStar />
-                  <p className={css.ratenumber}>5</p>
+                  <p className={css.ratenumber}>{good.averageRate}</p>
                 </div>
                 <div className={css.rate}>
                   <svg width="16" height="16" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
                   </svg>
-                  <p className={css.ratenumber}>{good.feedbacks.length}</p>
+                  <p className={css.ratenumber}>{good.feedbackCount}</p>
                 </div>
               </div>
               <Link href={`/goods/${good._id}`}>
