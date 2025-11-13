@@ -45,7 +45,7 @@ const Hero = () => {
             <>
               {isMobile && (
                 <Image
-                  src="/img/hero/hero-image-mobile.png"
+                  src="/img/hero/Hero-Image-mobile.png"
                   alt="Hero Image"
                   width={335}
                   height={335}
@@ -54,7 +54,7 @@ const Hero = () => {
               )}
               {isTablet && (
                 <Image
-                  src="/img/hero/hero-image-tablet.png"
+                  src="/img/hero/Hero-Image-tablet.png"
                   alt="Hero Image"
                   width={336}
                   height={425}
@@ -63,7 +63,7 @@ const Hero = () => {
               )}
               {isDesktop && (
                 <Image
-                  src="/img/hero/hero-image-desktop.png"
+                  src="/img/hero/Hero-Image-desktop.png"
                   alt="Hero Image"
                   width={640}
                   height={394}
