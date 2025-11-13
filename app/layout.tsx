@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Inter, Nunito_Sans } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import ScrollToTopBtn from "@/components/ScrollToTopBtn/ScrollToTopBtn";
+import type { Metadata } from 'next';
+import { Inter, Nunito_Sans } from 'next/font/google';
+import './globals.css';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import ScrollToTopBtn from '@/components/ScrollToTopBtn/ScrollToTopBtn';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: {
   children: React.ReactNode;
   modal: React.ReactNode;
@@ -67,6 +67,7 @@ export default function RootLayout({
             {modal}
             <Footer />
             <ScrollToTopBtn />
+            <div id="modal-root"></div>
           </AuthProvider>
         </TanStackProvider>
         <CookieBanner />
