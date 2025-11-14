@@ -12,6 +12,22 @@ export default function Header() {
   //store
   const cartItems = useShopStore(state => state.cartItems);
   const count = cartItems.reduce((sum, item) => sum + item.amount, 0);
+  const Basket = () => (
+    <div className={css.basketWrapper}>
+      <Link
+        href="/basket"
+        aria-label="Basket"
+        className={css.basketBtn}
+        scroll={false}
+      >
+        <svg width="20" height="21" className={css.basketButtonSvg}>
+          <use href="/symbol-defs.svg#icon-basket"></use>
+        </svg>
+
+        {count > 0 && <span className={css.badge}>{count}</span>}
+      </Link>
+    </div>
+  );
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
@@ -60,20 +76,7 @@ export default function Header() {
                   </svg>
                 </button>
 
-                <div className={css.basketWrapper}>
-                  <Link
-                    href="/basket"
-                    aria-label="Basket"
-                    className={css.basketBtn}
-                    scroll={false}
-                  >
-                    <svg width="20" height="21" className={css.basketButtonSvg}>
-                      <use href="/symbol-defs.svg#icon-basket"></use>
-                    </svg>
-
-                    {count > 0 && <span className={css.badge}>{count}</span>}
-                  </Link>
-                </div>
+                <Basket />
               </div>
 
               {menuOpen && (
@@ -110,7 +113,7 @@ export default function Header() {
                     </ul>
                   </nav>
                   <div className={css.mobileActions}>
-                    <AuthNavigation />
+                    <AuthNavigation onClick={() => setMenuOpen(false)} />
                   </div>
                 </div>
               )}
@@ -139,21 +142,7 @@ export default function Header() {
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
                   <li className={css.navigationItem}>
-                    <Link
-                      href="/basket"
-                      aria-label="Basket"
-                      className={css.basketBtn}
-                      scroll={false}
-                    >
-                      <svg
-                        width="20"
-                        height="21"
-                        className={css.basketButtonSvg}
-                      >
-                        <use href="/symbol-defs.svg#icon-basket"></use>
-                      </svg>
-                      {count > 0 && <span className={css.badge}>{count}</span>}
-                    </Link>
+                    <Basket />
                   </li>
                 </ul>
               </nav>
