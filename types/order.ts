@@ -15,7 +15,7 @@ export type OrderStatus =
 
 export interface CreateOrderForm {
   name: string;
-  lastname: string;  
+  lastname: string;
   phone: string;
   city: string;
   branchnum_np: string;
@@ -25,15 +25,16 @@ export interface CreateOrderForm {
 }
 
 export type CreateOrderParams = {
-  goods: OrderGood[],
-  sum: number,
-  userName: string,
-  userLastName: string,
-  userPhone: string,
-  branchnum_np: string,
-  city: string,
-  comment?: string
-}
+  goods: OrderGood[];
+  sum: number;
+  status?: OrderStatus;
+  userName: string;
+  userLastName: string;
+  userPhone: string;
+  branchnum_np: string;
+  city: string;
+  comment?: string;
+};
 
 export type Order = {
   _id: string;

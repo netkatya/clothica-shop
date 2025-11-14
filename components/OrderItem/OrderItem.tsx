@@ -1,3 +1,4 @@
+import { getLocalizedStatus } from '@/constants/orders';
 import { Order } from '@/types/order';
 
 export default function OrderItem({ order }: { order: Order }) {
@@ -6,7 +7,7 @@ export default function OrderItem({ order }: { order: Order }) {
       <p>{order.date}</p>
       <p>№{order.orderNum}</p>
       <p>Сума: {order.sum} грн</p>
-      <p>Статус: {order.status}</p>
+      <p>Статус: {getLocalizedStatus(order.status, 'uk')}</p>
     </div>
   );
 }
