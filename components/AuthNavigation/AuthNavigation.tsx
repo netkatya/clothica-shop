@@ -4,7 +4,11 @@ import Link from 'next/link';
 import css from './AuthNavigation.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
 
-export default function AuthNavigation() {
+type AuthNavigationProps = {
+  onClick?: () => void;
+};
+
+export default function AuthNavigation({ onClick }: AuthNavigationProps) {
   const { isAuthenticated, clearIsAuthenticated } = useAuthStore();
 
   return (
@@ -12,7 +16,12 @@ export default function AuthNavigation() {
       {isAuthenticated ? (
         <>
           <li className={css.navigationItem}>
-            <Link href="/profile" className={css.authButton} prefetch={false}>
+            <Link
+              href="/profile"
+              className={css.authButton}
+              prefetch={false}
+              onClick={onClick}
+            >
               Кабінет
             </Link>
           </li>
@@ -24,6 +33,7 @@ export default function AuthNavigation() {
               href="/auth/login"
               className={css.authButton}
               prefetch={false}
+              onClick={onClick}
             >
               Вхід
             </Link>
@@ -33,6 +43,7 @@ export default function AuthNavigation() {
               href="/auth/register"
               className={css.authButton}
               prefetch={false}
+              onClick={onClick}
             >
               Реєстрація
             </Link>
