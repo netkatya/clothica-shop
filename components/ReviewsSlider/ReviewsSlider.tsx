@@ -7,17 +7,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import Stars from '../Stars/Stars';
-import { useEffect, useState } from 'react';
-import { fetchFeedbacksClient } from '@/lib/api/clientApi';
 import Link from 'next/link';
-
-interface SliderReview {
-  name: string;
-  text: string;
-  product: string;
-  goodId?: string;
-  rating: number;
-}
+import { useQuery } from '@tanstack/react-query';
+import { fetchFeedbacksClient } from '@/lib/api/clientApi';
 
 type ReviewsSliderProps = {
   hasProductText?: boolean;
@@ -30,34 +22,29 @@ export default function ReviewsSlider({
   hasCenteredButtons = false,
   goodId = '',
 }: ReviewsSliderProps) {
-  const [reviews, setReviews] = useState<SliderReview[]>([]);
+  const { data: reviews = [], isLoading } = useQuery({
+    queryKey: ['feedbacks', goodId],
+    queryFn: async () => {
+      const response = await fetchFeedbacksClient({
+        page: '1',
+        perPage: '9',
+        good: goodId || undefined,
+      });
 
-  useEffect(() => {
-    async function loadLatestFeedbacks() {
-      try {
-        const response = await fetchFeedbacksClient({
-          page: '1',
-          perPage: '9',
-          good: goodId ? goodId : undefined,
-        });
-        const feedbacks = response.feedbacks || [];
+      const feedbacks = response.feedbacks || [];
 
-        const mapped: SliderReview[] = feedbacks.map(feedback => ({
-          name: feedback.author || 'Анонім',
-          text: feedback.comment || '',
-          goodId: feedback.good._id,
-          product: feedback.good.name || 'Невідомий продукт',
-          rating: feedback.rate || 0,
-        }));
+      return feedbacks.map(feedback => ({
+        name: feedback.author || 'Анонім',
+        text: feedback.comment || '',
+        goodId: feedback.good._id,
+        product: feedback.good.name || 'Невідомий продукт',
+        rating: feedback.rate || 0,
+      }));
+    },
+  });
 
-        setReviews(mapped);
-      } catch (err) {
-        console.error('Помилка при завантаженні відгуків', err);
-      }
-    }
-
-    loadLatestFeedbacks();
-  }, []);
+  if (isLoading)
+    return <div className={css.loading}>Завантаження відгуків…</div>;
 
   return (
     <div id="reviews-slider">
@@ -78,7 +65,7 @@ export default function ReviewsSlider({
       >
         {reviews.map((item, index) => (
           <SwiperSlide key={index} className={css.item}>
-            <Link href={`/goods/${item.goodId}#reviews-slider`} key={index}>
+            <Link href={`/goods/${item.goodId}#reviews-slider`}>
               <div className={css.stars}>
                 <Stars rating={item.rating} />
               </div>
