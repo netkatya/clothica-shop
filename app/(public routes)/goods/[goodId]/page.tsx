@@ -1,16 +1,20 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import ReviewsSlider from '@/components/ReviewsSlider/ReviewsSlider';
-import Product from '../../../../components/Product/Product';
-import css from './ProductPage.module.css';
-import ProductModal from '../../../../components/ProductModal/ProductModal';
+import Product from '@/components/Product/Product';
+import ProductModal from '@/components/ProductModal/ProductModal';
+
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import StarPicker from '../../../../components/StarRating/StarRating';
+
 import { createFeedbackClient, fetchGoodById } from '@/lib/api/clientApi';
-import { Good } from '@/types/good';
 import { FeedbackPost } from '@/types/feedback';
+
+import css from './ProductPage.module.css';
 
 const ReviewSchema = Yup.object().shape({
   author: Yup.string().min(2, "Ім'я занадто коротке").required("Введіть ім'я"),
@@ -26,70 +30,53 @@ const ReviewSchema = Yup.object().shape({
 export default function GoodPage() {
   const params = useParams<{ goodId: string }>();
   const goodId = params.goodId;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [good, setGood] = useState<Good | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
-      }
-    }
-  }, []);
+  const queryClient = useQueryClient();
+
+  const {
+    data: good,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['good', goodId],
+    queryFn: () => fetchGoodById(goodId).then(r => r.data),
+  });
 
   const handleSubmit = async (values: {
     author: string;
     comment: string;
     rate: number;
   }) => {
+    if (!goodId || !good) return;
+
     const feedback: FeedbackPost = {
       author: values.author,
       comment: values.comment,
       rate: values.rate,
       good: goodId,
-      category: good?.category._id || '',
+      category: good.category._id,
     };
+
     await createFeedbackClient(feedback);
 
-    const updatedData = await fetchGoodById(goodId);
-    setGood(updatedData.data);
+    await queryClient.invalidateQueries({ queryKey: ['good', goodId] });
+    await queryClient.invalidateQueries({ queryKey: ['feedbacks', goodId] });
+
     closeModal();
   };
 
-  useEffect(() => {
-    if (!goodId) return;
-
-    let cancelled = false;
-
-    fetchGoodById(goodId)
-      .then(data => {
-        if (!cancelled) {
-          setGood(data.data);
-        }
-      })
-      .catch(err => {
-        if (!cancelled) {
-          setError(err.message ?? 'Не вдалося завантажити товар');
-        }
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [goodId]);
-
-  if (!good) return <div className={css.loading}>Завантаження…</div>;
+  if (isLoading) return <div className={css.loading}>Завантаження…</div>;
+  if (error || !good)
+    return <div className={css.loading}>Помилка завантаження товару</div>;
 
   return (
     <>
       <Product good={good} />
+
       <div className="container">
         <div className={css.goodsReviews}>
           <p className={css.titleReviews}>Відгуки клієнтів</p>
@@ -97,6 +84,7 @@ export default function GoodPage() {
             Залишити відгук
           </button>
         </div>
+
         {good.feedbackCount > 0 ? (
           <ReviewsSlider
             goodId={goodId}
@@ -116,6 +104,7 @@ export default function GoodPage() {
             </button>
           </div>
         )}
+
         {isModalOpen && (
           <ProductModal onClose={closeModal}>
             <button type="button" className={css.closeBtn} onClick={closeModal}>
@@ -125,12 +114,13 @@ export default function GoodPage() {
             </button>
 
             <h2 className={css.titleModal}>Залишити відгук</h2>
+
             <Formik
               initialValues={{ author: '', comment: '', rate: 0 }}
               validationSchema={ReviewSchema}
               onSubmit={handleSubmit}
             >
-              {({ errors, touched, isSubmitting, setFieldValue, values }) => (
+              {({ errors, touched, setFieldValue, isSubmitting, values }) => (
                 <Form className={css.form}>
                   <div className={css.inpBox}>
                     <label htmlFor="author" className={css.inpName}>
@@ -140,9 +130,7 @@ export default function GoodPage() {
                       type="text"
                       id="author"
                       name="author"
-                      className={`${css.input} ${
-                        errors.author && touched.author ? css.inputError : ''
-                      }`}
+                      className={`${css.input} ${errors.author && touched.author ? css.inputError : ''}`}
                       placeholder="Ваше ім’я"
                     />
                     <ErrorMessage
@@ -151,6 +139,7 @@ export default function GoodPage() {
                       className={css.error}
                     />
                   </div>
+
                   <div className={css.inpBox}>
                     <label htmlFor="comment" className={css.inpName}>
                       Ваш відгук
@@ -160,11 +149,7 @@ export default function GoodPage() {
                       id="comment"
                       name="comment"
                       rows={5}
-                      className={`${css.textarea} ${
-                        errors.comment && touched.comment
-                          ? css.textareaError
-                          : ''
-                      }`}
+                      className={`${css.textarea} ${errors.comment && touched.comment ? css.textareaError : ''}`}
                       placeholder="Ваш відгук"
                     />
                     <ErrorMessage
@@ -173,10 +158,12 @@ export default function GoodPage() {
                       className={css.error}
                     />
                   </div>
+
                   <StarPicker
                     defaultValue={values.rate}
                     onChange={value => setFieldValue('rate', value)}
                   />
+
                   <button
                     className={css.btnReviews}
                     type="submit"
