@@ -85,6 +85,10 @@
   border-color: var(--color-deco-dark);
 }
 
+
+.error {
+  color: var(--color-red);
+}
 /* @media (max-width: 767px) {
   /* .formWrapper {
     grid-template-columns: 1fr;
