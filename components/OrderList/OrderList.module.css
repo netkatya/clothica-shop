@@ -2,3 +2,9 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+@media screen and (min-width: 1440px) {
+    .orderlist {
+        max-width: 640px;
+    }
+}

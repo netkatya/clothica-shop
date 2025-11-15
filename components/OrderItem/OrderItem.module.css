@@ -1,7 +1,6 @@
 .orderItem {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
     padding-bottom: 16px;
     font-size: 15px;
 }
@@ -40,9 +39,8 @@
     font-weight: 600;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .orderItem {
-        grid-template-columns: 1.5fr 1fr 1fr;
         padding-bottom: 20px;
     }
 
@@ -57,4 +55,8 @@
     .label {
         font-size: 18px;
     }
+}
+
+@media screen and (min-width: 1440px) {
+
 }

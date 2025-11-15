@@ -3,7 +3,7 @@ import OrderItem from '../OrderItem/OrderItem';
 
 export default function OrdersList({ orders }: { orders: Order[] }) {
   return (
-    <div>
+    <div className={css.orderlist}>
       {orders.map(order => (
         <OrderItem key={order._id} order={order} />
       ))}
