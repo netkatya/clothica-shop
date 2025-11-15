@@ -13,7 +13,7 @@ import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 export default function FavoritesPage() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient(),
+    queryFn: () => fetchGoodsClient({}),
   });
   const goods = data?.data ?? [];
 
