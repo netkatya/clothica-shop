@@ -1,6 +1,6 @@
 'use client';
 import 'swiper/css/pagination';
-import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import { LuArrowLeft, LuArrowRight, LuHeart } from 'react-icons/lu';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Keyboard, A11y, Pagination } from 'swiper/modules';
 import Image from 'next/image';
@@ -10,6 +10,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { fetchGoodsClient } from '@/lib/api/clientApi';
 
 import { AiFillStar } from 'react-icons/ai';
+import { useFavoritesStore } from '@/lib/store/favoritesStore';
 
 export default function GoodsList() {
   const { data, isLoading, isError } = useQuery({
@@ -19,6 +20,9 @@ export default function GoodsList() {
     refetchOnMount: false,
   });
   const goods = data?.data ?? [];
+
+  const { favorites, toggleFavorite } = useFavoritesStore();
+
   return (
     <div className={css.sliderContainer}>
       <Swiper
@@ -74,6 +78,20 @@ export default function GoodsList() {
                   </svg>
                   <p className={css.ratenumber}>{good.feedbackCount}</p>
                 </div>
+                <button
+                  className={css.favorites}
+                  onClick={() => toggleFavorite(good._id)}
+                >
+                  <LuHeart
+                    className={css.iconHeart}
+                    size={20}
+                    stroke={'#ff89b3'}
+                    fill={
+                      favorites.includes(good._id) ? '#ff89b3' : 'transparent'
+                    }
+                    strokeWidth={2}
+                  />
+                </button>
               </div>
               <Link href={`/goods/${good._id}`}>
                 <button className={css.detail}>Детальніше</button>
