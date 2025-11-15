@@ -1,36 +1,29 @@
-/* ... (ваші існуючі стилі) ... */
-
-/* Контейнер для слайдера та підписів */
 .rangeContainer {
-  padding: 16px 8px; /* Даємо місце повзункам, щоб не обрізались */
+  padding: 16px 8px;
 }
 
-/* 1. Стиль "доріжки" (Track) */
 .rangeTrack {
-  height: 4px; /* Висота чорної/сірої лінії */
+  height: 4px;
   width: 100%;
-  background-color: #ccc; /* Колір за замовчуванням (зміниться через getTrackBackground) */
+  background-color: #ccc;
   border-radius: 4px;
   margin-bottom: 24px;
 }
 
-/* 2. Стиль "повзунка" (Thumb) */
 .rangeThumb {
-  height: 20px; /* Розмір білого круга */
+  height: 20px;
   width: 20px;
-  background-color: #fff; /* Білий колір */
-  border-radius: 50%; /* Робимо його круглим */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Тінь, як на фото */
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Легка рамка */
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* (Важливо) Скидаємо стилі, які 'react-range' додає до 'outline' при фокусі */
 .rangeThumb:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* Кращий фокус */
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-/* 3. Контейнер для підписів "0" і "100" */
 .rangeLabels {
   display: flex;
   justify-content: space-between;

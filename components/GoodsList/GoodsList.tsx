@@ -1,5 +1,6 @@
 'use client';
 import 'swiper/css/pagination';
+import { useMemo } from 'react';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Keyboard, A11y, Pagination } from 'swiper/modules';
@@ -18,7 +19,13 @@ export default function GoodsList() {
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
-  const goods = data?.data ?? [];
+  const goods = useMemo(
+    () =>
+      data?.data
+        .filter(good => good.averageRate && good.feedbackCount)
+        .sort((a, b) => b.averageRate - a.averageRate) ?? [],
+    [data]
+  );
   return (
     <div className={css.sliderContainer}>
       <Swiper

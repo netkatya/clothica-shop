@@ -13,26 +13,41 @@ import {
   type InfiniteData,
 } from '@tanstack/react-query';
 import css from './Goods.module.css';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import SidebarFilters from '@/components/SidebarFilter/SidebarFilter';
 import { AllFiltersState } from '@/types/filters';
 import { Category } from '@/types/category';
 import { useDebounce } from 'use-debounce';
-import { Gender } from '@/types/good';
-import { useSearchParams } from 'next/navigation';
+import { Gender, Size } from '@/types/good';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+
+const getFiltersFromParams = (
+  searchParams: URLSearchParams
+): AllFiltersState => {
+  const category = searchParams.get('category') || 'Усі';
+  const status = (searchParams.get('status') as Gender | 'Всі') || 'Всі';
+  const sizes = (searchParams.get('sizes')?.split(',') as Size[]) || [];
+  const colors = searchParams.get('colors')?.split(',') || [];
+  const priceMin = Number(searchParams.get('price_min')) || 1;
+  const priceMax = Number(searchParams.get('price_max')) || 5500;
+  return {
+    category,
+    status,
+    sizes,
+    colors,
+    priceRange: [priceMin, priceMax],
+  };
+};
 
 export default function GoodsClient() {
-  //me
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const [filters, setFilters] = useState<AllFiltersState>({
-    category: categoryParam || 'Усі',
-    sizes: [],
-    priceRange: [1, 5499],
-    colors: [],
-    status: 'Всі',
-  });
+  const [filters, setFilters] = useState<AllFiltersState>(() =>
+    getFiltersFromParams(searchParams)
+  );
   const [debouncedPriceRange] = useDebounce(filters.priceRange, 3000);
   const apiFilters = useMemo(
     () => ({
@@ -47,6 +62,7 @@ export default function GoodsClient() {
     refetchOnWindowFocus: false,
   });
   const categories: Category[] = categoriesData?.categories ?? [];
+  const isInitialRender = useRef(true);
   const {
     data,
     isLoading,
@@ -96,6 +112,46 @@ export default function GoodsClient() {
     },
     refetchOnMount: false,
   });
+  useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [apiFilters]);
+  useEffect(() => {
+    // Створюємо новий об'єкт параметрів
+    const params = new URLSearchParams();
+
+    // Додаємо, ТІЛЬКИ якщо вони не є значеннями за замовчуванням
+    if (apiFilters.category !== 'Усі') {
+      params.set('category', apiFilters.category);
+    }
+    if (apiFilters.status !== 'Всі') {
+      params.set('status', apiFilters.status);
+    }
+    if (apiFilters.sizes.length > 0) {
+      params.set('sizes', apiFilters.sizes.join(','));
+    }
+    if (apiFilters.colors.length > 0) {
+      params.set('colors', apiFilters.colors.join(','));
+    }
+
+    // (Перевірте 'handleClearAll' - у вас там [1, 5500])
+    const isDefaultPrice =
+      apiFilters.priceRange[0] === 1 && apiFilters.priceRange[1] === 5500;
+    if (!isDefaultPrice) {
+      params.set('price_min', String(apiFilters.priceRange[0]));
+      params.set('price_max', String(apiFilters.priceRange[1]));
+    }
+
+    // 7. Оновлюємо URL без перезавантаження сторінки
+    //    Використовуємо 'replace' (а не 'push'), щоб не засмічувати історію
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [apiFilters, pathname, router]);
   const handleClearAll = () => {
     setFilters({
       category: 'Усі',
@@ -109,6 +165,17 @@ export default function GoodsClient() {
   const goods = data?.pages.flatMap(page => page.data) ?? [];
   const shown = goods.length;
   const total = data?.pages[0]?.meta?.totalItems ?? 0;
+  const handleLoadMore = () => {
+    fetchNextPage().then(() => {
+      requestAnimationFrame(() => {
+        window.scrollBy({
+          top: 879,
+          behavior: 'smooth',
+        });
+      });
+    });
+  };
+
   return (
     <div className="container">
       <h1 className={css.heading}>
@@ -137,12 +204,12 @@ export default function GoodsClient() {
             total={total}
           />
         </aside>
-        <div>
+        <div className={css.contentArea}>
           <AllGoodsList goods={goods}></AllGoodsList>{' '}
           <div className={css.buttonContainer}>
             {hasNextPage && (
               <button
-                onClick={() => fetchNextPage()}
+                onClick={handleLoadMore}
                 disabled={!hasNextPage || isFetchingNextPage}
                 className={css.button}
               >
