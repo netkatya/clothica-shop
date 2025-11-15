@@ -5,8 +5,6 @@ import { useShopStore } from "@/lib/store/cartSrore"
 import Image from "next/image"
 import { AiFillStar } from "react-icons/ai"
 import MessageNoInfo from "../MessageNoInfo/MessageNoInfo";
-import { useState } from "react";
-
 
 const GoodsOrderList = () => {
 
@@ -52,6 +50,9 @@ const GoodsOrderList = () => {
                                                 <use href="/symbol-defs.svg#icon-comment"></use>
                                             </svg>
                                             {good.reviewsNumber}
+                                        </li>
+                                        <li className={css.good_number}>
+                                            <p>Розмір: {good.size}</p>
                                         </li>
                                     </ul>
                                 </div>

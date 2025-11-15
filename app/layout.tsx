@@ -8,6 +8,7 @@ import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
 import FavoriteButton from '@/components/FavoritesButton/FavoritesButton';
+import Script from 'next/script';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -57,6 +58,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="uk">
+      <head>
+        <Script src="https://cdn.weglot.com/weglot.min.js" />
+        <Script
+          id="weglot-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              Weglot.initialize({
+                api_key: 'WEGLOT_API'
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TanStackProvider>
           <AuthProvider>

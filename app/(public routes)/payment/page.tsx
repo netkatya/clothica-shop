@@ -7,8 +7,7 @@ import { useState } from 'react';
 import MotionCheck from '@/components/PaymentStatus/PaymentStatus';
 import RadioCart from '@/components/RadioCart/RadioCart';
 import { useShopStore } from '@/lib/store/cartSrore';
-import { useAuthStore } from '@/lib/store/authStore';
-import { useRouter } from 'next/navigation';
+import { createOrderClient } from '@/lib/api/clientApi';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
@@ -37,17 +36,16 @@ const validationSchema = Yup.object({
 });
 
 export default function CheckoutForm() {
-  const router = useRouter();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const { cartItems } = useShopStore();
+  const [orderNumber, setOrderNumber] = useState<string | null>(null);
+  const { cartItems, clearCart } = useShopStore();
   const totalAmount = cartItems.reduce(
     (acc, item) => acc + item.price * item.amount,
     0
   );
-  const { isAuthenticated } = useAuthStore();
 
   if (status === 'success') {
-    return <MotionCheck status="success" />;
+    return <MotionCheck status="success" orderNumber={orderNumber || undefined} />;
   }
 
   return (
@@ -59,16 +57,23 @@ export default function CheckoutForm() {
           cvv: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={values => {
-          console.log('Payment submitted:', values);
-          setTimeout(() => {
-            setStatus('success');
-            if (isAuthenticated) {
-              router.push('/profile');
-              return;
+        onSubmit={async (values) => {
+          try {
+            console.log('Payment submitted:', values);
+            const pendingOrder = localStorage.getItem('pendingOrder');
+            if (pendingOrder) {
+              const response = await createOrderClient(JSON.parse(pendingOrder));
+              setOrderNumber(response.orderNum);
+              localStorage.removeItem('pendingOrder');
+              clearCart();
+              setTimeout(() => {
+                setStatus('success');
+              }, 1000);
             }
-            router.push('/');
-          }, 1000);
+          } catch (error) {
+            console.error('Payment error:', error);
+            setStatus('error');
+          }
         }}
       >
         {({ setFieldValue, isValid }) => (

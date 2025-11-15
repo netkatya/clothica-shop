@@ -1,0 +1,10 @@
+.orderlist {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+@media screen and (min-width: 1440px) {
+    .orderlist {
+        width: 580px;
+    }
+}
