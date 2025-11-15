@@ -7,6 +7,7 @@ import Stars from '@/components/Stars/Stars';
 import { Good, Size } from '@/types/good';
 import { useShopStore } from '@/lib/store/cartSrore';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface ProductProps {
   good: Good;
@@ -18,6 +19,8 @@ export default function Product({ good }: ProductProps) {
   const [selectedSize, setSelectedSize] = useState<Size>(good.size[0]);
   // store
   const addToCart = useShopStore(state => state.addToCart);
+
+  const router = useRouter();
 
   const handleAddToCart = () => {
     if (!good) return;
@@ -31,6 +34,12 @@ export default function Product({ good }: ProductProps) {
       size: selectedSize,
       image: good.image,
     });
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+
+    router.push('/order');
   };
 
   return (
@@ -98,7 +107,9 @@ export default function Product({ good }: ProductProps) {
                 ></input>
               </div>
             </div>
-            <button className={css.buyNow}>Купити зараз</button>
+            <button className={css.buyNow} onClick={handleBuyNow}>
+              Купити зараз
+            </button>
             <p className={css.freeDelivery}>
               Безкоштовна доставка для замовлень від 1000 грн
             </p>

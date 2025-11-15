@@ -1,13 +1,28 @@
 import { getLocalizedStatus } from '@/constants/orders';
 import { Order } from '@/types/order';
+import styles from './OrderItem.module.css';
 
 export default function OrderItem({ order }: { order: Order }) {
   return (
-    <div className="order-item">
-      <p>{order.date}</p>
-      <p>№{order.orderNum}</p>
-      <p>Сума: {order.sum} грн</p>
-      <p>Статус: {getLocalizedStatus(order.status, 'uk')}</p>
+    <div className={styles.orderItem}>
+      <div className={styles.col}>
+        <span className={styles.value}>
+          {new Date(order.date).toLocaleDateString('uk-UA')}
+        </span>
+        <span className={`${styles.value} ${styles.orderNumber}`}>
+          №{order.orderNum}
+        </span>
+      </div>
+      <div className={styles.col}>
+        <span className={styles.label}>Сума:</span>
+        <span className={styles.value}>{order.sum} грн</span>
+      </div>
+      <div className={styles.col}>
+        <span className={styles.label}>Статус:</span>
+        <span className={styles.value}>
+          {getLocalizedStatus(order.status, 'uk')}
+        </span>
+      </div>
     </div>
   );
 }

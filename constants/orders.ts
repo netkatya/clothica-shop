@@ -1,3 +1,4 @@
+import { capitalize } from '@/lib/utils';
 import { OrderStatus } from '@/types/order';
 
 export interface LocalizedStatus {
@@ -20,5 +21,5 @@ export const getLocalizedStatus = (
   locale: 'en' | 'uk'
 ) => {
   const localizedStatus = ORDER_STATUS.find(item => item[status]);
-  return localizedStatus ? localizedStatus[status][locale] : status;
+  return localizedStatus ? capitalize(localizedStatus[status][locale]) : status;
 };
