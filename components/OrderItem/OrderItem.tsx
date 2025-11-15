@@ -1,3 +1,4 @@
+import { getLocalizedStatus } from '@/constants/orders';
 import { Order } from '@/types/order';
 import styles from './OrderItem.module.css';
 
@@ -18,7 +19,9 @@ export default function OrderItem({ order }: { order: Order }) {
       </div>
       <div className={styles.col}>
         <span className={styles.label}>Статус:</span>
-        <span className={styles.value}>{order.status}</span>
+        <span className={styles.value}>
+          {getLocalizedStatus(order.status, 'uk')}
+        </span>
       </div>
     </div>
   );
