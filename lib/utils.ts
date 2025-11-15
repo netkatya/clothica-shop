@@ -1,3 +1,6 @@
+// Merges two arrays of objects based on their '_id' property.
+// For each object in arr1, if an object with the same '_id' exists in arr2,
+// its properties (except '_id') are merged into the object from arr1.
 export function mergeById<T extends { _id: string }, U extends { _id: string }>(
   arr1: readonly T[],
   arr2: readonly U[]
@@ -15,6 +18,7 @@ export function mergeById<T extends { _id: string }, U extends { _id: string }>(
   });
 }
 
+// Returns the current date in 'YYYY.MM.DD' format based on user's locale and timezone
 export function getCurrentDate() {
   const locale =
     typeof navigator !== 'undefined' ? navigator.language : 'en-US';
@@ -27,3 +31,8 @@ export function getCurrentDate() {
 
   return dateString;
 }
+
+// Capitalizes the first letter of a string and makes the rest lowercase
+export const capitalize = (str: string): string => {
+  return str[0].toUpperCase() + str.slice(1).toLowerCase();
+};
