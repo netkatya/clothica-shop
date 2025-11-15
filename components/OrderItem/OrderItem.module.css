@@ -1,13 +1,10 @@
 .orderItem {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 16px;
+    margin-bottom: 16px;
     font-size: 15px;
 }
 
-.orderItem:last-child {
-    padding-bottom: 0;
-}
 
 .col {
     display: flex;
@@ -40,9 +37,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .orderItem {
-        padding-bottom: 20px;
-    }
 
     .orderItem:last-child {
         padding-bottom: 0;
