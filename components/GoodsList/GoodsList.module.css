@@ -57,10 +57,7 @@
   transition: all 250ms ease-in-out;
 }
 
-.favorites:hover,
-.favorites:focus {
-  scale: 1.3;
-}
+
 
 .detail {
   cursor: pointer;
@@ -174,6 +171,11 @@
   .btnNext {
     pointer-events: auto;
   }
+
+    .favorites:hover,
+    .favorites:focus {
+      scale: 1.3;
+    }
 }
 
 @media screen and (min-width: 1440px) {

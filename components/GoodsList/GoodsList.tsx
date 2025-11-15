@@ -84,7 +84,7 @@ export default function GoodsList() {
                 >
                   <LuHeart
                     className={css.iconHeart}
-                    size={20}
+                    size={24}
                     stroke={'#ff89b3'}
                     fill={
                       favorites.includes(good._id) ? '#ff89b3' : 'transparent'
