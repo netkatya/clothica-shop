@@ -3,6 +3,7 @@ import css from './AllGoodsList.module.css';
 import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
+import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
 interface AllGoodsListProps {
   goods: Good[];
 }
@@ -40,6 +41,7 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
                   </svg>{' '}
                   {good.feedbackCount ?? 0}
                 </p>
+                <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`} className={css.detailLink}>
                 <button className={css.detail}>Детальніше</button>

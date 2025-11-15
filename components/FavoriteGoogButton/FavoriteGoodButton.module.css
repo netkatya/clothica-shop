@@ -1,0 +1,18 @@
+.favorites {
+    margin-left: auto;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 1;
+    transition: all 250ms ease-in-out;
+    padding-right: 2px;
+}
+
+@media screen and (min-width: 768px) {
+    .favorites:hover,
+    .favorites:focus {
+        scale: 1.3;
+    }
+}
