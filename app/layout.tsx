@@ -7,6 +7,7 @@ import ScrollToTopBtn from '@/components/ScrollToTopBtn/ScrollToTopBtn';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
+import FavoriteButton from '@/components/FavoritesButton/FavoritesButton';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -62,7 +63,9 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             {modal}
+            <FavoriteButton />
             <Footer />
+
             <ScrollToTopBtn />
             <div id="modal-root"></div>
           </AuthProvider>

@@ -46,6 +46,25 @@
   color: var(--color-scheme-1-text);
 }
 
+.favorites {
+  margin-left: auto;
+  border: 1px solid var(--opacity-transparent);
+  background: var(--opacity-neutral-darkest-5);
+  border-radius: 100px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 250ms ease-in-out;
+}
+
+.favorites:hover,
+.favorites:focus {
+  border: 1px solid var(--opacity-neutral-darkest-50);
+  background: var(--opacity-neutral-darkest-15);
+}
+
 .detail {
   cursor: pointer;
   outline: none;

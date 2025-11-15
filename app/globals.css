@@ -63,6 +63,13 @@
   --color-scheme-6-foreground: var(--color-deco-dark);
   --color-red: #9d0000;
 
+
+  --pink-opaque: rgba(255, 137, 179, 0.15);
+  --pink-border: rgba(255, 137, 179, 0.45);
+  --pink-glow: rgba(255, 137, 179, 0.4);
+  --pink: #ff5f85;
+
+
   --font-inter: 'Inter', sans-serif;
   --second-family: 'Nunito Sans', sans-serif;
 }

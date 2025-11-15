@@ -1,6 +1,11 @@
 'use client';
 import 'swiper/css/pagination';
-import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
+import {
+  LuArrowLeft,
+  LuArrowRight,
+  LuHeart,
+  LuShoppingCart,
+} from 'react-icons/lu';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Keyboard, A11y, Pagination } from 'swiper/modules';
 import Image from 'next/image';
@@ -74,6 +79,14 @@ export default function GoodsList() {
                   </svg>
                   <p className={css.ratenumber}>{good.feedbackCount}</p>
                 </div>
+                <button className={css.favorites}>
+                  <LuHeart
+                    className={css.iconHeart}
+                    size={20}
+                    stroke="#ff89b3"
+                    strokeWidth={2}
+                  />
+                </button>
               </div>
               <Link href={`/goods/${good._id}`}>
                 <button className={css.detail}>Детальніше</button>
