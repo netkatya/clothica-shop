@@ -73,15 +73,15 @@ export default function GoodsClient() {
       }
       const apiGender: Gender | undefined =
         apiFilters.status === 'Всі' ? undefined : apiFilters.status;
-      return fetchGoodsClient(
-        pageParam,
-        12,
-        apiGender,
-        categoryId,
-        filters.sizes,
-        apiFilters.priceRange[0],
-        apiFilters.priceRange[1]
-      );
+      return fetchGoodsClient({
+        page: String(pageParam),
+        perPage: '12',
+        gender: apiGender,
+        category: categoryId,
+        size: filters.sizes,
+        minPrice: String(apiFilters.priceRange[0]),
+        maxPrice: String(apiFilters.priceRange[1]),
+      });
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {

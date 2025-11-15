@@ -15,7 +15,7 @@ import { useFavoritesStore } from '@/lib/store/favoritesStore';
 export default function GoodsList() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient(),
+    queryFn: () => fetchGoodsClient({}),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });

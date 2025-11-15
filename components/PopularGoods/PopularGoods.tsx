@@ -12,7 +12,12 @@ export default async function PopularGoods() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient(),
+    queryFn: fetchGoodsClient.bind(null, {
+      page: '1',
+      perPage: '12',
+      sortBy: 'popgoods',
+      order: 'desc',
+    }),
   });
   return (
     <section className={css.section} id="PopularGoods">

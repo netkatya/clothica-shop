@@ -12,6 +12,21 @@ export interface CategoryField {
   name: string;
 }
 
+export type ColorOfGood =
+  | 'білий'
+  | 'чорний'
+  | 'сірий'
+  | 'синій'
+  | 'блакитний'
+  | 'зелений'
+  | 'жовтий'
+  | 'червоний'
+  | 'коричневий'
+  | 'бежевий'
+  | 'рожевий'
+  | 'мʼятний'
+  | 'пастельні відтінки';
+
 export interface Good {
   _id: string;
   name: string;
@@ -19,6 +34,7 @@ export interface Good {
   image: string;
   price: Price;
   size: Size[];
+  colors: ColorOfGood[];
   description: string;
   feedbacks: string[];
   prevDescription: string;
