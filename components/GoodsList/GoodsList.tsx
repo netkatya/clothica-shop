@@ -14,7 +14,7 @@ import { AiFillStar } from 'react-icons/ai';
 export default function GoodsList() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient(),
+    queryFn: () => fetchGoodsClient({}),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
