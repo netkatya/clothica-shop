@@ -1,6 +1,12 @@
 .favoritesContainer {   
     padding-top: 40px;
-    padding-bottom: 40px;  
+    padding-bottom: 40px; 
+    height: 100vh; 
+}
+
+.messageContainer {
+    max-width: 335px;
+    margin: 0 auto;
 }
 
 .pageTitle {
@@ -99,6 +105,11 @@
 }
 
 @media screen and (min-width: 1440px) {
+    .messageContainer {
+        max-width: 635px;
+        margin: 0 auto;
+    }
+
     .image {
             width: 310;
             max-height: 330px;

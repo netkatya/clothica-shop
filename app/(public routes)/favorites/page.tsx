@@ -8,6 +8,7 @@ import { fetchGoodsClient } from '@/lib/api/clientApi';
 import css from './favorites.module.css';
 import { useFavoritesStore } from '@/lib/store/favoritesStore';
 import Loading from '@/app/loading';
+import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 
 export default function FavoritesPage() {
   const { data, isLoading, isError } = useQuery({
@@ -29,11 +30,22 @@ export default function FavoritesPage() {
   }
 
   if (favoriteItems.length === 0) {
-    return <p className={css.emptyMessage}>Ваш список обраного порожній.</p>;
+    return (
+      <div className={css.favoritesContainer}>
+        <div className={css.messageContainer}>
+          <MessageNoInfo
+            text="Ваш список обраного порожній!"
+            buttonText="Перейти до товарів"
+            route="/goods"
+            onClick={() => {}}
+          />
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className={css.favoritesContainer}>
+    <main className={css.favoritesContainer}>
       <div className="container">
         <h1 className={css.pageTitle}>Обране</h1>
         <div className={css.favoritesList}>
@@ -67,6 +79,6 @@ export default function FavoritesPage() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
