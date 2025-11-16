@@ -54,11 +54,11 @@ export default function Header() {
             </svg>
           </Link>
 
-          <ThemeToggle />
-
           {isMobile ? (
             <>
+            <ThemeToggle />
               <div className={css.mobileButtons}>
+                 
                 <button
                   type="button"
                   aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -141,6 +141,7 @@ export default function Header() {
 
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
+                   <ThemeToggle />
                   <li className={css.navigationItem}>
                     <Basket />
                   </li>
