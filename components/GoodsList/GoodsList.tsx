@@ -55,7 +55,7 @@ export default function GoodsList() {
                   src={good.image}
                   alt={good.name}
                   width={335}
-                  height={223}
+                  height={380}
                   className={css.image}
                 />
               </Link>
