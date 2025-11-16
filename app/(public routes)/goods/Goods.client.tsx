@@ -18,7 +18,7 @@ import SidebarFilters from '@/components/SidebarFilter/SidebarFilter';
 import { AllFiltersState } from '@/types/filters';
 import { Category } from '@/types/category';
 import { useDebounce } from 'use-debounce';
-import { Gender, Size } from '@/types/good';
+import { ColorOfGood, Gender, Size } from '@/types/good';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 const getFiltersFromParams = (
@@ -27,7 +27,8 @@ const getFiltersFromParams = (
   const category = searchParams.get('category') || 'Усі';
   const status = (searchParams.get('status') as Gender | 'Всі') || 'Всі';
   const sizes = (searchParams.get('sizes')?.split(',') as Size[]) || [];
-  const colors = searchParams.get('colors')?.split(',') || [];
+  const colors =
+    (searchParams.get('colors')?.split(',') as ColorOfGood[]) || [];
   const priceMin = Number(searchParams.get('price_min')) || 1;
   const priceMax = Number(searchParams.get('price_max')) || 5500;
   return {
@@ -41,7 +42,6 @@ const getFiltersFromParams = (
 
 export default function GoodsClient() {
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get('category');
   const router = useRouter();
   const pathname = usePathname();
 
@@ -81,20 +81,24 @@ export default function GoodsClient() {
 
     queryFn: ({ pageParam }) => {
       let categoryId: string | undefined = undefined;
-      if (filters.category !== 'Усі' && categories.length > 0) {
+      if (apiFilters.category !== 'Усі' && categories.length > 0) {
         const selectedCategory = categories.find(
-          cat => cat.name === filters.category
+          cat => cat.name === apiFilters.category
         );
         categoryId = selectedCategory?._id;
       }
       const apiGender: Gender | undefined =
         apiFilters.status === 'Всі' ? undefined : apiFilters.status;
+      const apiColors = apiFilters.colors.map(
+        (color: string) => color.toLowerCase() as ColorOfGood
+      );
       return fetchGoodsClient({
         page: String(pageParam),
         perPage: '12',
         gender: apiGender,
         category: categoryId,
-        size: filters.sizes,
+        colors: apiColors,
+        size: apiFilters.sizes,
         minPrice: String(apiFilters.priceRange[0]),
         maxPrice: String(apiFilters.priceRange[1]),
       });
@@ -124,7 +128,6 @@ export default function GoodsClient() {
   }, [apiFilters]);
   useEffect(() => {
     const params = new URLSearchParams();
-
     if (apiFilters.category !== 'Усі') {
       params.set('category', apiFilters.category);
     }

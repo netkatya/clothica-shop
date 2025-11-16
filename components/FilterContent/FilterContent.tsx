@@ -1,7 +1,7 @@
 'use client';
 import css from './FilterContent.module.css';
 import PriceFilter from '../PriceFilter/PriceFilter';
-import { SIZES, COLORS, GENDERS } from '@/constants/goods';
+import { SIZES, COLORS, GENDERS, AVAILABLE_COLORS } from '@/constants/goods';
 import { FilterContentProps } from '@/types/filters';
 import { Gender, Size } from '@/types/good';
 
