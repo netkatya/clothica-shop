@@ -56,9 +56,7 @@ export default function Header() {
 
           {isMobile ? (
             <>
-            <ThemeToggle />
               <div className={css.mobileButtons}>
-                 
                 <button
                   type="button"
                   aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -115,6 +113,9 @@ export default function Header() {
                   <div className={css.mobileActions}>
                     <AuthNavigation onClick={() => setMenuOpen(false)} />
                   </div>
+                  <div className={css.themeToggle}>
+                    <ThemeToggle />
+                  </div>
                 </div>
               )}
             </>
@@ -141,7 +142,7 @@ export default function Header() {
 
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
-                   <ThemeToggle />
+                  <ThemeToggle />
                   <li className={css.navigationItem}>
                     <Basket />
                   </li>
