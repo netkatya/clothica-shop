@@ -21,6 +21,7 @@
   height: 36px;
   background: var(--color-deco);
   margin-bottom: 40px;
+  transition: all 250ms ease-in-out;
 }
 
 .noMargin {

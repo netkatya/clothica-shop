@@ -69,7 +69,7 @@ export default function Product({ good }: ProductProps) {
                   {good.feedbackCount > 0 ? (
                     <>
                       <Stars rating={good.averageRate} />
-                      <Link href={`/goods/${good._id}#reviews-slider`}>
+                      <Link href={`/goods/${good._id}#reviews`}>
                         <span className={css.ratingText}>
                           ({good.averageRate}) • {good.feedbackCount} відгуків
                         </span>
