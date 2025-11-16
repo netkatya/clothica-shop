@@ -13,6 +13,7 @@ import { Category } from '@/types/category';
 import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
 // import { getCurrentDate } from '../utils';
 import { Feedback, FeedbackPost } from '@/types/feedback';
+import { serializeParams } from '../utils';
 
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>('/auth/register', data);
@@ -174,6 +175,9 @@ export async function fetchGoodsClient(
 
     const { data } = await nextServer.get<FetchGoodsResponse>('/goods', {
       params,
+      paramsSerializer: {
+        serialize: serializeParams,
+      },
     });
     return data;
   } catch (error) {

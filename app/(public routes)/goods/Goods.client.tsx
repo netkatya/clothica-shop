@@ -92,13 +92,14 @@ export default function GoodsClient() {
       const apiColors = apiFilters.colors.map(
         (color: string) => color.toLowerCase() as ColorOfGood
       );
+
       return fetchGoodsClient({
         page: String(pageParam),
         perPage: '12',
         gender: apiGender,
         category: categoryId,
         colors: apiColors,
-        size: apiFilters.sizes,
+        size: apiFilters.sizes as Size[],
         minPrice: String(apiFilters.priceRange[0]),
         maxPrice: String(apiFilters.priceRange[1]),
       });

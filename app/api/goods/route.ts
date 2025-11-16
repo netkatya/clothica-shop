@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { api } from '../api';
 
 import { isAxiosError } from 'axios';
+import { serializeParams } from '@/lib/utils';
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,11 +23,14 @@ export async function GET(request: NextRequest) {
         ...(gender && { gender }),
         ...(category && { category }),
         ...(size && { size: size.split(',') }),
-        ...(colors && { colors: colors.split(',') }),
+        ...(colors && { color: colors.split(',') }),
         ...(minPrice && { minPrice }),
         ...(maxPrice && { maxPrice }),
         ...(sortBy && { sortBy }),
         ...(sortOrder && { sortOrder }),
+      },
+      paramsSerializer: {
+        serialize: serializeParams,
       },
     });
 
