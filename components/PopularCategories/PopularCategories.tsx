@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { fetchCategoriesClient } from '@/lib/api/clientApi';
 import { Category } from '@/types/category';
 
+import { useTranslations } from 'next-intl';
+
 // export const categoriesArray = [
 //   {
 //     img: '/img/categiries/t-shirts.png',
@@ -49,6 +51,8 @@ import { Category } from '@/types/category';
 // ];
 
 export default function PopularCategories() {
+  const t = useTranslations('PopularCategoriesSection');
+
   const [categoriesData, setCategoriesData] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -69,9 +73,9 @@ export default function PopularCategories() {
     <section className={css.section} id="PopularCategories">
       <div className="container">
         <div className={css.title_button}>
-          <h2 className={css.title}>Популярні категорії</h2>
+          <h2 className={css.title}>{t('title')}</h2>
           <Link href="/categories" className={css.button}>
-            Всі категорії
+            {t('buttonAll')}
           </Link>
         </div>
 

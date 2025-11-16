@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LuHeart, LuTrash2 } from 'react-icons/lu';
+import { LuTrash2 } from 'react-icons/lu';
 
 import { useQuery } from '@tanstack/react-query';
 import { fetchGoodsClient } from '@/lib/api/clientApi';

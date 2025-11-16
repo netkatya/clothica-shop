@@ -8,6 +8,8 @@ import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
 import FavoriteButton from '@/components/FavoritesButton/FavoritesButton';
+import { NextIntlClientProvider } from 'next-intl';
+import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 import Script from 'next/script';
 
 const inter = Inter({
@@ -59,18 +61,21 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
-        <TanStackProvider>
-          <AuthProvider>
-            <Header />
-            <main>{children}</main>
-            {modal}
-            <FavoriteButton />
-            <Footer />
+        <NextIntlClientProvider>
+          <TanStackProvider>
+            <AuthProvider>
+              <LanguageSwitcher />
+              <Header />
+              <main>{children}</main>
+              {modal}
+              <FavoriteButton />
+              <Footer />
 
-            <ScrollToTopBtn />
-            <div id="modal-root"></div>
-          </AuthProvider>
-        </TanStackProvider>
+              <ScrollToTopBtn />
+              <div id="modal-root"></div>
+            </AuthProvider>
+          </TanStackProvider>
+        </NextIntlClientProvider>
         <CookieBanner />
       </body>
     </html>

@@ -4,8 +4,11 @@ import css from './Footer.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { createSubscriptionClient } from '@/lib/api/clientApi';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('Footer');
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -13,14 +16,14 @@ export default function Footer() {
     const emailInput = form.elements.namedItem('email') as HTMLInputElement;
     const email = emailInput.value;
     if (!email) {
-      return toast.error('Please, write email');
+      return toast.error(t('subscribeError'));
     }
     setIsLoading(true);
     try {
       const res = await createSubscriptionClient({ email });
-      toast.success('You have been subscribed!');
+      toast.success(t('subscribed'));
     } catch (error) {
-      toast.error('Ops, something went wrong. Please, try again later');
+      toast.error(t('subscribeFail'));
     } finally {
       setIsLoading(false);
     }
@@ -37,31 +40,31 @@ export default function Footer() {
               </svg>
             </a>
             <div className={css.navigationList}>
-              <h2 className={css.menu}>Меню</h2>
+              <h2 className={css.menu}>{t('menu')}</h2>
               <ul className={css.navigationList}>
                 <li className={css.navigation}>
-                  <Link href="/">Головна</Link>
+                  <Link href="/">{t('home')}</Link>
                 </li>
                 <li className={css.navigation}>
-                  <Link href="/goods">Товари</Link>
+                  <Link href="/goods">{t('goods')}</Link>
                 </li>
                 <li className={css.navigation}>
-                  <Link href="/categories">Категорії</Link>
+                  <Link href="/categories">{t('categories')}</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className={css.subscribeContainer}>
-            <h3 className={css.subscribe}>Підписатися</h3>
+            <h3 className={css.subscribe}>{t('subscribe')}</h3>
             <p className={css.text}>
-              Приєднуйтесь до нашої розсилки, щоб бути в курсі новин та акцій.
+              {t('subscribeText')}
             </p>
             <div className={css.containerSubscribe}>
               <form onSubmit={handleSubmit} className={css.containerSubscribe}>
                 <input
                   type="email"
                   name="email"
-                  placeholder="Введіть ваш email"
+                  placeholder={t('emailPlaceholder')}
                   className={css.input}
                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                 />
@@ -70,7 +73,7 @@ export default function Footer() {
                   className={css.button}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Надсилання...' : 'Підписатися'}
+                  {isLoading ? t('sending') : t('subscribe')}
                 </button>
               </form>
             </div>
@@ -79,7 +82,7 @@ export default function Footer() {
 
         <div className={css.socials}>
           <p className={css.rights}>
-            {new Date().getFullYear()} Clothica. Всі права захищені.
+            {new Date().getFullYear()} Clothica. {t('rights')}.
           </p>
           <ul className={css.socialContainer}>
             <li>
