@@ -7,7 +7,7 @@
 ---
 
 <p align="center">
-  <img src="/img/banner.png" alt="Clothica Banner" width="100%" />
+  <img src="/public/img/banner.png" alt="Clothica Banner" width="100%" />
 </p>
 
 ---
