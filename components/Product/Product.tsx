@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import css from './Product.module.css';
 import Image from 'next/image';
 import Stars from '@/components/Stars/Stars';
@@ -22,6 +22,44 @@ export default function Product({ good }: ProductProps) {
 
   const router = useRouter();
 
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const flyToCart = () => {
+    if (!imageRef.current) return;
+
+    const cart = document.querySelector('#cart-icon');
+    if (!cart) return;
+
+    const imageRect = imageRef.current.getBoundingClientRect();
+    const cartRect = cart.getBoundingClientRect();
+
+    const clonedImage = imageRef.current.cloneNode(true) as HTMLElement;
+    clonedImage.style.position = 'fixed';
+    clonedImage.style.left = `${imageRect.left}px`;
+    clonedImage.style.top = `${imageRect.top}px`;
+    clonedImage.style.width = `${imageRect.width}px`;
+    clonedImage.style.height = `${imageRect.height}px`;
+    clonedImage.style.transition =
+      'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
+    clonedImage.style.zIndex = '9999';
+    clonedImage.style.pointerEvents = 'none';
+    clonedImage.style.transformOrigin = 'top left';
+    document.body.appendChild(clonedImage);
+
+    const deltaX = cartRect.left - imageRect.left;
+    const deltaY = cartRect.top - imageRect.top;
+    const scale = 0.1;
+
+    requestAnimationFrame(() => {
+      clonedImage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scale})`;
+      clonedImage.style.opacity = '0.5';
+    });
+
+    clonedImage.addEventListener('transitionend', () => {
+      clonedImage.remove();
+    });
+  };
+
   const handleAddToCart = () => {
     if (!good) return;
     addToCart({
@@ -34,6 +72,8 @@ export default function Product({ good }: ProductProps) {
       size: selectedSize,
       image: good.image,
     });
+
+    flyToCart();
   };
 
   const handleBuyNow = () => {
@@ -47,6 +87,7 @@ export default function Product({ good }: ProductProps) {
       <div className="container">
         <div className={css.content}>
           <Image
+            ref={imageRef}
             src={good.image}
             alt={good.name}
             width={335}
@@ -69,7 +110,7 @@ export default function Product({ good }: ProductProps) {
                   {good.feedbackCount > 0 ? (
                     <>
                       <Stars rating={good.averageRate} />
-                      <Link href={`/goods/${good._id}#reviews-slider`}>
+                      <Link href={`/goods/${good._id}#reviews`}>
                         <span className={css.ratingText}>
                           ({good.averageRate}) • {good.feedbackCount} відгуків
                         </span>

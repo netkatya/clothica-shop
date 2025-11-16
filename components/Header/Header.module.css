@@ -62,6 +62,11 @@
   animation: slideDown 0.4s ease forwards;
   padding: 0;
 }
+.themeToggle {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
 @keyframes slideDown {
   0% {
     opacity: 0;

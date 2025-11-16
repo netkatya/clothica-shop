@@ -15,6 +15,7 @@ import { createFeedbackClient, fetchGoodById } from '@/lib/api/clientApi';
 import { FeedbackPost } from '@/types/feedback';
 
 import css from './ProductPage.module.css';
+import Loading from '@/app/loading';
 
 const ReviewSchema = Yup.object().shape({
   author: Yup.string().min(2, "Ім'я занадто коротке").required("Введіть ім'я"),
@@ -69,7 +70,7 @@ export default function GoodPage() {
     closeModal();
   };
 
-  if (isLoading) return <div className={css.loading}>Завантаження…</div>;
+  if (isLoading) return <Loading />;
   if (error || !good)
     return <div className={css.loading}>Помилка завантаження товару</div>;
 
@@ -77,7 +78,7 @@ export default function GoodPage() {
     <>
       <Product good={good} />
 
-      <div className="container">
+      <section className="container" id="reviews">
         <div className={css.goodsReviews}>
           <p className={css.titleReviews}>Відгуки клієнтів</p>
           <button className={css.addReviews} onClick={openModal}>
@@ -176,7 +177,7 @@ export default function GoodPage() {
             </Formik>
           </ProductModal>
         )}
-      </div>
+      </section>
     </>
   );
 }

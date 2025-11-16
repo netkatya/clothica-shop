@@ -1,7 +1,7 @@
 .image {
   border-radius: 16px;
   width: 335px;
-  height: 380px;
+  height: 335px;
   margin-bottom: 16px;
 }
 
@@ -153,12 +153,12 @@
   .image {
     border-radius: 16px;
     width: 336px;
-    height: 380px;
+    height: 336px;
   }
 
   .buttonControls {
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: -28px;
     width: 108%;
     transform: translateY(-50%);
@@ -182,7 +182,7 @@
   .image {
     border-radius: 16px;
     width: 304px;
-    height: 354px;
+    height: 304px;
   }
 
   .name {

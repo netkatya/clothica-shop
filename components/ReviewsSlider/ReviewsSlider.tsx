@@ -65,7 +65,7 @@ export default function ReviewsSlider({
       >
         {reviews.map((item, index) => (
           <SwiperSlide key={index} className={css.item}>
-            <Link href={`/goods/${item.goodId}#reviews-slider`}>
+            <Link href={`/goods/${item.goodId}`}>
               <div className={css.stars}>
                 <Stars rating={item.rating} />
               </div>
