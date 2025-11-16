@@ -38,14 +38,7 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get('accessToken');
-
   try {
-    if (!accessToken || !accessToken.value) {
-      return NextResponse.json({ error: 'No token' }, { status: 401 });
-    }
-
     const body = await request.json();
     const { goods, sum } = body;
 
@@ -56,11 +49,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { data } = await api.post('/api/orders', body, {
-      headers: {
-        Cookie: cookieStore.toString(),
-      },
-    });
+    const { data } = await api.post('/api/orders', body);
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
