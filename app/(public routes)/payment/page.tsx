@@ -70,12 +70,13 @@ export default function CheckoutForm() {
         validationSchema={validationSchema}
         onSubmit={async values => {
           try {
-            // console.log('Payment submitted:', values);
             const pendingOrder = localStorage.getItem('pendingOrder');
-            if (pendingOrder) {
-              const response = await createOrderClient(
-                JSON.parse(pendingOrder)
-              );
+
+            const parsedOrder = pendingOrder ? JSON.parse(pendingOrder) : null;
+
+            if (parsedOrder) {
+              const response = await createOrderClient(parsedOrder);
+
               setOrderNumber(response.orderNum);
               localStorage.removeItem('pendingOrder');
               clearCart();
