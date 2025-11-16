@@ -1,3 +1,5 @@
+export type ROLES = 'user' | 'admin';
+
 export interface User {
   phone: string;
   email: string;
@@ -6,6 +8,10 @@ export interface User {
   city: string;
   branchnum_np: string;
   avatar: string;
+  telegramChatId: string;
+  telegramUserId: string;
+  telegramLinked: boolean;
+  role: ROLES;
 }
 
 export interface UserPost {
@@ -27,4 +33,8 @@ export interface UserProfile {
   branchnum_np: string;
   email: string;
   avatar: string;
+  telegramChatId: string;
+  telegramUserId: string;
+  telegramLinked: boolean;
+  role: ROLES;
 }

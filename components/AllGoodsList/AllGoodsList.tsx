@@ -8,7 +8,6 @@ interface AllGoodsListProps {
   goods: Good[];
 }
 export default function AllGoodsList({ goods }: AllGoodsListProps) {
-  console.log('AllGoodsList goods:', goods);
   return (
     <div className={css.sliderContainer}>
       <ul className={css.list}>

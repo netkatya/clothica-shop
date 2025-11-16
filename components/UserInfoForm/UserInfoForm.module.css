@@ -1,48 +1,30 @@
-/* .formWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 32px;
-  max-width: 768px;
-  margin-top: 16px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.fullWidthField {
-  grid-column: span 2;
-} */
-
 .formWrapper {
   display: flex;
-  flex-direction: column;    /* Mobile-first: стовпчик */
+  flex-direction: column; /* Mobile-first: стовпчик */
   gap: 24px;
-  width: 100%;               /* Займає всю доступну ширину */
-  max-width: 335px;          /* Але не більше 335px */
-  min-width: 280px;          /* Мінімум 280px */
-  margin: 16px auto 0;       /* Центрування */
+  width: 100%; /* Займає всю доступну ширину */
+  max-width: 335px; /* Але не більше 335px */
+  min-width: 280px; /* Мінімум 280px */
+  margin: 16px auto 16px; /* Центрування */
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;               /* Mobile-first: повна ширина */
+  width: 100%; /* Mobile-first: повна ширина */
 }
 
 @media (min-width: 768px) {
   .formWrapper {
-    flex-direction: row;     /* Рядок на великих екранах */
+    flex-direction: row; /* Рядок на великих екранах */
     flex-wrap: wrap;
     gap: 24px 32px;
     max-width: 704px;
   }
 
   .field {
-    flex: 1 1 300px;        /* Гнучка ширина */
+    flex: 1 1 300px; /* Гнучка ширина */
   }
 }
 
@@ -53,7 +35,7 @@
 }
 
 .fullWidthField {
-  flex: 1 1 100%;           /* На всю ширину */
+  flex: 1 1 100%; /* На всю ширину */
 }
 
 .label {
@@ -62,19 +44,18 @@
   font-weight: 400;
   line-height: 150%;
   color: var(--color-neutral-darkest);
-
 }
 
 .input {
-    height: 40px;
-    padding: 8px 16px;
-    border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    background-color: #f3f9ed;
-    font-size: 15px;
-    outline: none;
-    color: var(--color-neutral-darkest);
-    transition: border-color 0.25s ease;
+  height: 40px;
+  padding: 8px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: #f3f9ed;
+  font-size: 15px;
+  outline: none;
+  color: var(--color-neutral-darkest);
+  transition: border-color 0.25s ease;
 }
 
 .input::placeholder {
@@ -85,17 +66,6 @@
   border-color: var(--color-deco-dark);
 }
 
-
 .error {
   color: var(--color-red);
 }
-/* @media (max-width: 767px) {
-  /* .formWrapper {
-    grid-template-columns: 1fr;
-  }
-
-  .fullWidthField {
-    grid-column: span 1;
-  } */
-
-  
