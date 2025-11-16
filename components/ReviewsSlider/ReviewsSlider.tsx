@@ -10,6 +10,7 @@ import Stars from '../Stars/Stars';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { fetchFeedbacksClient } from '@/lib/api/clientApi';
+import { useTranslations } from 'next-intl';
 
 type ReviewsSliderProps = {
   hasProductText?: boolean;
@@ -22,6 +23,8 @@ export default function ReviewsSlider({
   hasCenteredButtons = false,
   goodId = '',
 }: ReviewsSliderProps) {
+  const t = useTranslations('ReviewsSlider');
+
   const { data: reviews = [], isLoading } = useQuery({
     queryKey: ['feedbacks', goodId],
     queryFn: async () => {
@@ -34,17 +37,17 @@ export default function ReviewsSlider({
       const feedbacks = response.feedbacks || [];
 
       return feedbacks.map(feedback => ({
-        name: feedback.author || 'Анонім',
+        name: feedback.author || t('anonymous'),
         text: feedback.comment || '',
         goodId: feedback.good._id,
-        product: feedback.good.name || 'Невідомий продукт',
+        product: feedback.good.name || t('unknownProduct'),
         rating: feedback.rate || 0,
       }));
     },
   });
 
   if (isLoading)
-    return <div className={css.loading}>Завантаження відгуків…</div>;
+    return <div className={css.loading}>{t('loading')}</div>;
 
   return (
     <div id="reviews-slider">
@@ -81,7 +84,7 @@ export default function ReviewsSlider({
         <button
           type="button"
           className={css.btnPrev}
-          aria-label="Попередній слайд"
+          aria-label={t('prevSlide')}
           disabled={reviews.length === 0}
         >
           <LuArrowLeft size={24} />
@@ -90,7 +93,7 @@ export default function ReviewsSlider({
         <button
           type="button"
           className={css.btnNext}
-          aria-label="Наступний слайд"
+          aria-label={t('nextSlide')}
           disabled={reviews.length === 0}
         >
           <LuArrowRight size={24} />
