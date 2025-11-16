@@ -29,11 +29,6 @@ const getFiltersFromParams = (
   const sizes = (searchParams.get('sizes')?.split(',') as Size[]) || [];
   const colors =
     (searchParams.get('colors')?.split(',') as ColorOfGood[]) || [];
-  //     .map(c => c.toLowerCase()) as ColorOfGood[]) || [];
-  // const colorsParam = searchParams.get('colors');
-  // const colors = colorsParam
-  //   ? (colorsParam.split(',').map(c => decodeURIComponent(c)) as ColorOfGood[])
-  //   : [];
   const priceMin = Number(searchParams.get('price_min')) || 1;
   const priceMax = Number(searchParams.get('price_max')) || 5500;
   return {
