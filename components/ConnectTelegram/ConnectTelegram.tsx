@@ -56,12 +56,13 @@ const ConnectTelegram = () => {
       {isLinked ? (
         <div className={css.successMsg}>
           <span className={css.successIcon}>✓</span>
-          Telegram Connected!
+          Telegram підключено!
         </div>
       ) : (
         <>
           <p className={css.description}>
-            Click the button below to connect your Telegram account.
+            Натисніть кнопку нижче, щоб підключити свій обліковий запис
+            Telegram.
           </p>
 
           <a
@@ -71,12 +72,11 @@ const ConnectTelegram = () => {
             className={css.button}
           >
             <SiTelegram className={css.icon} />
-            Open Bot
+            Відкрити бота
           </a>
 
           <p className={css.note}>
-            After starting the bot, the connection status will update
-            automatically.
+            Після запуску бота статус підключення оновиться автоматично.
           </p>
         </>
       )}
