@@ -123,10 +123,8 @@ export default function GoodsClient() {
     });
   }, [apiFilters]);
   useEffect(() => {
-    // Створюємо новий об'єкт параметрів
     const params = new URLSearchParams();
 
-    // Додаємо, ТІЛЬКИ якщо вони не є значеннями за замовчуванням
     if (apiFilters.category !== 'Усі') {
       params.set('category', apiFilters.category);
     }
@@ -140,7 +138,6 @@ export default function GoodsClient() {
       params.set('colors', apiFilters.colors.join(','));
     }
 
-    // (Перевірте 'handleClearAll' - у вас там [1, 5500])
     const isDefaultPrice =
       apiFilters.priceRange[0] === 1 && apiFilters.priceRange[1] === 5500;
     if (!isDefaultPrice) {
@@ -148,8 +145,6 @@ export default function GoodsClient() {
       params.set('price_max', String(apiFilters.priceRange[1]));
     }
 
-    // 7. Оновлюємо URL без перезавантаження сторінки
-    //    Використовуємо 'replace' (а не 'push'), щоб не засмічувати історію
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [apiFilters, pathname, router]);
   const handleClearAll = () => {

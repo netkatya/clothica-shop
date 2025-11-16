@@ -26,6 +26,7 @@ export default function GoodsList() {
         .sort((a, b) => b.averageRate - a.averageRate) ?? [],
     [data]
   );
+
   return (
     <div className={css.sliderContainer}>
       <Swiper
