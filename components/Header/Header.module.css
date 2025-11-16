@@ -62,6 +62,11 @@
   animation: slideDown 0.4s ease forwards;
   padding: 0;
 }
+.themeToggle {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
 @keyframes slideDown {
   0% {
     opacity: 0;
@@ -105,7 +110,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(40%, -40%);
+  transform: translate(25%, -25%);
   background-color: #b70000;
   border: 1px solid #b70000;
   color: #fff;
@@ -129,6 +134,7 @@
     align-items: center;
     gap: 32px;
     margin-right: 86px;
+    margin-left: 40px;
   }
   .authNavigation {
     display: flex;

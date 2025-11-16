@@ -1,0 +1,114 @@
+.heartButton {
+    position: fixed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--pink-opaque);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--pink-border);
+    box-shadow: 0 4px 20px var(--pink-glow), 0 0 20px var(--pink-glow) inset;
+
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    outline: none;
+    top: 90px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 999;
+}
+
+.icon {
+    stroke: var(--pink);
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
+    transform-origin: 50% 50%;
+    transition: transform 180ms ease, stroke 180ms ease, opacity 180ms ease;
+    animation: floatPulse 2200ms ease-in-out infinite;
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .heartButton {
+        top: 90px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .heartButton {
+        top: 90px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Анімації */
+@keyframes floatPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.12);
+    }
+
+    50% {
+        transform: scale(0.98);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.heartButton:hover {
+    transform: translateY(-2px) scale(1.2);
+    background: rgba(255, 137, 179, 0.25);
+    box-shadow: 0 8px 28px var(--pink-glow), 0 0 25px var(--pink-glow) inset;
+}
+
+.heartButton:hover .icon {
+    transform: scale(1.2);
+}
+
+.heartButton:active .icon {
+    animation: beat 420ms ease-in-out 1;
+}
+
+.isActive {
+    background: linear-gradient(180deg, rgba(255, 137, 179, 0.42), rgba(255, 137, 179, 0.32));
+    border-color: rgba(255, 137, 179, 0.7);
+    box-shadow: 0 10px 30px rgba(255, 137, 179, 0.18);
+}

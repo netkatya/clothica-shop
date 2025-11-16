@@ -4,6 +4,7 @@ import css from './AllGoodsList.module.css';
 import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
+import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 interface AllGoodsListProps {
   goods: Good[];
@@ -36,12 +37,16 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
                   <AiFillStar /> {''}
                   {good.averageRate ?? 5}
                 </p>
-                <p className={css.feedbacks}>
+                <Link
+                  href={`/goods/${good._id}/#reviews`}
+                  className={css.feedbacks}
+                >
                   <svg width="10" height="10" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
                   </svg>{' '}
                   {good.feedbackCount ?? 0}
-                </p>
+                </Link>
+                <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`} className={css.detailLink}>
                 <button className={css.detail}>Детальніше</button>

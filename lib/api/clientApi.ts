@@ -8,7 +8,7 @@ import {
   UpdateRequest,
 } from '@/types/auth';
 import { User } from '@/types/user';
-import { Gender, Good, Size } from '@/types/good';
+import { ColorOfGood, Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
 import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
 import { getCurrentDate } from '../utils';
@@ -94,13 +94,16 @@ export interface FetchGoodByIdResponse {
 }
 
 export interface FetchGoodsParam {
-  page: string;
-  perPage: string;
+  page?: string;
+  perPage?: string;
   gender?: Gender;
   category?: string;
   size?: Size[];
+  colors?: ColorOfGood[];
   minPrice?: string;
   maxPrice?: string;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
 }
 
 export interface FetchCategoriesResponse {
@@ -114,14 +117,20 @@ export interface FetchCategoriesParam {
 }
 
 export async function fetchGoodsClient(
-  page = 1,
-  perPage = 12,
-  gender?: Gender,
-  category?: string,
-  size?: Size[],
-  minPrice?: number,
-  maxPrice?: number
+  param: FetchGoodsParam
 ): Promise<FetchGoodsResponse> {
+  const {
+    page = 1,
+    perPage = 12,
+    gender,
+    category,
+    size,
+    colors,
+    minPrice,
+    maxPrice,
+    sortBy,
+    sortOrder,
+  } = param;
   try {
     const params: FetchGoodsParam = {
       page: String(page),
@@ -130,8 +139,11 @@ export async function fetchGoodsClient(
     if (gender) params.gender = gender;
     if (category) params.category = category;
     if (size) params.size = size;
+    if (colors) params.colors = colors;
     if (minPrice) params.minPrice = String(minPrice);
     if (maxPrice) params.maxPrice = String(maxPrice);
+    if (sortBy) params.sortBy = sortBy;
+    if (sortOrder) params.sortOrder = sortOrder;
 
     const { data } = await nextServer.get<FetchGoodsResponse>('/goods', {
       params,

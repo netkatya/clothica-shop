@@ -11,7 +11,8 @@ async function GoodsPage() {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['goods'],
-    queryFn: ({ pageParam }) => fetchGoodsClient(pageParam),
+    queryFn: ({ pageParam }) =>
+      fetchGoodsClient({ page: String(pageParam), perPage: '12' }),
     initialPageParam: 1,
   });
   return (

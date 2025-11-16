@@ -54,8 +54,6 @@ export default function Header() {
             </svg>
           </Link>
 
-          <ThemeToggle />
-
           {isMobile ? (
             <>
               <div className={css.mobileButtons}>
@@ -115,6 +113,9 @@ export default function Header() {
                   <div className={css.mobileActions}>
                     <AuthNavigation onClick={() => setMenuOpen(false)} />
                   </div>
+                  <div className={css.themeToggle}>
+                    <ThemeToggle />
+                  </div>
                 </div>
               )}
             </>
@@ -141,6 +142,7 @@ export default function Header() {
 
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
+                  <ThemeToggle />
                   <li className={css.navigationItem}>
                     <Basket />
                   </li>

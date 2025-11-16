@@ -11,21 +11,23 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { fetchGoodsClient } from '@/lib/api/clientApi';
 
 import { AiFillStar } from 'react-icons/ai';
+import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
 
 export default function GoodsList() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient(),
+    queryFn: () => fetchGoodsClient({}),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
-  const goods = useMemo(
-    () =>
-      data?.data
-        .filter(good => good.averageRate && good.feedbackCount)
-        .sort((a, b) => b.averageRate - a.averageRate) ?? [],
-    [data]
-  );
+  const goods = data?.data ?? [];
+  // const goods = useMemo(
+  //   () =>
+  //     data?.data
+  //       .filter(good => good.averageRate && good.feedbackCount)
+  //       .sort((a, b) => b.averageRate - a.averageRate) ?? [],
+  //   [data]
+  // );
 
   return (
     <div className={css.sliderContainer}>
@@ -61,7 +63,7 @@ export default function GoodsList() {
                   src={good.image}
                   alt={good.name}
                   width={335}
-                  height={223}
+                  height={380}
                   className={css.image}
                 />
               </Link>
@@ -76,12 +78,13 @@ export default function GoodsList() {
                   <AiFillStar />
                   <p className={css.ratenumber}>{good.averageRate}</p>
                 </div>
-                <div className={css.rate}>
+                <Link href={`/goods/${good._id}/#reviews`} className={css.rate}>
                   <svg width="16" height="16" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
                   </svg>
                   <p className={css.ratenumber}>{good.feedbackCount}</p>
-                </div>
+                </Link>
+                <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`}>
                 <button className={css.detail}>Детальніше</button>

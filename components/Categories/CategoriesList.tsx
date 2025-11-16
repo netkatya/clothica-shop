@@ -6,6 +6,7 @@ import Image from 'next/image';
 import css from './CategoriesList.module.css';
 import { fetchCategoriesClient } from '@/lib/api/clientApi';
 import { Category } from '@/types/category';
+import Loading from '@/app/loading';
 
 export default function CategoriesList() {
   const [showAll, setShowAll] = useState(false);
@@ -16,15 +17,19 @@ export default function CategoriesList() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const [categoriesData, setCategoriesData] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const { categories } = await fetchCategoriesClient(1, 7);
 
         setCategoriesData(categories);
       } catch {
         setCategoriesData([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -94,6 +99,10 @@ export default function CategoriesList() {
       });
     }
   }, [showAll, maxHeight]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className={css.categoriesSection} ref={sectionRef}>
