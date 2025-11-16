@@ -1,16 +1,19 @@
+'use client';
 import { Good } from '@/types/good';
 import css from './AllGoodsList.module.css';
 import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 interface AllGoodsListProps {
   goods: Good[];
 }
 export default function AllGoodsList({ goods }: AllGoodsListProps) {
+  const [listRef] = useAutoAnimate<HTMLUListElement>();
   return (
     <div className={css.sliderContainer}>
-      <ul className={css.list}>
+      <ul className={css.list} ref={listRef}>
         {goods.map(good => (
           <li key={good._id} className={css.listItem}>
             <div className={css.card}>
