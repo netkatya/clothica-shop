@@ -23,7 +23,7 @@ export type SessionResponse = {
   refreshToken?: string;
 };
 
-export type RequestResetEmail = {
+export type RequestResetPassword = {
   phone: string;
 };
 

@@ -46,6 +46,7 @@ const UserSchema = Yup.object().shape({
     .max(10, 'Занадто довгий номер відділення НП!'),
 });
 import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
+import ConnectTelegram from '@/components/ConnectTelegram/ConnectTelegram';
 
 export default function ProfilePage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -147,6 +148,9 @@ export default function ProfilePage() {
                 <Form>
                   <UserInfoForm formik={formik} />
                   {error && <p className={css.apiErrorMessage}>{error}</p>}
+                  <div className={css.telegramWrapper}>
+                    <ConnectTelegram />
+                  </div>
                   <button type="submit" className={css.saveButton}>
                     Зберегти зміни
                   </button>
@@ -154,6 +158,7 @@ export default function ProfilePage() {
               )}
             </Formik>
           </div>
+
           <div>
             <h2>Мої замовлення</h2>
             {orders.length > 0 ? (

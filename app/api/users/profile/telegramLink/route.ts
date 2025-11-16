@@ -14,7 +14,7 @@ export async function GET() {
       return NextResponse.json({ error: 'No token' }, { status: 401 });
     }
 
-    const { data } = await api.get('/api/users/telegram-link', {
+    const { data } = await api.get('/api/users/profile/telegram-link', {
       headers: {
         Cookie: cookieStore.toString(),
       },
