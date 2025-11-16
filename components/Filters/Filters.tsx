@@ -39,6 +39,7 @@ export default function Filters({
               type="button"
               className={css.arrow}
               style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+              aria-label="Open"
             >
               <svg width="24" height="24" aria-hidden="true">
                 <use href="/symbol-defs.svg#icon-down"></use>

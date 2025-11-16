@@ -5,6 +5,7 @@ import { useShopStore } from '@/lib/store/cartSrore';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import MessageNoInfo from '../MessageNoInfo/MessageNoInfo';
+import Link from 'next/link';
 
 const GoodsOrderList = () => {
   const { cartItems, removeFromCart, updateAmount } = useShopStore();
@@ -42,7 +43,12 @@ const GoodsOrderList = () => {
                 )}
                 <div className={css.good_info}>
                   <div className={css.info_wrapper}>
-                    <h3 className={css.good_name}>{good.name}</h3>
+                    <Link
+                      href={`/goods/${good.goodId}`}
+                      className={css.good_name}
+                    >
+                      {good.name}
+                    </Link>
                     <ul className={css.good_numbers}>
                       <li className={css.good_number}>
                         <AiFillStar className={css.star_full}>

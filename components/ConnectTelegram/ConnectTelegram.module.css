@@ -1,0 +1,109 @@
+.container {
+  width: 100%;
+  background: var(--color-scheme-4-background, #fff);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 6px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 12px;
+}
+
+.successMsg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-scheme-1-text);
+}
+
+.successIcon {
+  width: 24px;
+  height: 24px;
+
+  background: var(--color-deco-dark, #16a34a);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.description {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-scheme-1-text);
+  margin-bottom: 16px;
+}
+
+.button {
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: var(--color-deco);
+  border: 1px solid var(--color-deco);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-neutral-darkest);
+  transition: all 0.25s ease-in-out;
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+}
+
+.button:hover {
+  background: var(--color-deco-dark);
+  border-color: var(--color-deco-darker);
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 200px;
+    margin: 0 auto;
+  }
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: var(--color-neutral-darkest);
+}
+
+.note {
+  font-size: 14px;
+  color: var(--opacity-neutral-darkest-50, #6b7280);
+  margin-top: 12px;
+}
+
+.loadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.loadingText {
+  font-size: 16px;
+  color: var(--color-scheme-1-text);
+}

@@ -137,6 +137,33 @@
   margin-bottom: 12px;
 }
 
+.resetWrapper {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.resetText {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  color: var(--color-neutral-darkest);
+  opacity: 0.9;
+}
+
+.resetLink {
+  margin-left: 6px;
+  font-weight: 500;
+  color: var(--color-deco-dark);
+  transition: color 0.25s ease-in-out;
+}
+
+.resetLink:hover {
+  color: var(--color-deco-darker);
+  text-decoration: underline;
+}
+.resetLink:active {
+  color: var(--color-deco-darkest);
+}
+
 @media screen and (min-width: 768px) {
   .mainContent {
     max-width: 480px;

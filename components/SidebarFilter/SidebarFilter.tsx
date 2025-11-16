@@ -12,23 +12,24 @@ export default function SidebarFilters({
   total,
 }: FilterContainerProps) {
   return (
-    <div className={css.sidebarContainer}>
-      <div className={css.filters}>
-        <h3 className={css.filter}>Фільтри</h3>
-        <button type="button" className={css.button} onClick={onClearAll}>
-          Очистити всі
-        </button>
+    <div className={css.test}>
+      <div className={css.sidebarContainer}>
+        <div className={css.filters}>
+          <h3 className={css.filter}>Фільтри</h3>
+          <button type="button" className={css.button} onClick={onClearAll}>
+            Очистити всі
+          </button>
+        </div>
+        <p className={css.shown}>
+          Показано {shown} з {total}
+        </p>
+        <FilterContent
+          currentFilters={currentFilters}
+          onFilterChange={onFilterChange}
+          isLoadingCategories={isLoadingCategories}
+          categories={categories}
+        />
       </div>
-      <p className={css.shown}>
-        {' '}
-        Показано {shown} з {total}
-      </p>
-      <FilterContent
-        currentFilters={currentFilters}
-        onFilterChange={onFilterChange}
-        isLoadingCategories={isLoadingCategories}
-        categories={categories}
-      />
     </div>
   );
 }

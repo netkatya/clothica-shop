@@ -144,6 +144,14 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
             </div>
           </Form>
         </Formik>
+        <div className={css.resetWrapper}>
+          <p className={css.resetText}>
+            Забули пароль?
+            <Link href="/requestResetPassword" className={css.resetLink}>
+              Відновити пароль
+            </Link>
+          </p>
+        </div>
       </div>
     </>
   );

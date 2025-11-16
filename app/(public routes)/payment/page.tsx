@@ -70,7 +70,7 @@ export default function CheckoutForm() {
         validationSchema={validationSchema}
         onSubmit={async values => {
           try {
-            console.log('Payment submitted:', values);
+            // console.log('Payment submitted:', values);
             const pendingOrder = localStorage.getItem('pendingOrder');
             if (pendingOrder) {
               const response = await createOrderClient(

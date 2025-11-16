@@ -1,14 +1,21 @@
 'use client';
 
 import { FormikProps, ErrorMessage } from 'formik';
-import { UserProfile } from '@/types/user';
 import styles from './UserInfoForm.module.css';
 
-interface Props {
-  formik: FormikProps<UserProfile>;
+interface Props<T> {
+  formik: FormikProps<T>;
 }
 
-export default function UserInfoForm({ formik }: Props) {
+export default function UserInfoForm<
+  T extends {
+    name: string;
+    lastname: string;
+    phone: string;
+    city: string;
+    branchnum_np: string;
+  },
+>({ formik }: Props<T>) {
   return (
     <div className={styles.formWrapper}>
       <div className={styles.field}>

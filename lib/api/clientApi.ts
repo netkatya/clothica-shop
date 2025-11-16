@@ -3,7 +3,7 @@ import { nextServer } from './api';
 import {
   LoginRequest,
   RegisterRequest,
-  RequestResetEmail,
+  RequestResetPassword,
   ResetPassword,
   UpdateRequest,
 } from '@/types/auth';
@@ -11,7 +11,7 @@ import { User } from '@/types/user';
 import { ColorOfGood, Gender, Good, Size } from '@/types/good';
 import { Category } from '@/types/category';
 import { Order, OrderStatus, CreateOrderParams } from '@/types/order';
-import { getCurrentDate } from '../utils';
+// import { getCurrentDate } from '../utils';
 import { Feedback, FeedbackPost } from '@/types/feedback';
 
 export const register = async (data: RegisterRequest) => {
@@ -24,8 +24,8 @@ export const login = async (data: LoginRequest) => {
   return res.data;
 };
 
-export const requestResetEmail = async (data: RequestResetEmail) => {
-  const res = await nextServer.post<User>('/auth/requestPasswordReset', data);
+export const requestResetPassword = async (data: RequestResetPassword) => {
+  const res = await nextServer.post<User>('/auth/requestResetPassword', data);
   return res.data;
 };
 
@@ -39,8 +39,35 @@ export const getMe = async (): Promise<User> => {
   return data;
 };
 
-export const getMeTelegramLink = async () => {
-  const res = await nextServer.get<User>('/users/profile/telegramLink');
+export async function getTelegramLinked(): Promise<{ isLinked: boolean }> {
+  try {
+    const { data } = await nextServer.get<User>('/users/profile');
+    if (data.telegramLinked) {
+      return { isLinked: true };
+    } else {
+      return { isLinked: false };
+    }
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || 'Getting Telegram linked status failed'
+      );
+    }
+    throw new Error('Getting Telegram linked status failed');
+  }
+}
+
+export interface TelegramLinkResponse {
+  success: boolean;
+  data: {
+    link: string;
+  };
+}
+
+export const getMeTelegramLink = async (): Promise<TelegramLinkResponse> => {
+  const res = await nextServer.get<TelegramLinkResponse>(
+    '/users/profile/telegramLink'
+  );
   return res.data;
 };
 
