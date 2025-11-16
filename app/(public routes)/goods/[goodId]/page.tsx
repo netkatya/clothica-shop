@@ -77,7 +77,7 @@ export default function GoodPage() {
     <>
       <Product good={good} />
 
-      <div className="container">
+      <section className="container" id="reviews">
         <div className={css.goodsReviews}>
           <p className={css.titleReviews}>Відгуки клієнтів</p>
           <button className={css.addReviews} onClick={openModal}>
@@ -176,7 +176,7 @@ export default function GoodPage() {
             </Formik>
           </ProductModal>
         )}
-      </div>
+      </section>
     </>
   );
 }

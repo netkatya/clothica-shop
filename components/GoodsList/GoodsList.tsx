@@ -70,12 +70,12 @@ export default function GoodsList() {
                   <AiFillStar />
                   <p className={css.ratenumber}>{good.averageRate}</p>
                 </div>
-                <div className={css.rate}>
+                <Link href={`/goods/${good._id}/#reviews`} className={css.rate}>
                   <svg width="16" height="16" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
                   </svg>
                   <p className={css.ratenumber}>{good.feedbackCount}</p>
-                </div>
+                </Link>
                 <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`}>
