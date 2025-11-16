@@ -1,0 +1,37 @@
+.langButton {
+  position: fixed;
+  top: 150px;
+  right: 20px;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid var(--color-scheme-1-background);
+  border-radius: 50%;
+  padding: 12px;
+
+  background: var(--color-scheme-5-foreground);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 250ms ease-in-out, transform 180ms ease;
+  z-index: 999;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.langButton:hover {
+  transform: scale(1.08);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.langButton:active {
+  transform: scale(0.95);
+}

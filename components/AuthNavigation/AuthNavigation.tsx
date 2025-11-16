@@ -3,12 +3,15 @@
 import Link from 'next/link';
 import css from './AuthNavigation.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
+import { useTranslations } from 'next-intl';
 
 type AuthNavigationProps = {
   onClick?: () => void;
 };
 
 export default function AuthNavigation({ onClick }: AuthNavigationProps) {
+  const t = useTranslations('AuthNavigation');
+
   const { isAuthenticated, clearIsAuthenticated } = useAuthStore();
 
   return (
@@ -22,7 +25,7 @@ export default function AuthNavigation({ onClick }: AuthNavigationProps) {
               prefetch={false}
               onClick={onClick}
             >
-              Кабінет
+              {t('profile')}
             </Link>
           </li>
         </>
@@ -35,7 +38,7 @@ export default function AuthNavigation({ onClick }: AuthNavigationProps) {
               prefetch={false}
               onClick={onClick}
             >
-              Вхід
+              {t('login')}
             </Link>
           </li>
           <li className={css.navigationItem}>
@@ -45,7 +48,7 @@ export default function AuthNavigation({ onClick }: AuthNavigationProps) {
               prefetch={false}
               onClick={onClick}
             >
-              Реєстрація
+              {t('register')}
             </Link>
           </li>
         </>

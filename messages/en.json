@@ -1,0 +1,70 @@
+{
+  "HeroSection": {
+    "title": "Find your style with Clothica today!",
+    "text": "Clothica is a place where comfort meets style. We create basic clothes that are easy to combine and suitable for any occasion. Choose things that emphasize your individuality and will always be relevant.",
+    "buttonToGoods": "To goods",
+    "buttonToCategories": "Explore categories"
+  },
+
+  "PopularGoods": {
+    "title": "Popular goods",
+    "button": "All goods"
+  },
+
+  "StyleSection": {
+    "title": "Choose your unique style today",
+    "card1Title": "Quality and natural materials",
+    "card1Text": "only soft-to-touch fabrics that keep their shape even after dozens of washes.",
+    "card2Title": "Universal design",
+    "card2Text": "basic colors and minimalist style that are easy to combine with each other.",
+    "card3Title": "Everyday comfort",
+    "card3Text": "clothes that do not restrict movement and are suitable for any situation."
+  },
+
+  "PopularCategoriesSection": {
+    "title": "Popular categories",
+    "buttonAll": "All categories"
+  },
+
+  "ReviewsSection": {
+    "title": "Latest reviews"
+  },
+
+  "ReviewsSlider": {
+    "loading": "Loading reviews…",
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "anonymous": "Anonymous",
+    "unknownProduct": "Unknown product"
+  },
+
+  "Header": {
+    "home": "Home",
+    "goods": "Goods",
+    "categories": "Categories",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "basket": "Basket"
+  },
+
+  "Footer": {
+    "menu": "Menu",
+    "home": "Home",
+    "goods": "Goods",
+    "categories": "Categories",
+    "subscribe": "Subscribe",
+    "subscribeText": "Join our newsletter to stay updated on news and promotions.",
+    "emailPlaceholder": "Enter your email",
+    "sending": "Sending...",
+    "subscribed": "You have been subscribed!",
+    "subscribeError": "Please, write email",
+    "subscribeFail": "Ops, something went wrong. Please, try again later",
+    "rights": "All rights reserved"
+  },
+
+  "AuthNavigation": {
+    "profile": "Profile",
+    "login": "Login",
+    "register": "Register"
+  }
+}

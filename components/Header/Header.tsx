@@ -6,7 +6,11 @@ import AuthNavigation from '../AuthNavigation/AuthNavigation';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { useShopStore } from '@/lib/store/cartSrore';
 
+import { useTranslations } from 'next-intl';
+
 export default function Header() {
+  const t = useTranslations('Header');
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   //store
@@ -16,7 +20,7 @@ export default function Header() {
     <div className={css.basketWrapper}>
       <Link
         href="/basket"
-        aria-label="Basket"
+        aria-label={t('basket')}
         className={css.basketBtn}
         scroll={false}
       >
@@ -48,7 +52,7 @@ export default function Header() {
     <header className={css.section}>
       <div className="container">
         <div className={css.header}>
-          <Link href="/" aria-label="Home" className={css.logoLink}>
+          <Link href="/" aria-label={t('home')} className={css.logoLink}>
             <svg width="84" height="36" aria-hidden="true">
               <use href="/symbol-defs.svg#icon-company-logo"></use>
             </svg>
@@ -59,7 +63,7 @@ export default function Header() {
               <div className={css.mobileButtons}>
                 <button
                   type="button"
-                  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                  aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
                   onClick={() => setMenuOpen(!menuOpen)}
                   className={css.burgerButton}
                 >
@@ -87,7 +91,7 @@ export default function Header() {
                           className={css.navigationItemMobile}
                           onClick={() => setMenuOpen(false)}
                         >
-                          Головна
+                          {t('home')}
                         </Link>
                       </li>
                       <li>
@@ -96,7 +100,7 @@ export default function Header() {
                           className={css.navigationItemMobile}
                           onClick={() => setMenuOpen(false)}
                         >
-                          Товари
+                          {t('goods')}
                         </Link>
                       </li>
                       <li>
@@ -105,7 +109,7 @@ export default function Header() {
                           className={css.navigationItemMobile}
                           onClick={() => setMenuOpen(false)}
                         >
-                          Категорії
+                          {t('categories')}
                         </Link>
                       </li>
                     </ul>
@@ -125,17 +129,17 @@ export default function Header() {
                 <ul className={css.navigation}>
                   <li className={css.navigationItem}>
                     <Link href="/" className={css.navigationLink}>
-                      Головна
+                      {t('home')}
                     </Link>
                   </li>
                   <li className={css.navigationItem}>
                     <Link href="/goods" className={css.navigationLink}>
-                      Товари
+                      {t('goods')}
                     </Link>
                   </li>
                   <li className={css.navigationItem}>
                     <Link href="/categories" className={css.navigationLink}>
-                      Категорії
+                      {t('categories')}
                     </Link>
                   </li>
                 </ul>
