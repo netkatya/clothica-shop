@@ -105,7 +105,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(10%, -10%);
+  transform: translate(25%, -25%);
   background-color: #b70000;
   border: 1px solid #b70000;
   color: #fff;
@@ -129,6 +129,7 @@
     align-items: center;
     gap: 32px;
     margin-right: 86px;
+    margin-left: 40px;
   }
   .authNavigation {
     display: flex;
