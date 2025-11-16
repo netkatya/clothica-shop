@@ -7,7 +7,7 @@
 .image {
   border-radius: 16px;
   width: 335px;
-  height: 320px;
+  height: 335px;
   margin-bottom: 16px;
 }
 
@@ -93,7 +93,7 @@
   }
   .image {
     width: 198px;
-    height: 200px;
+    height: 198px;
   }
   .info {
     flex-wrap: wrap;
@@ -127,7 +127,7 @@
   }
   .image {
     width: 304px;
-    height: 315px;
+    height: 304px;
   }
   .info {
     flex-direction: row;

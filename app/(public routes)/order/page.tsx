@@ -91,7 +91,6 @@ const OrderPage = () => {
             comment: values.comment,
             sum: cartItems.reduce((total, item) => total + item.price * item.amount, 0)
         };
-            console.log(orderPayload);
             localStorage.setItem('pendingOrder', JSON.stringify(orderPayload));
             router.push("/payment");
         }

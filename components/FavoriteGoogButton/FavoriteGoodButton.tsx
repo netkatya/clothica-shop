@@ -13,7 +13,11 @@ export default function FavoriteGoodButton({ id }: FavoriteGoodButtonProps) {
   const isFavorite = favorites.includes(id);
 
   return (
-    <button className={css.favorites} onClick={() => toggleFavorite(id)}>
+    <button
+      className={css.favorites}
+      onClick={() => toggleFavorite(id)}
+      aria-label="Обране"
+    >
       <LuHeart
         className={css.iconHeart}
         size={24}

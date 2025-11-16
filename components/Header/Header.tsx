@@ -143,7 +143,7 @@ export default function Header() {
                 <ul className={css.authNavigation}>
                   <AuthNavigation />
                   <ThemeToggle />
-                  <li className={css.navigationItem}>
+                  <li className={css.navigationItem} id="cart-icon">
                     <Basket />
                   </li>
                 </ul>
