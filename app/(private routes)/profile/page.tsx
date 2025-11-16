@@ -86,6 +86,16 @@ export default function ProfilePage() {
     loadData();
   }, [authUser, isAuthenticated]);
 
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.replace('/auth/login');
+    }
+
+    if (!loading && isAuthenticated && !user) {
+      router.replace('/auth/login');
+    }
+  }, [loading, isAuthenticated, user, router]);
+
   const handleSubmit = async (
     values: UserProfile,
     formikHelpers: FormikHelpers<UserProfile>
@@ -126,7 +136,7 @@ export default function ProfilePage() {
         <Loading />
       </div>
     );
-  if (!user) return <div>Користувача не знайдено</div>;
+  if (!isAuthenticated || !user) return null;
 
   return (
     <main className={css.profilePage}>
