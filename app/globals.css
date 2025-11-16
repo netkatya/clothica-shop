@@ -126,6 +126,10 @@ button {
   padding: 0 20px;
 }
 
+section {
+  scroll-margin-top: 50px;
+}
+
 /* Styles for Tablet devices */
 @media screen and (min-width: 768px) {
   .container {
