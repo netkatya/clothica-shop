@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 const Hero = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -16,6 +18,8 @@ const Hero = () => {
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1439 });
   const isDesktop = useMediaQuery({ minWidth: 1440 });
 
+  const t = useTranslations('HeroSection')
+
   return (
     <section className={css.hero}>
       <div className="container">
@@ -23,21 +27,18 @@ const Hero = () => {
           <div className={css.hero_content}>
             <div className={css.text_wrapper}>
               <h1 className={css.hero_title}>
-                Знайди свій стиль з Clothica вже сьогодні!
+                {t("title")}
               </h1>
               <p className={css.hero_text}>
-                Clothica — це місце, де комфорт поєднується зі стилем. Ми
-                створюємо базовий одяг, який легко комбінується та підходить для
-                будь-якої нагоди. Обирай речі, що підкреслять твою
-                індивідуальність і завжди будуть актуальними.
+                {t("text")}
               </p>
             </div>
             <div className={css.hero_links}>
               <a href="#PopularGoods" className={css.link_primary}>
-                До товарів
+                {t('buttonToGoods')}
               </a>
               <a href="#PopularCategories" className={css.link_secondary}>
-                Дослідити категорії
+                {t('buttonToCategories')}
               </a>
             </div>
           </div>

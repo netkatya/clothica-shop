@@ -8,6 +8,8 @@ import {
 } from '@tanstack/react-query';
 import { fetchGoodsClient } from '@/lib/api/clientApi';
 
+import { getTranslations } from 'next-intl/server';
+
 export default async function PopularGoods() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
@@ -19,13 +21,15 @@ export default async function PopularGoods() {
       order: 'desc',
     }),
   });
+
+  const t = await getTranslations('PopularGoods');
   return (
     <section className={css.section} id="PopularGoods">
       <div className="container">
         <div className={css.title_button}>
-          <h2 className={css.title}>Популярні товари</h2>
+          <h2 className={css.title}>{t("title")}</h2>
           <Link href="/goods" className={css.button}>
-            Всі товари
+            {t("button")}
           </Link>
         </div>
         <HydrationBoundary state={dehydrate(queryClient)}>
