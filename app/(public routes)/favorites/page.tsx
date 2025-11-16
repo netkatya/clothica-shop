@@ -9,8 +9,11 @@ import css from './favorites.module.css';
 import { useFavoritesStore } from '@/lib/store/favoritesStore';
 import Loading from '@/app/loading';
 import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
+import { useRouter } from 'next/navigation';
 
 export default function FavoritesPage() {
+  const router = useRouter();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
     queryFn: () => fetchGoodsClient({}),
@@ -37,7 +40,7 @@ export default function FavoritesPage() {
             text="Ваш список обраного порожній!"
             buttonText="Перейти до товарів"
             route="/goods"
-            onClick={() => {}}
+            onClick={() => router.push('/goods')}
           />
         </div>
       </div>
