@@ -3,7 +3,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import css from './paymentPage.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MotionCheck from '@/components/PaymentStatus/PaymentStatus';
 import RadioCart from '@/components/RadioCart/RadioCart';
 import { useShopStore } from '@/lib/store/cartSrore';
@@ -44,8 +44,19 @@ export default function CheckoutForm() {
     0
   );
 
+  useEffect(() => {
+    if (status === 'success') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, [status]);
+
   if (status === 'success') {
-    return <MotionCheck status="success" orderNumber={orderNumber || undefined} />;
+    return (
+      <MotionCheck status="success" orderNumber={orderNumber || undefined} />
+    );
   }
 
   return (
@@ -57,12 +68,14 @@ export default function CheckoutForm() {
           cvv: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={async (values) => {
+        onSubmit={async values => {
           try {
             console.log('Payment submitted:', values);
             const pendingOrder = localStorage.getItem('pendingOrder');
             if (pendingOrder) {
-              const response = await createOrderClient(JSON.parse(pendingOrder));
+              const response = await createOrderClient(
+                JSON.parse(pendingOrder)
+              );
               setOrderNumber(response.orderNum);
               localStorage.removeItem('pendingOrder');
               clearCart();
