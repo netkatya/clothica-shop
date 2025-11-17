@@ -3,10 +3,11 @@
   top: 150px;
   right: 20px;
 
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
 
   border: 1px solid var(--color-scheme-1-background);
+  box-shadow: 0 4px 20px var(--color-scheme-5-foreground);
   border-radius: 50%;
   padding: 12px;
 
@@ -28,10 +29,17 @@
 }
 
 .langButton:hover {
-  transform: scale(1.08);
+  transform: scale(1.2);
   background: rgba(0, 0, 0, 0.85);
 }
 
 .langButton:active {
   transform: scale(0.95);
+}
+
+@media screen and (min-width: 768px) {
+  .langButton {
+    width: 50px;
+    height: 50px;
+  }
 }
