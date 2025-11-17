@@ -13,7 +13,11 @@ import { fetchGoodsClient } from '@/lib/api/clientApi';
 import { AiFillStar } from 'react-icons/ai';
 import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
 
+import { useTranslations } from 'next-intl';
+
 export default function GoodsList() {
+  const t = useTranslations('GoodsList');
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
     queryFn: () => fetchGoodsClient({}),
@@ -87,7 +91,7 @@ export default function GoodsList() {
                 <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`}>
-                <button className={css.detail}>Детальніше</button>
+                <button className={css.detail}>{t('details')}</button>
               </Link>
             </div>
           </SwiperSlide>

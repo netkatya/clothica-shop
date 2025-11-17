@@ -66,5 +66,61 @@
     "profile": "Profile",
     "login": "Login",
     "register": "Register"
+  },
+
+  "CategoriesList": {
+    "title": "Categories",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+
+  "GoodsList": {
+    "details": "More details",
+    "prev": "Previous",
+    "next": "Next"
+  },
+
+  "AllGoodsList": {
+    "details": "More details"
+  },
+
+  "ConnectTelegram": {
+    "connected": "Telegram connected!",
+    "description": "Click the button below to connect your Telegram account.",
+    "openBot": "Open bot",
+    "note": "After launching the bot, the connection status will update automatically."
+  },
+
+  "CookieBanner": {
+    "text": "We use cookies to improve your experience. Accept cookies?",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+
+  "FilterContent": {
+    "all": "All",
+    "loadingCategories": "Loading...",
+    "size": "Size",
+    "price": "Price",
+    "color": "Color",
+    "gender": "Gender",
+    "clear": "Clear",
+    "man": "Men",
+    "women": "Women",
+    "unisex": "Unisex"
+  },
+
+  "Filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "shown": "Shown",
+    "of": "of"
+  },
+
+  "SidebarFilters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "shown": "Shown",
+    "of": "of"
   }
 }

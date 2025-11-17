@@ -7,7 +7,11 @@ import { SiTelegram } from 'react-icons/si';
 import css from './ConnectTelegram.module.css';
 import Loading from '@/app/loading';
 
+import { useTranslations } from 'next-intl';
+
 const ConnectTelegram = () => {
+  const t = useTranslations('ConnectTelegram');
+
   const { user } = useAuthStore();
   const [isLinked, setIsLinked] = useState(user?.telegramLinked || false);
   const [loading, setLoading] = useState(true);
@@ -56,13 +60,12 @@ const ConnectTelegram = () => {
       {isLinked ? (
         <div className={css.successMsg}>
           <span className={css.successIcon}>✓</span>
-          Telegram підключено!
+          {t('connected')}
         </div>
       ) : (
         <>
           <p className={css.description}>
-            Натисніть кнопку нижче, щоб підключити свій обліковий запис
-            Telegram.
+            {t('description')}
           </p>
 
           <a
@@ -72,11 +75,11 @@ const ConnectTelegram = () => {
             className={css.button}
           >
             <SiTelegram className={css.icon} />
-            Відкрити бота
+            {t('openBot')}
           </a>
 
           <p className={css.note}>
-            Після запуску бота статус підключення оновиться автоматично.
+            {t('note')}
           </p>
         </>
       )}

@@ -66,5 +66,54 @@
     "profile": "Кабінет",
     "login": "Вхід",
     "register": "Реєстрація"
+  },
+
+    "CategoriesList": {
+    "title": "Категорії",
+    "showMore": "Показати більше",
+    "showLess": "Показати менше"
+  },
+
+  "GoodsList": {
+    "details": "Детальніше",
+    "prev": "Попередній",
+    "next": "Наступний"
+  },
+
+    "AllGoodsList": {
+    "details": "Детальніше"
+  },
+
+  "ConnectTelegram": {
+    "connected": "Telegram підключено!",
+    "description": "Натисніть кнопку нижче, щоб підключити свій обліковий запис Telegram.",
+    "openBot": "Відкрити бота",
+    "note": "Після запуску бота статус підключення оновиться автоматично."
+  },
+
+  "CookieBanner": {
+    "text": "Ми використовуємо cookies, щоб покращити ваш досвід. Прийняти cookies?",
+    "accept": "Прийняти",
+    "decline": "Відхилити"
+  },
+
+  "FilterContent": {
+    "all": "Всі товари",
+    "loadingCategories": "Завантаження...",
+    "size": "Розмір",
+    "price": "Ціна",
+    "color": "Колір",
+    "gender": "Стать",
+    "clear": "Очистити",
+    "man": "Чоловічий",
+    "women": "Жіночий",
+    "unisex": "Унісекс"
+  },
+
+  "Filters": {
+    "title": "Фільтри",
+    "clearAll": "Очистити всі",
+    "shown": "Показано",
+    "of": "з"
   }
 }
