@@ -117,16 +117,23 @@ export default function GoodsClient() {
     },
     refetchOnMount: false,
   });
+
   useEffect(() => {
     if (isInitialRender.current) {
       isInitialRender.current = false;
       return;
     }
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }, [apiFilters]);
+    const isPriceChanging = filters.priceRange !== debouncedPriceRange;
+
+    if (isPriceChanging) {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 2500);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [apiFilters, debouncedPriceRange, filters.priceRange]);
+
   useEffect(() => {
     const params = new URLSearchParams();
     if (apiFilters.category !== 'Усі') {
