@@ -10,10 +10,13 @@ interface AllGoodsListProps {
   goods: Good[];
 }
 export default function AllGoodsList({ goods }: AllGoodsListProps) {
-  const [listRef] = useAutoAnimate<HTMLUListElement>();
+  // const [listRef] = useAutoAnimate<HTMLUListElement>();
   return (
     <div className={css.sliderContainer}>
-      <ul className={css.list} ref={listRef}>
+      <ul
+        className={css.list}
+        // ref={listRef}
+      >
         {goods.map(good => (
           <li key={good._id} className={css.listItem}>
             <div className={css.card}>

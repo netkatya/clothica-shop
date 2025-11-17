@@ -7,6 +7,7 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { useShopStore } from '@/lib/store/cartSrore';
 
 import { useTranslations } from 'next-intl';
+import Basket from '../Basket/Basket';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -16,22 +17,6 @@ export default function Header() {
   //store
   const cartItems = useShopStore(state => state.cartItems);
   const count = cartItems.reduce((sum, item) => sum + item.amount, 0);
-  const Basket = () => (
-    <div className={css.basketWrapper}>
-      <Link
-        href="/basket"
-        aria-label={t('basket')}
-        className={css.basketBtn}
-        scroll={false}
-      >
-        <svg width="20" height="21" className={css.basketButtonSvg}>
-          <use href="/symbol-defs.svg#icon-basket"></use>
-        </svg>
-
-        {count > 0 && <span className={css.badge}>{count}</span>}
-      </Link>
-    </div>
-  );
 
   // Заборона скролу, коли меню відкрите
   useEffect(() => {
@@ -78,7 +63,7 @@ export default function Header() {
                   </svg>
                 </button>
 
-                <Basket />
+                <Basket count={count} />
               </div>
 
               {menuOpen && (
@@ -148,7 +133,7 @@ export default function Header() {
                   <AuthNavigation />
                   <ThemeToggle />
                   <li className={css.navigationItem} id="cart-icon">
-                    <Basket />
+                    <Basket count={count} />
                   </li>
                 </ul>
               </nav>
