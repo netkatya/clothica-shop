@@ -34,14 +34,14 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
               </div>
               <div className={css.reviews}>
                 <p className={css.star}>
-                  <AiFillStar /> {''}
+                  <AiFillStar size={16} /> {''}
                   {good.averageRate ?? 5}
                 </p>
                 <Link
                   href={`/goods/${good._id}/#reviews`}
                   className={css.feedbacks}
                 >
-                  <svg width="10" height="10" aria-hidden="true">
+                  <svg width="16" height="16" aria-hidden="true">
                     <use href="/symbol-defs.svg#icon-comment"></use>
                   </svg>{' '}
                   {good.feedbackCount ?? 0}
