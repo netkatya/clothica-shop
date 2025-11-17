@@ -1,3 +1,4 @@
+// app/@modal/(.)basket/page.tsx
 'use client';
 
 import { useState, useCallback } from 'react';
@@ -14,8 +15,9 @@ export default function BasketModal() {
   const [nextRoute, setNextRoute] = useState<string | null>(null);
 
   const handleClose = useCallback(() => {
-    setClosing(true);
-  }, []);
+    // setClosing(true);
+    router.back();
+  }, [router]);
 
   const handleAnimationEnd = useCallback(() => {
     if (!closing) return;
@@ -32,22 +34,30 @@ export default function BasketModal() {
   };
 
   const handleGoToGoods = () => {
-    setNextRoute('/goods');
     handleClose();
+    const id = setTimeout(() => {
+      router.push('/goods');
+      clearTimeout(id);
+    }, 100);
   };
 
   const handleGoToOrder = () => {
-    setNextRoute('/order');
     handleClose();
+    const id = setTimeout(() => {
+      router.push('/order');
+      clearTimeout(id);
+    }, 100);
   };
 
   return (
     <div
-      className={`${css.backdrop} ${closing ? css.hiddenBackdrop : css.visibleBackdrop}`}
+      // className={`${css.backdrop} ${closing ? css.hiddenBackdrop : css.visibleBackdrop}`}
+      className={`${css.backdrop} ${css.visibleBackdrop}`}
       onClick={handleBackdropClick}
     >
       <div
-        className={`${css.modal} ${closing ? css.slideOut : css.slideIn}`}
+        // className={`${css.modal} ${closing ? css.slideOut : css.slideIn}`}
+        className={`${css.modal} ${css.slideIn}`}
         onAnimationEnd={handleAnimationEnd}
       >
         <div className={css.closeBtnContainer}>
