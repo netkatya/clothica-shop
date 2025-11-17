@@ -147,7 +147,7 @@ export default function FilterContent({
                 }
                 onClick={() => handleColorClick(color)}
               >
-                {color}
+                {color.charAt(0).toUpperCase() + color.slice(1)}
               </button>
             </li>
           ))}
