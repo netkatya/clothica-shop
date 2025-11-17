@@ -4,6 +4,7 @@ import PriceFilter from '../PriceFilter/PriceFilter';
 import { SIZES, COLORS, GENDERS, AVAILABLE_COLORS } from '@/constants/goods';
 import { FilterContentProps } from '@/types/filters';
 import { Gender, Size } from '@/types/good';
+import { capitalize } from '@/lib/utils';
 
 const GENDER_MAP: Record<Gender | 'Всі', string> = {
   Всі: 'Всі',
@@ -147,7 +148,7 @@ export default function FilterContent({
                 }
                 onClick={() => handleColorClick(color)}
               >
-                {color.charAt(0).toUpperCase() + color.slice(1)}
+                {capitalize(color)}
               </button>
             </li>
           ))}
