@@ -6,8 +6,10 @@ import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import MessageNoInfo from '../MessageNoInfo/MessageNoInfo';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const GoodsOrderList = () => {
+    const router = useRouter()
   const { cartItems, removeFromCart, updateAmount } = useShopStore();
 
   const goodPrice = cartItems.reduce(
@@ -17,6 +19,13 @@ const GoodsOrderList = () => {
   const deliveryPrice = goodPrice > 0 ? 50 : 0;
   const totalPrice = goodPrice + deliveryPrice;
 
+  const handleBackClick = () => {
+    const id = setTimeout(() => {
+      router.push('/goods');
+      clearTimeout(id);
+    }, 100);
+  }
+
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -25,7 +34,7 @@ const GoodsOrderList = () => {
             <MessageNoInfo
               text="Кошик порожній!"
               buttonText="Перейти до товарів"
-              route="/goods"
+            onClick={handleBackClick}
             />
           </div>
         ) : (
