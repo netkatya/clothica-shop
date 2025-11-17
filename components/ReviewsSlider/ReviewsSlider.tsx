@@ -46,8 +46,7 @@ export default function ReviewsSlider({
     },
   });
 
-  if (isLoading)
-    return <div className={css.loading}>{t('loading')}</div>;
+  if (isLoading) return <div className={css.loading}>{t('loading')}</div>;
 
   return (
     <div id="reviews-slider">

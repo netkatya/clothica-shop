@@ -5,7 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
-import { useAutoAnimate } from '@formkit/auto-animate/react';
+// import { useAutoAnimate } from '@formkit/auto-animate/react';
 interface AllGoodsListProps {
   goods: Good[];
 }

@@ -129,8 +129,8 @@ export default function GoodsClient() {
     }
     {
       setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 2500);
+        window.scrollTo({ top: 60, behavior: 'smooth' });
+      }, 1300);
     }
   }, [apiFilters]);
 
