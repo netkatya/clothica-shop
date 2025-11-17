@@ -73,6 +73,7 @@ export default function CheckoutForm() {
             const pendingOrder = localStorage.getItem('pendingOrder');
 
             const parsedOrder = pendingOrder ? JSON.parse(pendingOrder) : null;
+            localStorage.removeItem('order-form');
 
             if (parsedOrder) {
               const response = await createOrderClient(parsedOrder);
