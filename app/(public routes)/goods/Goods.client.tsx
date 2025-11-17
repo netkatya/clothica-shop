@@ -20,6 +20,7 @@ import { Category } from '@/types/category';
 import { useDebounce } from 'use-debounce';
 import { ColorOfGood, Gender, Size } from '@/types/good';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import Loading from '@/app/loading';
 
 const getFiltersFromParams = (
   searchParams: URLSearchParams
@@ -123,16 +124,15 @@ export default function GoodsClient() {
       isInitialRender.current = false;
       return;
     }
-    const isPriceChanging = filters.priceRange !== debouncedPriceRange;
-
-    if (isPriceChanging) {
+    if (window.scrollY <= 0) {
+      return;
+    }
+    {
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 2500);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [apiFilters, debouncedPriceRange, filters.priceRange]);
+  }, [apiFilters]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -211,6 +211,7 @@ export default function GoodsClient() {
           />
         </aside>
         <div className={css.contentArea}>
+          {/* {isLoading && <Loading></Loading>} */}
           <AllGoodsList goods={goods}></AllGoodsList>{' '}
           <div className={css.buttonContainer}>
             {hasNextPage && (
