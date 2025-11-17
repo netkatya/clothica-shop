@@ -1,10 +1,20 @@
 'use client';
 import css from './FilterContent.module.css';
 import PriceFilter from '../PriceFilter/PriceFilter';
-import { SIZES, COLORS, GENDERS, AVAILABLE_COLORS } from '@/constants/goods';
+import {
+  SIZES,
+  COLORS,
+  GENDERS,
+  AVAILABLE_COLORS,
+  UI_COLORS,
+} from '@/constants/goods';
 import { FilterContentProps } from '@/types/filters';
 import { Gender, Size } from '@/types/good';
 import { capitalize } from '@/lib/utils';
+
+interface CSSVars extends React.CSSProperties {
+  '--color-value'?: string;
+}
 
 const GENDER_MAP: Record<Gender | 'Всі', string> = {
   Всі: 'Всі',
@@ -141,11 +151,10 @@ export default function FilterContent({
             <li key={color}>
               <button
                 type="button"
-                className={
-                  currentFilters.colors.includes(color)
-                    ? `${css.color} ${css.colorActive}`
-                    : css.color
-                }
+                style={{ '--color-value': UI_COLORS[color] } as CSSVars}
+                className={`${css.color} ${
+                  currentFilters.colors.includes(color) ? css.colorActive : ''
+                }`}
                 onClick={() => handleColorClick(color)}
               >
                 {capitalize(color)}

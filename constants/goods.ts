@@ -2,20 +2,20 @@ import { Gender, Size } from '../types/good';
 
 export const SIZES: Size[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 export const GENDERS: Gender[] = ['man', 'women', 'unisex'];
-export const COLORS = [
-  'білий',
-  'чорний',
-  'сірий',
-  'синій',
-  'блакитний',
-  'зелений',
-  'жовтий',
-  'червоний',
-  'коричневий',
-  'бежевий',
-  'рожевий',
-  'мʼятний',
-];
+// export const COLORS = [
+//   'білий',
+//   'чорний',
+//   'сірий',
+//   'синій',
+//   'блакитний',
+//   'зелений',
+//   'жовтий',
+//   'червоний',
+//   'коричневий',
+//   'бежевий',
+//   'рожевий',
+//   'мʼятний',
+// ];
 
 // Back приймає такий список кольорів, розширений до фактичних даних в базі товарів
 export const AVAILABLE_COLORS = [
@@ -33,3 +33,20 @@ export const AVAILABLE_COLORS = [
   'мʼятний',
   'пастельні відтінки',
 ];
+
+export const UI_COLORS = {
+  білий: '#ffffff',
+  чорний: '#000000',
+  сірий: '#808080',
+  синій: '#0000ff',
+  блакитний: '#7ecbff',
+  зелений: '#008000',
+  жовтий: '#f7f77cff',
+  червоний: '#ff0000',
+  коричневий: '#8b4513',
+  бежевий: '#f5f5dc',
+  рожевий: '#ffc0cb',
+  мʼятний: '#98ffcc',
+} as const;
+
+export const COLORS = Object.keys(UI_COLORS) as (keyof typeof UI_COLORS)[];

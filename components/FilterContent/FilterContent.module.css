@@ -132,7 +132,7 @@
   flex-wrap: wrap;
   gap: 8px;
 }
-.color {
+/* .color {
   outline: none;
   background: transparent;
   border: 1px solid var(--opacity-neutral-darkest-15);
@@ -149,7 +149,7 @@
 .colorActive {
   background-color: var(--color-neutral-darkest);
   color: var(--color-white);
-}
+} */
 .statusList {
   display: flex;
   flex-direction: column;
@@ -193,4 +193,29 @@
 }
 .customRadio:focus + .radioLabel::before {
   box-shadow: 0 0 0 2px var(--opacity-neutral-darkest-20);
+}
+
+.color {
+  outline: none;
+  background: transparent;
+  border: 2px solid var(--opacity-neutral-darkest-15);
+  border-radius: 4px;
+  padding: 6px 12px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.color:hover {
+  border-color: var(--color-value);
+}
+
+
+.colorActive {
+  background-color: var(--color-value);
+  color: #000;
 }
