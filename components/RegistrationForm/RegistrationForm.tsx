@@ -15,26 +15,30 @@ import { TextField } from '../TextField/TextField';
 
 import css from './RegistrationForm.module.css';
 
+import { useTranslations } from 'next-intl';
+
 const initialFormValues: UserPost = {
   name: '',
   phone: '',
   password: '',
 };
 
-const UserSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Занадто коротка назва!')
-    .max(32, 'Занадто довга назва!'),
-  phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Введіть номер у форматі +380XXXXXXXXX')
-    .required('Обовʼязкове поле'),
-  password: Yup.string()
-    .min(8, 'Занадто короткий пароль!')
-    .max(128, 'Занадто довгий пароль!')
-    .required('Обовʼязкове поле'),
-});
-
 const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
+  const t = useTranslations('RegistrationForm');
+
+  const UserSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, t('errors.nameShort'))
+      .max(32, t('errors.nameLong')),
+    phone: Yup.string()
+      .matches(/^\+380\d{9}$/, t('errors.phoneFormat'))
+      .required(t('errors.required')),
+    password: Yup.string()
+      .min(8, t('errors.passwordShort'))
+      .max(128, t('errors.passwordLong'))
+      .required(t('errors.required')),
+  });
+
   const router = useRouter();
   const [error, setError] = useState('');
   const setUser = useAuthStore(state => state.setUser);
@@ -50,17 +54,17 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
         router.push('/profile');
         formikHelpers.resetForm();
       } else {
-        setError('Помилка реєстрації користувача!');
+        setError(t('errors.registrationFailed'));
       }
     } catch (err) {
       const errorAPI = err as ApiError;
       if (errorAPI.response?.status === 400) {
-        setError('Користувач з таким номером телефону вже існує');
+        setError(t('errors.userExists'));
       } else {
         setError(
           errorAPI.response?.data?.error ??
             errorAPI.message ??
-            'Невідома помилка!'
+            t('errors.unknown')
         );
       }
       setTimeout(() => setError(''), 5000);
@@ -78,7 +82,7 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
             )}
             href="/auth/register"
           >
-            Реєстрація
+            {t('registerLink')}
           </Link>
           <Link
             className={clsx(
@@ -87,10 +91,10 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
             )}
             href="/auth/login"
           >
-            Вхід
+            {t('loginLink')}
           </Link>
         </div>
-        <h1 className={css.formTitle}>Реєстрація</h1>
+        <h1 className={css.formTitle}>{t('registerTitle')}</h1>
         <Formik
           initialValues={initialFormValues}
           validationSchema={UserSchema}
@@ -99,13 +103,13 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
           <Form className={css.form}>
             <div className={css.formGroup}>
               <label className={css.label} htmlFor="username">
-                Ім&#700;я*
+                {t('nameLabel')}
               </label>
               <TextField
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Ваше ім'я"
+                placeholder={t('namePlaceholder')}
                 required={true}
               ></TextField>
               <ErrorMessage
@@ -117,7 +121,7 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
 
             <div className={css.formGroup}>
               <label className={css.label} htmlFor="phone">
-                Номер телефону
+                {t('phoneLabel')}
               </label>
 
               <TextField
@@ -136,7 +140,7 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
 
             <div className={css.formGroup}>
               <label className={css.label} htmlFor="password">
-                Пароль
+                {t('passwordLabel')}
               </label>
               <TextField
                 id="password"
@@ -160,7 +164,7 @@ const RegistrationForm = ({ authType }: { authType: 'register' | 'login' }) => {
 
             <div className={css.actions}>
               <button type="submit" className={css.submitButton}>
-                Зареєструватися
+                {t('submitRegister')}
               </button>
             </div>
           </Form>

@@ -21,6 +21,8 @@ import { useDebounce } from 'use-debounce';
 import { ColorOfGood, Gender, Size } from '@/types/good';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 const getFiltersFromParams = (
   searchParams: URLSearchParams
 ): AllFiltersState => {
@@ -41,6 +43,7 @@ const getFiltersFromParams = (
 };
 
 export default function GoodsClient() {
+  const t = useTranslations('GoogsClient')
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -185,7 +188,7 @@ export default function GoodsClient() {
   return (
     <div className="container">
       <h1 className={css.heading}>
-        {filters.category === 'Усі' ? 'Всі товари' : filters.category}
+        {filters.category === 'Усі' ? t('allGoods') : filters.category}
       </h1>
       <div className={css.mobileOnly}>
         <Filters
@@ -219,7 +222,7 @@ export default function GoodsClient() {
                 disabled={!hasNextPage || isFetchingNextPage}
                 className={css.button}
               >
-                {isFetchingNextPage ? 'Завантаження...' : 'Показати більше'}
+                {isFetchingNextPage ? t('loading') : t('showMore')}
               </button>
             )}
           </div>
@@ -228,15 +231,14 @@ export default function GoodsClient() {
           <div className={css.test}>
             <div className={css.messageContainer}>
               <p className={css.message}>
-                За вашим запитом не знайдено жодних товарів, спробуйте змінити
-                фільтри, або скинути їх
+                {t('messageError')}
               </p>
               <button
                 type="button"
                 onClick={handleClearAll}
                 className={css.reset}
               >
-                Скинути фільтри
+                {t('resetFilters')}
               </button>
             </div>
           </div>

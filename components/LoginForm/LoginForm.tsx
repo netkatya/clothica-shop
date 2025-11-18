@@ -16,6 +16,8 @@ import { TextField } from '../TextField/TextField';
 
 import css from './LoginForm.module.css';
 
+import { useTranslations } from 'next-intl';
+
 const initialFormValues: UserLogin = {
   phone: '',
   password: '',
@@ -32,6 +34,8 @@ const UserSchema = Yup.object().shape({
 });
 
 const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
+  const t = useTranslations('LoginForm');
+
   const router = useRouter();
   const [error, setError] = useState('');
   const setUser = useAuthStore(state => state.setUser);
@@ -47,17 +51,17 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
         router.push('/profile');
         formikHelpers.resetForm();
       } else {
-        setError('Помилка реєстрації користувача!');
+        setError(t('registrationError'));
       }
     } catch (err) {
       const errorAPI = err as ApiError;
       if (errorAPI.response?.status === 401) {
-        setError('Невірний номер телефону або пароль');
+        setError(t('invalidCredentials'));
       } else {
         setError(
           errorAPI.response?.data?.error ??
             errorAPI.message ??
-            'Невідома помилка!'
+            t('unknownError')
         );
       }
       setTimeout(() => setError(''), 5000);
@@ -75,7 +79,7 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
             )}
             href="/auth/register"
           >
-            Реєстрація
+            {t('register')}
           </Link>
           <Link
             className={clsx(
@@ -84,10 +88,10 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
             )}
             href="/auth/login"
           >
-            Вхід
+            {t('login')}
           </Link>
         </div>
-        <h1 className={css.formTitle}>Вхід</h1>
+        <h1 className={css.formTitle}>{t('title')}</h1>
         <Formik
           initialValues={initialFormValues}
           validationSchema={UserSchema}
@@ -96,7 +100,7 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
           <Form className={css.form}>
             <div className={css.formGroup}>
               <label className={css.label} htmlFor="phone">
-                Номер телефону
+                {t('phoneLabel')}
               </label>
 
               <TextField
@@ -115,7 +119,7 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
 
             <div className={css.formGroup}>
               <label className={css.label} htmlFor="password">
-                Пароль
+                {t('passwordLabel')}
               </label>
               <TextField
                 id="password"
@@ -139,16 +143,16 @@ const LoginForm = ({ authType }: { authType: 'register' | 'login' }) => {
 
             <div className={css.actions}>
               <button type="submit" className={css.submitButton}>
-                Увійти
+                {t('submitButton')}
               </button>
             </div>
           </Form>
         </Formik>
         <div className={css.resetWrapper}>
           <p className={css.resetText}>
-            Забули пароль?
+            {t('forgotPassword')}
             <Link href="/requestResetPassword" className={css.resetLink}>
-              Відновити пароль
+              {t('resetLink')}
             </Link>
           </p>
         </div>

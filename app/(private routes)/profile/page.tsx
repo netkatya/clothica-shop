@@ -28,27 +28,32 @@ const emptyFormValues: Partial<UserProfile> = {
   branchnum_np: '',
 };
 
-const UserSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Занадто коротка назва!')
-    .max(32, 'Занадто довга назва!'),
-  phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Введіть номер у форматі +380XXXXXXXXX')
-    .required('Обовʼязкове поле'),
-  lastname: Yup.string()
-    .min(2, 'Занадто коротке прізвище!')
-    .max(128, 'Занадто довге прізвище!'),
-  city: Yup.string()
-    .min(2, 'Занадто коротка назва міста!')
-    .max(100, 'Занадто довга назва міста!'),
-  branchnum_np: Yup.string()
-    .min(1, 'Занадто короткий номер відділення НП!')
-    .max(10, 'Занадто довгий номер відділення НП!'),
-});
 import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 import ConnectTelegram from '@/components/ConnectTelegram/ConnectTelegram';
 
+import { useTranslations } from 'next-intl';
+
 export default function ProfilePage() {
+  const t = useTranslations('ProfilePage');
+
+  const UserSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, t('minName'))
+      .max(32, t('maxName')),
+    phone: Yup.string()
+      .matches(/^\+380\d{9}$/, t('invalidPhone'))
+      .required(t('requiredField')),
+    lastname: Yup.string()
+      .min(2, t('minLastname'))
+      .max(128, t('maxLastname')),
+    city: Yup.string()
+      .min(2, t('minCity'))
+      .max(100, t('maxCity')),
+    branchnum_np: Yup.string()
+      .min(1, t('minBranchNum'))
+      .max(10, t('maxBranchNum')),
+  });
+
   const [orders, setOrders] = useState<Order[]>([]);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -106,17 +111,17 @@ export default function ProfilePage() {
         setAuthUser(updatedUser);
         setUser({ ...updatedUser });
       } else {
-        setError('Помилка зберігання змін користувача!');
+        setError(t('saveError'));
       }
     } catch (error) {
       const errorAPI = error as ApiError;
       if (errorAPI.response?.status === 400) {
-        setError('Користувач з таким номером телефону вже існує');
+        setError(t('phoneExistsError'));
       } else {
         setError(
           errorAPI.response?.data?.error ??
             errorAPI.message ??
-            'Невідома помилка!'
+            t('unknownError')
         );
       }
     }
@@ -141,11 +146,11 @@ export default function ProfilePage() {
   return (
     <main className={css.profilePage}>
       <div className="container">
-        <h1 className={css.title}>Кабінет</h1>
+        <h1 className={css.title}>{t('pageTitle')}</h1>
 
         <div className={css.contentWrapper}>
           <div className={css.formWraper}>
-            <h2 className={css.formTitle}>Особиста інформація</h2>
+            <h2 className={css.formTitle}>{t('personalInfoTitle')}</h2>
             <Formik
               enableReinitialize
               initialValues={{
@@ -162,7 +167,7 @@ export default function ProfilePage() {
                     <ConnectTelegram />
                   </div>
                   <button type="submit" className={css.saveButton}>
-                    Зберегти зміни
+                    {t('saveChangesButton')}
                   </button>
                 </Form>
               )}
@@ -170,7 +175,7 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <h2>Мої замовлення</h2>
+            <h2>{t('ordersTitle')}</h2>
             {orders.length > 0 ? (
               <OrdersList orders={orders} />
             ) : (
@@ -184,7 +189,7 @@ export default function ProfilePage() {
         </div>
 
         <button onClick={handleLogout} className={css.logoutButton}>
-          Вийти з кабінету
+          {t('logoutButton')}
         </button>
       </div>
     </main>

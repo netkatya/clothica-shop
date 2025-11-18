@@ -17,18 +17,22 @@ import { FeedbackPost } from '@/types/feedback';
 import css from './ProductPage.module.css';
 import Loading from '@/app/loading';
 
-const ReviewSchema = Yup.object().shape({
-  author: Yup.string().min(2, "Ім'я занадто коротке").required("Введіть ім'я"),
-  comment: Yup.string()
-    .min(5, 'Відгук занадто короткий')
-    .required('Введіть відгук'),
-  rate: Yup.number()
-    .min(1, 'Оцініть товар')
-    .max(5, 'Оцінка не може бути більше 5')
-    .required('Оцініть товар'),
-});
+import { useTranslations } from 'next-intl';
 
 export default function GoodPage() {
+  const t = useTranslations('GoodPage');
+
+  const ReviewSchema = Yup.object().shape({
+    author: Yup.string().min(2, t('authorTooShort')).required(t('authorRequired')),
+    comment: Yup.string()
+      .min(5, t('commentTooShort'))
+      .required(t('commentRequired')),
+    rate: Yup.number()
+      .min(1, t('rateRequired'))
+      .max(5, t('rateMax'))
+      .required(t('rateRequired')),
+  });
+
   const params = useParams<{ goodId: string }>();
   const goodId = params.goodId;
 
@@ -72,7 +76,7 @@ export default function GoodPage() {
 
   if (isLoading) return <Loading />;
   if (error || !good)
-    return <div className={css.loading}>Помилка завантаження товару</div>;
+    return <div className={css.loading}>{t('loadError')}</div>;
 
   return (
     <>
@@ -80,9 +84,9 @@ export default function GoodPage() {
 
       <section className="container" id="reviews">
         <div className={css.goodsReviews}>
-          <p className={css.titleReviews}>Відгуки клієнтів</p>
+          <p className={css.titleReviews}>{t('reviewsTitle')}</p>
           <button className={css.addReviews} onClick={openModal}>
-            Залишити відгук
+            {t('addReview')}
           </button>
         </div>
 
@@ -95,13 +99,13 @@ export default function GoodPage() {
         ) : (
           <div className={css.emptyStateContainer}>
             <p className={css.emptyStateTitle}>
-              У цього товару ще немає відгуків
+              {t('noReviews')}
             </p>
             <button
               className={`${css.addReviews} ${css.noMargin}`}
               onClick={openModal}
             >
-              Залишити відгук
+              {t('addReview')}
             </button>
           </div>
         )}
@@ -114,7 +118,7 @@ export default function GoodPage() {
               </svg>
             </button>
 
-            <h2 className={css.titleModal}>Залишити відгук</h2>
+            <h2 className={css.titleModal}>{t('modalTitle')}</h2>
 
             <Formik
               initialValues={{ author: '', comment: '', rate: 0 }}
@@ -125,14 +129,14 @@ export default function GoodPage() {
                 <Form className={css.form}>
                   <div className={css.inpBox}>
                     <label htmlFor="author" className={css.inpName}>
-                      Ваше ім’я
+                      {t('authorLabel')}
                     </label>
                     <Field
                       type="text"
                       id="author"
                       name="author"
                       className={`${css.input} ${errors.author && touched.author ? css.inputError : ''}`}
-                      placeholder="Ваше ім’я"
+                      placeholder={t('authorPlaceholder')}
                     />
                     <ErrorMessage
                       name="author"
@@ -143,7 +147,7 @@ export default function GoodPage() {
 
                   <div className={css.inpBox}>
                     <label htmlFor="comment" className={css.inpName}>
-                      Ваш відгук
+                      {t('commentLabel')}
                     </label>
                     <Field
                       as="textarea"
@@ -151,7 +155,7 @@ export default function GoodPage() {
                       name="comment"
                       rows={5}
                       className={`${css.textarea} ${errors.comment && touched.comment ? css.textareaError : ''}`}
-                      placeholder="Ваш відгук"
+                      placeholder={t('commentPlaceholder')}
                     />
                     <ErrorMessage
                       name="comment"
@@ -170,7 +174,7 @@ export default function GoodPage() {
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    Надіслати
+                    {t('submitButton')}
                   </button>
                 </Form>
               )}

@@ -115,5 +115,260 @@
     "clearAll": "Очистити всі",
     "shown": "Показано",
     "of": "з"
+  },
+
+  "OrderItem": {
+    "sum": "Сума:",
+    "status": "Статус:",
+    "uah": "грн"
+  },
+
+  "LoginForm": {
+    "register": "Реєстрація",
+    "login": "Вхід",
+    "title": "Вхід",
+    "phoneLabel": "Номер телефону",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "********",
+    "submitButton": "Увійти",
+    "forgotPassword": "Забули пароль?",
+    "resetLink": "Відновити пароль",
+    "requiredField": "Обовʼязкове поле",
+    "invalidPhone": "Введіть номер у форматі +380XXXXXXXXX",
+    "shortPassword": "Занадто короткий пароль!",
+    "longPassword": "Занадто довгий пароль!",
+    "unknownError": "Невідома помилка!",
+    "invalidCredentials": "Невірний номер телефону або пароль",
+    "registrationError": "Помилка реєстрації користувача!"
+  },
+
+  "RequestResetPassword": {
+    "title": "Введіть номер телефону для відновлення пароля",
+    "phoneLabel": "Номер телефону",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "submitButton": "Надіслати повідомлення в Telegram",
+    "sending": "Надсилання...",
+    "successTitle": "Повідомлення в Telegram надіслано!",
+    "successDescription": "Перевірте ваш чат Telegram та введіть нижче секретний код для відновлення паролю.",
+    "resetPageButton": "Перейти на сторінку зміни паролю",
+    "backToLogin": "Повернутися до входу",
+    "rememberPassword": "Пригадали пароль?",
+    "loginLink": "Увійти",
+    "backToHome": "← Повернутися на головну",
+    "requiredField": "Номер телефону обов'язковий",
+    "invalidPhone": "Введіть номер у форматі +380XXXXXXXXX",
+    "invalidPhoneError": "Невірний номер телефону",
+    "unknownError": "Невідома помилка!"
+  },
+
+  "ResetPassword": {
+    "title": "Введіть новий пароль",
+    "confirmationCodeLabel": "Код підтвердження з Telegram",
+    "passwordLabel": "Новий пароль",
+    "confirmPasswordLabel": "Повторіть пароль",
+    "requiredField": "Обов'язкове поле",
+    "minCode": "Код повинен містити мінімум 4 символи",
+    "minPassword": "Пароль повинен містити мінімум 6 символів",
+    "passwordsMismatch": "Паролі не співпадають",
+    "submitButton": "Скинути пароль",
+    "sending": "Збереження...",
+    "successTitle": "Пароль успішно змінено!",
+    "successDescription": "Тепер ви можете увійти до свого облікового запису з новим паролем. Перенаправлення на сторінку входу...",
+    "loginButton": "Перейти до входу",
+    "backToLogin": "← Повернутися до входу",
+    "unknownError": "Сталася помилка"
+  },
+  
+  "ProfilePage": {
+    "pageTitle": "Кабінет",
+    "personalInfoTitle": "Особиста інформація",
+    "saveChangesButton": "Зберегти зміни",
+    "ordersTitle": "Мої замовлення",
+    "noOrdersText": "У вас ще не було жодних замовлень! Мерщій до покупок!",
+    "ordersButton": "До покупок",
+    "logoutButton": "Вийти з кабінету",
+    "nameLabel": "Ім'я",
+    "lastnameLabel": "Прізвище",
+    "phoneLabel": "Номер телефону",
+    "cityLabel": "Місто",
+    "branchnumLabel": "Номер відділення НП",
+    "requiredField": "Обов'язкове поле",
+    "minName": "Занадто коротка назва!",
+    "maxName": "Занадто довга назва!",
+    "minLastname": "Занадто коротке прізвище!",
+    "maxLastname": "Занадто довге прізвище!",
+    "invalidPhone": "Введіть номер у форматі +380XXXXXXXXX",
+    "minCity": "Занадто коротка назва міста!",
+    "maxCity": "Занадто довга назва міста!",
+    "minBranchNum": "Занадто короткий номер відділення НП!",
+    "maxBranchNum": "Занадто довгий номер відділення НП!",
+    "saveError": "Помилка зберігання змін користувача!",
+    "phoneExistsError": "Користувач з таким номером телефону вже існує",
+    "unknownError": "Невідома помилка!"
+  },
+
+  "FavoritesPage": {
+    "pageTitle": "Обране",
+    "emptyText": "Ваш список обраного порожній!",
+    "shopButton": "Перейти до товарів",
+    "loadError": "Помилка завантаження товарів.",
+    "removeLabel": "Видалити з обраного"
+  },
+
+  "GoogsClient": {
+    "allGoods": "Всі товари",
+    "loading": "Завантаження...",
+    "showMore": "Показати більше",
+    "messageError": "За вашим запитом не знайдено жодних товарів, спробуйте змінити фільтри, або скинути їх",
+    "resetFilters": "Скинути фільтри"
+  },
+
+  "GoodPage": {
+    "reviewsTitle": "Відгуки клієнтів",
+    "addReview": "Залишити відгук",
+    "noReviews": "У цього товару ще немає відгуків",
+    "modalTitle": "Залишити відгук",
+    "authorLabel": "Ваше ім’я",
+    "authorPlaceholder": "Ваше ім’я",
+    "commentLabel": "Ваш відгук",
+    "commentPlaceholder": "Ваш відгук",
+    "submitButton": "Надіслати",
+    "authorTooShort": "Ім'я занадто коротке",
+    "authorRequired": "Введіть ім'я",
+    "commentTooShort": "Відгук занадто короткий",
+    "commentRequired": "Введіть відгук",
+    "rateRequired": "Оцініть товар",
+    "rateMax": "Оцінка не може бути більше 5",
+    "loadError": "Помилка завантаження товару"
+  },
+
+  "OrderPage": {
+    "orderTitle": "Оформити замовлення",
+    "goodsTitle": "Товари",
+    "personalInfo": "Особиста Інформація",
+    "commentLabel": "Коментар",
+    "commentPlaceholder": "Введіть ваш коментар",
+    "submitButton": "Оформити замовлення",
+    "nameTooShort": "Ім'я не менше 3 символів!",
+    "nameTooLong": "Ім'я не більше 32 символів",
+    "nameRequired": "Ім'я обов'язкове",
+    "lastnameTooShort": "Прізвище не менше 1 символа!",
+    "lastnameTooLong": "Прізвище не більше 32 символів",
+    "lastnameRequired": "Прізвище обов'язкове",
+    "phoneInvalid": "Введіть номер у форматі +380XXXXXXXXX",
+    "phoneRequired": "Номер телефону обов'язковий",
+    "cityTooShort": "Місто не менше за 2 символи!",
+    "cityTooLong": "Місто не більше 64 символи",
+    "cityRequired": "Місто доставки обов'язкове",
+    "branchTooShort": "Номер відділення НП не повинно бути менше за 1 символ!",
+    "branchTooLong": "Номер відділення НП не повинно перевищувати 10 символів",
+    "branchRequired": "Номер відділення НП обов'язковий"
+  },
+
+  "CheckoutPage": {
+    "paymentTitle": "Оплата",
+    "cardNumberLabel": "Номер картки",
+    "expiryLabel": "ММ/РР",
+    "cvvLabel": "CVV",
+    "payButton": "Оплатити {total}₴",
+    "cardNumberInvalid": "Номер має містити 16 цифр",
+    "cardNumberRequired": "Введіть номер картки",
+    "expiryInvalid": "Формат MM/YY",
+    "expiryExpired": "Картка прострочена",
+    "expiryRequired": "Введіть строк дії",
+    "cvvInvalid": "3 цифри",
+    "cvvRequired": "Введіть CVV"
+  },
+
+  "BasketModal": {
+    "title": "Ваш кошик",
+    "continueShopping": "Продовжити покупки",
+    "goToOrder": "Оформити замовлення",
+    "emptyText": "Ваш кошик порожній, мерщій до покупок!",
+    "emptyButton": "До покупок"
+  },
+
+  "NotFound": {
+    "title": "404 — Сторінку не знайдено | Clothica",
+    "description": "На жаль, сторінку не знайдено. Але не хвилюйся — у нас є безліч стильних речей, які чекають на тебе! Перейди на головну та знайди свій новий образ.",
+    "h1": "404",
+    "oops": "Упс! Схоже, ти заблукав, друже",
+    "text": "Сторінка, яку ти шукаєш — не існує",
+    "button": "Повернутися на головну",
+
+    "ogTitle": "404 — Сторінку не знайдено | Clothica",
+    "ogDescription": "Сторінку не знайдено. Завітай до нашого каталогу модного одягу та знайди те, що пасує саме тобі.",
+
+    "twitterDescription": "Мода не зникає! Просто ця сторінка не існує. Перейди на головну та відкрий нові колекції."
+  },
+
+  "UserInfoForm": {
+    "nameLabel": "Ім’я*",
+    "namePlaceholder": "Ваше ім'я",
+    "lastnameLabel": "Прізвище*",
+    "lastnamePlaceholder": "Ваше прізвище",
+    "phoneLabel": "Номер телефону*",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "cityLabel": "Місто доставки*",
+    "cityPlaceholder": "Ваше місто",
+    "branchLabel": "Номер відділення НП*",
+    "branchPlaceholder": "1"
+  },
+
+  "RegistrationForm": {
+    "registerLink": "Реєстрація",
+    "loginLink": "Вхід",
+    "registerTitle": "Реєстрація",
+    "loginTitle": "Вхід",
+    "nameLabel": "Ім’я*",
+    "namePlaceholder": "Ваше ім'я",
+    "phoneLabel": "Номер телефону",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "********",
+    "submitRegister": "Зареєструватися",
+    "submitLogin": "Увійти",
+
+    "errors": {
+      "nameShort": "Занадто коротка назва!",
+      "nameLong": "Занадто довга назва!",
+      "phoneFormat": "Введіть номер у форматі +380XXXXXXXXX",
+      "required": "Обовʼязкове поле",
+      "passwordShort": "Занадто короткий пароль!",
+      "passwordLong": "Занадто довгий пароль!",
+      "registrationFailed": "Помилка реєстрації користувача!",
+      "userExists": "Користувач з таким номером телефону вже існує",
+      "unknown": "Невідома помилка!"
+    }
+  },
+
+  "Product": {
+    "breadcrumbsAll": "Всі товари",
+    "noReviews": "Немає відгуків",
+    "reviewsSuffix": "відгуків",
+    "sizeLabel": "Розмір :",
+    "addToCart": "Додати в кошик",
+    "buyNow": "Купити зараз",
+    "freeDelivery": "Безкоштовна доставка для замовлень від 1000 грн",
+    "descriptionTitle": "Опис",
+    "characteristicsTitle": "Основні характеристики"
+  },
+
+  "PaymentStatus": {
+    "successMessage": "Ваше замовлення №{orderNumber} успішно оформлене.",
+    "thankYou": "Дякуємо за покупку!",
+    "toHome": "На головну",
+    "toProfile": "У особистий кабінет"
+  },
+
+  "GoodsOrderList": {
+    "emptyCart": "Кошик порожній!",
+    "goToGoods": "Перейти до товарів",
+    "size": "Розмір",
+    "subtotal": "Проміжний підсумок",
+    "delivery": "Доставка",
+    "total": "Всього",
+    "currency": "грн"
   }
 }

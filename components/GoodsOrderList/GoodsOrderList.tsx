@@ -8,8 +8,12 @@ import MessageNoInfo from '../MessageNoInfo/MessageNoInfo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 const GoodsOrderList = () => {
-    const router = useRouter()
+  const t = useTranslations('GoodsOrderList');
+
+  const router = useRouter();
   const { cartItems, removeFromCart, updateAmount } = useShopStore();
 
   const goodPrice = cartItems.reduce(
@@ -32,8 +36,8 @@ const GoodsOrderList = () => {
         {cartItems.length === 0 ? (
           <div className={css.goods_list}>
             <MessageNoInfo
-              text="Кошик порожній!"
-              buttonText="Перейти до товарів"
+              text={t('emptyCart')}
+              buttonText={t('goToGoods')}
             onClick={handleBackClick}
             />
           </div>
@@ -71,12 +75,12 @@ const GoodsOrderList = () => {
                         {good.reviewsNumber}
                       </li>
                       <li className={css.good_number}>
-                        <p>Розмір: {good.size}</p>
+                        <p>{t('size')}: {good.size}</p>
                       </li>
                     </ul>
                   </div>
                   <div className={css.good_right}>
-                    <p className={css.good_price}>{good.price} грн</p>
+                    <p className={css.good_price}>{good.price} {t('currency')}</p>
                     <div className={css.good_right_actions}>
                       <input
                         type="number"
@@ -109,18 +113,18 @@ const GoodsOrderList = () => {
         )}
         <ul className={css.total_price_wrapper}>
           <li className={css.price_item}>
-            <p className={css.provisional_price}>Проміжний підсумок </p>
-            <p className={css.provisional_price_value}>{goodPrice} грн</p>
+            <p className={css.provisional_price}>{t('subtotal')} </p>
+            <p className={css.provisional_price_value}>{goodPrice} {t('currency')}</p>
           </li>
           <li className={css.price_item}>
-            <p className={css.delivery_price}>Доставка </p>
+            <p className={css.delivery_price}>{t('delivery')} </p>
             <p className={css.delivery_price_value}>
-              {deliveryPrice === 0 ? '' : `${deliveryPrice} грн`}
+              {deliveryPrice === 0 ? '' : `${deliveryPrice} ${t('currency')}`}
             </p>
           </li>
           <li className={css.price_item}>
-            <h3 className={css.total_price}>Всього </h3>
-            <h3 className={css.total_price_value}>{totalPrice} грн</h3>
+            <h3 className={css.total_price}>{t('total')} </h3>
+            <h3 className={css.total_price_value}>{totalPrice} {t('currency')}</h3>
           </li>
         </ul>
       </div>

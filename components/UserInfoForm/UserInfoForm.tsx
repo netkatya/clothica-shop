@@ -3,6 +3,8 @@
 import { FormikProps, ErrorMessage } from 'formik';
 import styles from './UserInfoForm.module.css';
 
+import { useTranslations } from 'next-intl';
+
 interface Props<T> {
   formik: FormikProps<T>;
 }
@@ -16,30 +18,32 @@ export default function UserInfoForm<
     branchnum_np: string;
   },
 >({ formik }: Props<T>) {
+  const t = useTranslations('UserInfoForm');
+
   return (
     <div className={styles.formWrapper}>
       <div className={styles.field}>
-        <label className={styles.label}>Ім&#700;я*</label>
+        <label className={styles.label}>{t('nameLabel')}</label>
         <input
           name="name"
           className={styles.input}
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="Ваше ім'я"
+          placeholder={t('namePlaceholder')}
         />
         <ErrorMessage name="name" component="span" className={styles.error} />
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>Прізвище*</label>
+        <label className={styles.label}>{t('lastnameLabel')}</label>
         <input
           name="lastname"
           className={styles.input}
           value={formik.values.lastname}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="Ваше прізвище"
+          placeholder={t('lastnamePlaceholder')}
         />
         <ErrorMessage
           name="lastname"
@@ -49,7 +53,7 @@ export default function UserInfoForm<
       </div>
 
       <div className={`${styles.field} ${styles.fullWidthField}`}>
-        <label className={styles.label}>Номер телефону*</label>
+        <label className={styles.label}>{t('phoneLabel')}</label>
         <input
           name="phone"
           className={styles.input}
@@ -62,20 +66,20 @@ export default function UserInfoForm<
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>Місто доставки*</label>
+        <label className={styles.label}>{t('cityLabel')}</label>
         <input
           name="city"
           className={styles.input}
           value={formik.values.city}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="Ваше місто"
+          placeholder={t('cityPlaceholder')}
         />
         <ErrorMessage name="city" component="span" className={styles.error} />
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>Номер відділення НП*</label>
+        <label className={styles.label}>{t('branchLabel')}</label>
         <input
           name="branchnum_np"
           className={styles.input}

@@ -3,6 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './PaymentStatus.module.css';
 
+import { useTranslations } from 'next-intl';
+
 type Status = 'loading' | 'success' | 'failed';
 
 interface MotionCheckProps {
@@ -11,6 +13,8 @@ interface MotionCheckProps {
 }
 
 export default function MotionCheck({ status, orderNumber }: MotionCheckProps) {
+  const t = useTranslations('PaymentStatus');
+
   if (status !== 'success') return null;
 
   return (
@@ -34,9 +38,9 @@ export default function MotionCheck({ status, orderNumber }: MotionCheckProps) {
         {/* Текст */}
         <div className={styles.textWrapper}>
           <h2 className={styles.successText}>
-            Ваше замовлення №{orderNumber ?? '—'} успішно оформлене.
+            {t('successMessage', { orderNumber: orderNumber ?? '—' })}
           </h2>
-          <p className={styles.subText}>Дякуємо за покупку!</p>
+          <p className={styles.subText}>{t('thankYou')}</p>
         </div>
 
         {/* Кнопки */}
@@ -47,7 +51,7 @@ export default function MotionCheck({ status, orderNumber }: MotionCheckProps) {
             className={styles.btn}
             onClick={() => (window.location.href = '/')}
           >
-            На головну
+            {t('toHome')}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -55,7 +59,7 @@ export default function MotionCheck({ status, orderNumber }: MotionCheckProps) {
             className={styles.btn}
             onClick={() => (window.location.href = '/profile')}
           >
-            У особистий кабінет
+            {t('toProfile')}
           </motion.button>
         </div>
       </motion.div>

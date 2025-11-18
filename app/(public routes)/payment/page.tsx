@@ -9,33 +9,34 @@ import RadioCart from '@/components/RadioCart/RadioCart';
 import { useShopStore } from '@/lib/store/cartSrore';
 import { createOrderClient } from '@/lib/api/clientApi';
 
-const validationSchema = Yup.object({
-  cardNumber: Yup.string()
-    .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Номер має містити 16 цифр')
-    .required('Введіть номер картки'),
-  expiry: Yup.string()
-    .matches(/^\d{2}\/\d{2}$/, 'Формат MM/YY')
-    .test('not-expired', 'Картка прострочена', value => {
-      if (!value) return false;
-      const [mmStr, yyStr] = value.split('/');
-      const month = Number(mmStr);
-      const year = Number('20' + yyStr);
-
-      if (!month || month < 1 || month > 12) return false;
-
-      const now = new Date();
-      const expiryDate = new Date(year, month - 1, 1);
-      const current = new Date(now.getFullYear(), now.getMonth(), 1);
-
-      return expiryDate >= current;
-    })
-    .required('Введіть строк дії'),
-  cvv: Yup.string()
-    .matches(/^\d{3}$/, '3 цифри')
-    .required('Введіть CVV'),
-});
+import { useTranslations } from 'next-intl';
 
 export default function CheckoutForm() {
+  const t = useTranslations('CheckoutPage');
+
+  const validationSchema = Yup.object({
+    cardNumber: Yup.string()
+      .matches(/^\d{4} \d{4} \d{4} \d{4}$/, t('cardNumberInvalid'))
+      .required(t('cardNumberRequired')),
+    expiry: Yup.string()
+      .matches(/^\d{2}\/\d{2}$/, t('expiryInvalid'))
+      .test('not-expired', t('expiryExpired'), value => {
+        if (!value) return false;
+        const [mmStr, yyStr] = value.split('/');
+        const month = Number(mmStr);
+        const year = Number('20' + yyStr);
+        if (!month || month < 1 || month > 12) return false;
+        const now = new Date();
+        const expiryDate = new Date(year, month - 1, 1);
+        const current = new Date(now.getFullYear(), now.getMonth(), 1);
+        return expiryDate >= current;
+      })
+      .required(t('expiryRequired')),
+    cvv: Yup.string()
+      .matches(/^\d{3}$/, t('cvvInvalid'))
+      .required(t('cvvRequired')),
+  });
+
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   const { cartItems, clearCart } = useShopStore();
@@ -93,9 +94,9 @@ export default function CheckoutForm() {
       >
         {({ setFieldValue, isValid }) => (
           <Form className={css.form}>
-            <h2 className={css.title}>Оплата</h2>
+            <h2 className={css.title}>{t('paymentTitle')}</h2>
             <RadioCart />
-            <label className={css.label}>Номер картки</label>
+            <label className={css.label}>{t('cardNumberLabel')}</label>
             <Field
               name="cardNumber"
               placeholder="1234 5678 9012 3456"
@@ -114,7 +115,7 @@ export default function CheckoutForm() {
 
             <div className={css.row}>
               <div className={css.col}>
-                <label className={css.label}>ММ/РР</label>
+                <label className={css.label}>{t('expiryLabel')}</label>
                 <Field
                   name="expiry"
                   placeholder="12/25"
@@ -159,7 +160,7 @@ export default function CheckoutForm() {
               disabled={!isValid}
               className={`${css.button} ${!isValid ? css.disabled : ''}`}
             >
-              Оплатити {totalAmount}₴
+              {t('payButton', { total: totalAmount })}
             </button>
           </Form>
         )}

@@ -8,7 +8,11 @@ import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 import { useShopStore } from '@/lib/store/cartSrore';
 import css from './modal.module.css';
 
+import { useTranslations } from 'next-intl';
+
 export default function BasketModal() {
+  const t = useTranslations('BasketModal');
+
   const router = useRouter();
   const { cartItems } = useShopStore();
   const [closing, setClosing] = useState(false);
@@ -66,24 +70,24 @@ export default function BasketModal() {
           </button>
         </div>
 
-        <h2 className={css.title}>Ваш кошик</h2>
+        <h2 className={css.title}>{t('title')}</h2>
 
         {cartItems.length > 0 ? (
           <>
             <GoodsOrderList />
             <div className={css.actions}>
               <button className={css.secondaryButton} onClick={handleGoToGoods}>
-                Продовжити покупки
+                {t('continueShopping')}
               </button>
               <button className={css.primaryButton} onClick={handleGoToOrder}>
-                Оформити замовлення
+                {t('goToOrder')}
               </button>
             </div>
           </>
         ) : (
           <MessageNoInfo
-            text="Ваш кошик порожній, мерщій до покупок!"
-            buttonText="До покупок"
+            text={t('emptyText')}
+            buttonText={t('emptyButton')}
             onClick={handleGoToGoods}
           />
         )}
