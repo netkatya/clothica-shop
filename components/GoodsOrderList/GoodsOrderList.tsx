@@ -28,7 +28,7 @@ const GoodsOrderList = () => {
       router.push('/goods');
       clearTimeout(id);
     }, 100);
-  }
+  };
 
   return (
     <div className={css.container}>
@@ -64,9 +64,8 @@ const GoodsOrderList = () => {
                     </Link>
                     <ul className={css.good_numbers}>
                       <li className={css.good_number}>
-                        <AiFillStar className={css.star_full}>
-                          {good.rate}
-                        </AiFillStar>
+                        <AiFillStar className={css.star_full} />
+                        {good.rate}
                       </li>
                       <li className={css.good_number}>
                         <svg width="16" height="16" aria-hidden="true">

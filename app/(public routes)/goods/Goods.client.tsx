@@ -20,6 +20,7 @@ import { Category } from '@/types/category';
 import { useDebounce } from 'use-debounce';
 import { ColorOfGood, Gender, Size } from '@/types/good';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import Loading from '@/app/loading';
 
 import { useTranslations } from 'next-intl';
 
@@ -126,16 +127,15 @@ export default function GoodsClient() {
       isInitialRender.current = false;
       return;
     }
-    const isPriceChanging = filters.priceRange !== debouncedPriceRange;
-
-    if (isPriceChanging) {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 2500);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.scrollY <= 0) {
+      return;
     }
-  }, [apiFilters, debouncedPriceRange, filters.priceRange]);
+    {
+      setTimeout(() => {
+        window.scrollTo({ top: 60, behavior: 'smooth' });
+      }, 1300);
+    }
+  }, [apiFilters]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -214,6 +214,7 @@ export default function GoodsClient() {
           />
         </aside>
         <div className={css.contentArea}>
+          {/* {isLoading && <Loading></Loading>} */}
           <AllGoodsList goods={goods}></AllGoodsList>{' '}
           <div className={css.buttonContainer}>
             {hasNextPage && (

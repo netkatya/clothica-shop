@@ -79,4 +79,8 @@
     flex-direction: row;
     gap: 32px;
   }
+  .test {
+    display: flex;
+    /* align-items: center; */
+  }
 }
