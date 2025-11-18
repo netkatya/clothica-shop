@@ -9,11 +9,15 @@ import { useShopStore } from '@/lib/store/cartSrore';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 interface ProductProps {
   good: Good;
 }
 
 export default function Product({ good }: ProductProps) {
+  const t = useTranslations('Product');
+
   const [value, setValue] = useState<number>(1);
   //size
   const [selectedSize, setSelectedSize] = useState<Size>(good.size[0]);
@@ -98,7 +102,7 @@ export default function Product({ good }: ProductProps) {
           <div className={css.column}>
             <div className={css.productDescription}>
               <p className={css.breadcrumbs}>
-                Всі товари &nbsp;&gt;&nbsp; <span>{good.name}</span>
+                {t('breadcrumbsAll')} &nbsp;&gt;&nbsp; <span>{good.name}</span>
               </p>
               <h1 className={css.title}>{good.name}</h1>
               <div className={css.details}>
@@ -112,19 +116,19 @@ export default function Product({ good }: ProductProps) {
                       <Stars rating={good.averageRate} />
                       <Link href={`/goods/${good._id}#reviews`}>
                         <span className={css.ratingText}>
-                          ({good.averageRate}) • {good.feedbackCount} відгуків
+                          ({good.averageRate}) • {good.feedbackCount} {t('reviewsSuffix')}
                         </span>
                       </Link>
                     </>
                   ) : (
-                    'Немає відгуків'
+                    t('noReviews')
                   )}
                 </div>
               </div>
 
               <p className={css.text}>{good.prevDescription}</p>
               <div className={css.sizeSelect}>
-                <label className={css.label}>Розмір :</label>
+                <label className={css.label}>{t('sizeLabel')}</label>
                 <select
                   className={css.size}
                   value={selectedSize}
@@ -137,7 +141,7 @@ export default function Product({ good }: ProductProps) {
               </div>
               <div className={css.inputContainer}>
                 <button className={css.addToBucket} onClick={handleAddToCart}>
-                  Додати в кошик
+                  {t('addToCart')}
                 </button>
                 <input
                   type="number"
@@ -149,15 +153,15 @@ export default function Product({ good }: ProductProps) {
               </div>
             </div>
             <button className={css.buyNow} onClick={handleBuyNow}>
-              Купити зараз
+              {t('buyNow')}
             </button>
             <p className={css.freeDelivery}>
-              Безкоштовна доставка для замовлень від 1000 грн
+              {t('freeDelivery')}
             </p>
             <div>
-              <h2 className={css.descTitle}>Опис</h2>
+              <h2 className={css.descTitle}>{t('descriptionTitle')}</h2>
               <p className={css.descText}>{good.description}</p>
-              <p className={css.descSubtitle}>Основні характеристики</p>
+              <p className={css.descSubtitle}>{t('characteristicsTitle')}</p>
               <ul className={css.listDisc}>
                 {good.characteristics.map(item => (
                   <li key={item}>{item}</li>

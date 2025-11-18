@@ -11,7 +11,10 @@ import Loading from '@/app/loading';
 import MessageNoInfo from '@/components/MessageNoInfo/MessageNoInfo';
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 export default function FavoritesPage() {
+  const t = useTranslations('FavoritesPage');
   const router = useRouter();
 
   const { data, isLoading, isError } = useQuery({
@@ -29,7 +32,7 @@ export default function FavoritesPage() {
   }
 
   if (isError) {
-    return <p className={css.emptyMessage}>Помилка завантаження товарів.</p>;
+    return <p className={css.emptyMessage}>{t('loadError')}</p>;
   }
 
   if (favoriteItems.length === 0) {
@@ -37,8 +40,8 @@ export default function FavoritesPage() {
       <div className={css.favoritesContainer}>
         <div className={css.messageContainer}>
           <MessageNoInfo
-            text="Ваш список обраного порожній!"
-            buttonText="Перейти до товарів"
+            text={t('emptyText')}
+            buttonText={t('shopButton')}
             route="/goods"
             onClick={() => router.push('/goods')}
           />
@@ -50,7 +53,7 @@ export default function FavoritesPage() {
   return (
     <main className={css.favoritesContainer}>
       <div className="container">
-        <h1 className={css.pageTitle}>Обране</h1>
+        <h1 className={css.pageTitle}>{t('pageTitle')}</h1>
         <div className={css.favoritesList}>
           {favoriteItems.map(item => (
             <div key={item._id} className={css.favoriteItem}>
@@ -73,7 +76,7 @@ export default function FavoritesPage() {
                 <button
                   className={css.removeButton}
                   onClick={() => removeFavorite(item._id)}
-                  aria-label="Видалити з обраного"
+                  aria-label={t('removeLabel')}
                 >
                   <LuTrash2 size={20} className={css.trash} />
                 </button>

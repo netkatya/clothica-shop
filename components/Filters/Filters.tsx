@@ -5,6 +5,8 @@ import FilterContent from '../FilterContent/FilterContent';
 import { useState } from 'react';
 import { FilterContainerProps } from '@/types/filters';
 
+import { useTranslations } from 'next-intl';
+
 export default function Filters({
   currentFilters,
   onFilterChange,
@@ -15,17 +17,19 @@ export default function Filters({
   total,
 }: FilterContainerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const t = useTranslations('Filters');
   return (
     <div>
       <div className={css.filters}>
-        <h3 className={css.filter}>Фільтри</h3>
+        <h3 className={css.filter}>{t('title')}</h3>
         <button type="button" className={css.button} onClick={onClearAll}>
-          Очистити всі
+          {t('clearAll')}
         </button>
       </div>
       <p className={css.shown}>
         {' '}
-        Показано {shown} з {total}
+        {t('shown')} {shown} {t('of')} {total}
       </p>
 
       <div className={css.filterWrapper}>
@@ -34,7 +38,7 @@ export default function Filters({
             className={css.filterDropdownHeader}
             onClick={() => setIsOpen(!isOpen)}
           >
-            <h4 className={css.filterDropdownTitle}>Фільтри</h4>
+            <h4 className={css.filterDropdownTitle}>{t('title')}</h4>
             <button
               type="button"
               className={css.arrow}

@@ -11,30 +11,33 @@ import { useAuthStore } from '@/lib/store/authStore';
 import * as Yup from 'yup';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const OrderSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Ім'я не менше 3 символів!")
-    .max(32, "Ім'я не більше 32 символів")
-    .required("Ім'я обов'язкове"),
-  lastname: Yup.string()
-    .min(1, 'Прізвище не менше 1 символа!')
-    .max(128, 'Прізвище не більше 32 символів')
-    .required("Прізвище обов'язкове"),
-  phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Введіть номер у форматі +380XXXXXXXXX')
-    .required("Номер телефону обов'язковий"),
-  city: Yup.string()
-    .min(2, 'Місто не менше за 2 символи!')
-    .max(100, 'Місто не більше 64 символи')
-    .required("Місто доставки обов'язкове"),
-  branchnum_np: Yup.string()
-    .min(1, 'Номер відділення НП не повинно бути менше за 1 символ!')
-    .max(10, 'Номер відділення НП не повинно перевищувати 10 символів')
-    .required("Номер відділення НП обов'язковий"),
-});
+import { useTranslations } from 'next-intl';
 
 const OrderPage = () => {
+  const t = useTranslations('OrderPage');
+
+  const OrderSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, t('nameTooShort'))
+      .max(32, t('nameTooLong'))
+      .required(t('nameRequired')),
+    lastname: Yup.string()
+      .min(1, t('lastnameTooShort'))
+      .max(128, t('lastnameTooLong'))
+      .required(t('lastnameRequired')),
+    phone: Yup.string()
+      .matches(/^\+380\d{9}$/, t('phoneInvalid'))
+      .required(t('phoneRequired')),
+    city: Yup.string()
+      .min(2, t('cityTooShort'))
+      .max(100, t('cityTooLong'))
+      .required(t('cityRequired')),
+    branchnum_np: Yup.string()
+      .min(1, t('branchTooShort'))
+      .max(10, t('branchTooLong'))
+      .required(t('branchRequired')),
+  });
+
   const router = useRouter();
 
     const { cartItems } = useShopStore();
@@ -101,14 +104,14 @@ const OrderPage = () => {
 
     return (
         <div className={css.container}>
-            <h1 className={css.title}>Оформити замовлення</h1>
+            <h1 className={css.title}>{t('orderTitle')}</h1>
             <div className={css.wrapper}>
                 <div className={css.goods_list}>
-                    <p className={css.list_title}>Товари</p>
+                    <p className={css.list_title}>{t('goodsTitle')}</p>
                     <GoodsOrderList />
                 </div>
                 <div className={css.order_form}>
-                    <p className={css.form_title}>Особиста Інформація</p>
+                    <p className={css.form_title}>{t('personalInfo')}</p>
                     <Formik 
                     enableReinitialize={true}
                     initialValues={initValues} 
@@ -126,19 +129,19 @@ const OrderPage = () => {
                                 <UserInfoForm formik={formik} />
                                 <div className={css.comment_block}>
                                     <label className={css.comment}>
-                                        Коментар
+                                        {t('commentLabel')}
                                     </label>
                                         <textarea
                                             name="comment"
                                             className={css.comment_text}
-                                            placeholder="Введіть ваш коментар"
+                                            placeholder={t('commentPlaceholder')}
                                             value={formik.values.comment || ''}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
                                 </div>                              
                                 <button type="submit" className={css.submit_button}>
-                                    Оформити замовлення
+                                    {t('submitButton')}
                                 </button>
                             </Form>
                         )}

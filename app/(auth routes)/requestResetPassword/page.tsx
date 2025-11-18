@@ -9,13 +9,17 @@ import { TextField } from '@/components/TextField/TextField';
 
 import css from './requestReset.module.css';
 
-const validationSchema = Yup.object({
-  phone: Yup.string()
-    .required("Номер телефону обов'язковий")
-    .matches(/^\+380\d{9}$/, 'Введіть номер у форматі +380XXXXXXXXX'),
-});
+import { useTranslations } from 'next-intl';
 
 export default function RequestResetPasswordPage() {
+  const t = useTranslations('RequestResetPassword');
+
+  const validationSchema = Yup.object({
+    phone: Yup.string()
+      .required(t('requiredField'))
+      .matches(/^\+380\d{9}$/, t('invalidPhone')),
+  });
+
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedPhone, setSubmittedPhone] = useState('');
@@ -38,13 +42,13 @@ export default function RequestResetPasswordPage() {
         setSubmittedPhone(values.phone);
         setError('');
       } else {
-        setError('Невірний номер телефону');
+        setError(t('invalidPhoneError'));
       }
     } catch (error) {
       setError(
         (error as ApiError).response?.data?.error ??
           (error as ApiError).message ??
-          'Невідома помилка!'
+          t('unknownError')
       );
     } finally {
       setSubmitting(false);
@@ -56,21 +60,20 @@ export default function RequestResetPasswordPage() {
       <div className={css.card}>
         {isSubmitted ? (
           <div className={css.center}>
-            <h1 className={css.title}>Повідомлення в Telegram надіслано!</h1>
+            <h1 className={css.title}>{t('successTitle')}</h1>
             <p className={css.description}>
-              Перевірте ваш чат Telegram та введіть нижче секретний код для
-              відновлення паролю.
+              {t('successDescription')}
             </p>
             <Link
               href={`/reset-password/${encodeURIComponent(submittedPhone)}`}
               className={css.mainButton}
             >
-              Перейти на сторінку зміни паролю
+              {t('resetPageButton')}
             </Link>
 
             <div className={css.smallTextWrapper}>
               <Link href="/auth/login" className={css.smallLink}>
-                Повернутися до входу
+                {t('backToLogin')}
               </Link>
             </div>
           </div>
@@ -83,13 +86,13 @@ export default function RequestResetPasswordPage() {
             {({ isSubmitting, touched, errors }) => (
               <>
                 <h1 className={css.title}>
-                  Введіть номер телефону для відновлення пароля
+                  {t('title')}
                 </h1>
 
                 <Form className={css.form}>
                   <div className={css.fieldWrapper}>
                     <label htmlFor="phone" className={css.label}>
-                      Номер телефону
+                      {t('phoneLabel')}
                     </label>
                     <TextField
                       name="phone"
@@ -112,23 +115,23 @@ export default function RequestResetPasswordPage() {
                     disabled={isSubmitting}
                   >
                     {isSubmitting
-                      ? 'Надсилання...'
-                      : 'Надіслати повідомлення в Telegram'}
+                      ? t('sending')
+                      : t('submitButton')}
                   </button>
                 </Form>
 
                 <div className={css.smallTextWrapper}>
                   <p className={css.smallText}>
-                    Пригадали пароль?
+                    {t('rememberPassword')}
                     <Link href="/auth/login" className={css.linkGreen}>
-                      Увійти
+                      {t('loginLink')}
                     </Link>
                   </p>
                 </div>
 
                 <div className={css.smallTextWrapper}>
                   <Link href="/" className={css.smallLink}>
-                    ← Повернутися на головну
+                    {t('backToHome')}
                   </Link>
                 </div>
               </>

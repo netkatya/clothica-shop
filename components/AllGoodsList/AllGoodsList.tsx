@@ -5,11 +5,14 @@ import { AiFillStar } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import FavoriteGoodButton from '../FavoriteGoogButton/FavoriteGoodButton';
-// import { useAutoAnimate } from '@formkit/auto-animate/react';
+
+import { useTranslations } from 'next-intl';
+
 interface AllGoodsListProps {
   goods: Good[];
 }
 export default function AllGoodsList({ goods }: AllGoodsListProps) {
+  const t = useTranslations('AllGoodsList');
   // const [listRef] = useAutoAnimate<HTMLUListElement>();
   return (
     <div className={css.sliderContainer}>
@@ -52,7 +55,7 @@ export default function AllGoodsList({ goods }: AllGoodsListProps) {
                 <FavoriteGoodButton id={good._id} />
               </div>
               <Link href={`/goods/${good._id}`} className={css.detailLink}>
-                <button className={css.detail}>Детальніше</button>
+                <button className={css.detail}>{t('details')}</button>
               </Link>
             </div>
           </li>

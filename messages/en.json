@@ -66,5 +66,316 @@
     "profile": "Profile",
     "login": "Login",
     "register": "Register"
+  },
+
+  "CategoriesList": {
+    "title": "Categories",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+
+  "GoodsList": {
+    "details": "More details",
+    "prev": "Previous",
+    "next": "Next"
+  },
+
+  "AllGoodsList": {
+    "details": "More details"
+  },
+
+  "ConnectTelegram": {
+    "connected": "Telegram connected!",
+    "description": "Click the button below to connect your Telegram account.",
+    "openBot": "Open bot",
+    "note": "After launching the bot, the connection status will update automatically."
+  },
+
+  "CookieBanner": {
+    "text": "We use cookies to improve your experience. Accept cookies?",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+
+  "FilterContent": {
+    "all": "All",
+    "loadingCategories": "Loading...",
+    "size": "Size",
+    "price": "Price",
+    "color": "Color",
+    "gender": "Gender",
+    "clear": "Clear",
+    "man": "Men",
+    "women": "Women",
+    "unisex": "Unisex"
+  },
+
+  "Filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "shown": "Shown",
+    "of": "of"
+  },
+
+  "SidebarFilters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "shown": "Shown",
+    "of": "of"
+  },
+
+  "OrderItem": {
+    "sum": "Sum:",
+    "status": "Status:",
+    "uah": "UAH"
+  },
+
+  "LoginForm": {
+    "register": "Register",
+    "login": "Login",
+    "title": "Login",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "submitButton": "Sign in",
+    "forgotPassword": "Forgot password?",
+    "resetLink": "Reset password",
+    "requiredField": "Required field",
+    "invalidPhone": "Enter phone number in format +380XXXXXXXXX",
+    "shortPassword": "Password is too short!",
+    "longPassword": "Password is too long!",
+    "unknownError": "Unknown error!",
+    "invalidCredentials": "Incorrect phone number or password",
+    "registrationError": "User registration error!"
+  },
+
+  "RequestResetPassword": {
+    "title": "Enter your phone number to reset password",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "submitButton": "Send message to Telegram",
+    "sending": "Sending...",
+    "successTitle": "Message sent via Telegram!",
+    "successDescription": "Check your Telegram chat and enter the secret code below to reset your password.",
+    "resetPageButton": "Go to password reset page",
+    "backToLogin": "Back to login",
+    "rememberPassword": "Remembered your password?",
+    "loginLink": "Sign in",
+    "backToHome": "← Return to homepage",
+    "requiredField": "Phone number is required",
+    "invalidPhone": "Enter phone number in format +380XXXXXXXXX",
+    "invalidPhoneError": "Invalid phone number",
+    "unknownError": "Unknown error!"
+  },
+
+  "ResetPassword": {
+    "title": "Enter a new password",
+    "confirmationCodeLabel": "Confirmation code from Telegram",
+    "passwordLabel": "New password",
+    "confirmPasswordLabel": "Repeat password",
+    "requiredField": "This field is required",
+    "minCode": "Code must be at least 4 characters",
+    "minPassword": "Password must be at least 6 characters",
+    "passwordsMismatch": "Passwords do not match",
+    "submitButton": "Reset password",
+    "sending": "Saving...",
+    "successTitle": "Password successfully changed!",
+    "successDescription": "Now you can log in with your new password. Redirecting to login page...",
+    "loginButton": "Go to login",
+    "backToLogin": "← Back to login",
+    "unknownError": "An unknown error occurred"
+  },
+
+  "ProfilePage": {
+    "pageTitle": "Dashboard",
+    "personalInfoTitle": "Personal Information",
+    "saveChangesButton": "Save Changes",
+    "ordersTitle": "My Orders",
+    "noOrdersText": "You haven't made any orders yet! Go shopping!",
+    "ordersButton": "Go Shopping",
+    "logoutButton": "Log out",
+    "nameLabel": "First Name",
+    "lastnameLabel": "Last Name",
+    "phoneLabel": "Phone Number",
+    "cityLabel": "City",
+    "branchnumLabel": "Branch Number",
+    "requiredField": "Required field",
+    "minName": "Name is too short!",
+    "maxName": "Name is too long!",
+    "minLastname": "Last name is too short!",
+    "maxLastname": "Last name is too long!",
+    "invalidPhone": "Enter phone number in format +380XXXXXXXXX",
+    "minCity": "City name is too short!",
+    "maxCity": "City name is too long!",
+    "minBranchNum": "Branch number is too short!",
+    "maxBranchNum": "Branch number is too long!",
+    "saveError": "Error saving user changes!",
+    "phoneExistsError": "User with this phone number already exists",
+    "unknownError": "Unknown error!"
+  },
+
+  "FavoritesPage": {
+    "pageTitle": "Favorites",
+    "emptyText": "Your favorites list is empty!",
+    "shopButton": "Go Shopping",
+    "loadError": "Error loading products.",
+    "removeLabel": "Remove from favorites"
+  },
+
+  "GoogsClient": {
+    "allGoods": "All goods",
+    "loading": "Loading...",
+    "showMore": "Show more",
+    "messageError": "No products were found for your search, try changing your filters, or resetting them",
+    "resetFilters": "Reset filters"
+  },
+
+  "GoodPage": {
+    "reviewsTitle": "Customer Reviews",
+    "addReview": "Leave a Review",
+    "noReviews": "This product has no reviews yet",
+    "modalTitle": "Leave a Review",
+    "authorLabel": "Your Name",
+    "authorPlaceholder": "Your Name",
+    "commentLabel": "Your Review",
+    "commentPlaceholder": "Your Review",
+    "submitButton": "Submit",
+    "authorTooShort": "Name is too short",
+    "authorRequired": "Enter your name",
+    "commentTooShort": "Review is too short",
+    "commentRequired": "Enter a review",
+    "rateRequired": "Rate the product",
+    "rateMax": "Rating cannot be higher than 5",
+    "loadError": "Error loading product"
+  },
+
+  "OrderPage": {
+    "orderTitle": "Place Order",
+    "goodsTitle": "Products",
+    "personalInfo": "Personal Information",
+    "commentLabel": "Comment",
+    "commentPlaceholder": "Enter your comment",
+    "submitButton": "Place Order",
+    "nameTooShort": "Name must be at least 3 characters!",
+    "nameTooLong": "Name must be at most 32 characters",
+    "nameRequired": "Name is required",
+    "lastnameTooShort": "Lastname must be at least 1 character!",
+    "lastnameTooLong": "Lastname must be at most 32 characters",
+    "lastnameRequired": "Lastname is required",
+    "phoneInvalid": "Enter phone in format +380XXXXXXXXX",
+    "phoneRequired": "Phone number is required",
+    "cityTooShort": "City must be at least 2 characters!",
+    "cityTooLong": "City must be at most 64 characters",
+    "cityRequired": "Delivery city is required",
+    "branchTooShort": "Branch number must be at least 1 character!",
+    "branchTooLong": "Branch number must be at most 10 characters",
+    "branchRequired": "Branch number is required"
+  },
+
+  "CheckoutPage": {
+    "paymentTitle": "Payment",
+    "cardNumberLabel": "Card Number",
+    "expiryLabel": "MM/YY",
+    "cvvLabel": "CVV",
+    "payButton": "Pay {total}₴",
+    "cardNumberInvalid": "Card number must have 16 digits",
+    "cardNumberRequired": "Enter card number",
+    "expiryInvalid": "Format MM/YY",
+    "expiryExpired": "Card expired",
+    "expiryRequired": "Enter expiry date",
+    "cvvInvalid": "3 digits",
+    "cvvRequired": "Enter CVV"
+  },
+
+  "BasketModal": {
+    "title": "Your Cart",
+    "continueShopping": "Continue shopping",
+    "goToOrder": "Checkout",
+    "emptyText": "Your cart is empty, hurry to shopping!",
+    "emptyButton": "Go shopping"
+  },
+
+  "NotFound": {
+    "title": "404 — Page Not Found | Clothica",
+    "description": "Unfortunately, the page was not found. But don’t worry — we have plenty of stylish items waiting for you! Go to the homepage and discover your new look.",
+    "h1": "404",
+    "oops": "Oops! Looks like you're lost, friend",
+    "text": "The page you are looking for does not exist",
+    "button": "Return to home",
+
+    "ogTitle": "404 — Page Not Found | Clothica",
+    "ogDescription": "Page not found. Visit our fashion catalog and find something that suits you.",
+
+    "twitterDescription": "Fashion never disappears! This page just doesn't exist. Go to the homepage and explore new collections."
+  },
+
+  "UserInfoForm": {
+    "nameLabel": "First name*",
+    "namePlaceholder": "Your first name",
+    "lastnameLabel": "Last name*",
+    "lastnamePlaceholder": "Your last name",
+    "phoneLabel": "Phone number*",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "cityLabel": "Delivery city*",
+    "cityPlaceholder": "Your city",
+    "branchLabel": "Nova Poshta branch number*",
+    "branchPlaceholder": "1"
+  },
+
+  "RegistrationForm": {
+    "registerLink": "Register",
+    "loginLink": "Login",
+    "registerTitle": "Register",
+    "loginTitle": "Login",
+    "nameLabel": "First name*",
+    "namePlaceholder": "Your first name",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+38 (0__) ___-__-__",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "submitRegister": "Sign up",
+    "submitLogin": "Sign in",
+
+    "errors": {
+      "nameShort": "Name is too short!",
+      "nameLong": "Name is too long!",
+      "phoneFormat": "Enter the number in format +380XXXXXXXXX",
+      "required": "Required field",
+      "passwordShort": "Password is too short!",
+      "passwordLong": "Password is too long!",
+      "registrationFailed": "User registration failed!",
+      "userExists": "A user with this phone number already exists",
+      "unknown": "Unknown error!"
+    }
+  },
+
+  "Product": {
+    "breadcrumbsAll": "All products",
+    "noReviews": "No reviews",
+    "reviewsSuffix": "reviews",
+    "sizeLabel": "Size:",
+    "addToCart": "Add to cart",
+    "buyNow": "Buy now",
+    "freeDelivery": "Free delivery for orders over 1000 UAH",
+    "descriptionTitle": "Description",
+    "characteristicsTitle": "Main characteristics"
+  },
+
+  "PaymentStatus": {
+    "successMessage": "Your order №{orderNumber} has been successfully placed.",
+    "thankYou": "Thank you for your purchase!",
+    "toHome": "Home",
+    "toProfile": "Go to profile"
+  },
+
+  "GoodsOrderList": {
+    "emptyCart": "Cart is empty!",
+    "goToGoods": "Go to products",
+    "size": "Size",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "total": "Total",
+    "currency": "UAH"
   }
 }

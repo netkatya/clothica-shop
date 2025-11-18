@@ -12,6 +12,8 @@ import { TextField } from '@/components/TextField/TextField';
 import css from './resetPassword.module.css';
 import { log } from 'console';
 
+import { useTranslations } from 'next-intl';
+
 // Типи для форми
 interface ResetPasswordFormValues {
   confirmationCode: string;
@@ -19,20 +21,22 @@ interface ResetPasswordFormValues {
   confirmPassword: string;
 }
 
-// Схема валідації
-const validationSchema = Yup.object({
-  confirmationCode: Yup.string()
-    .required("Код підтвердження обов'язковий")
-    .min(4, 'Код повинен містити мінімум 4 символи'),
-  password: Yup.string()
-    .required("Пароль обов'язковий")
-    .min(6, 'Пароль повинен містити мінімум 6 символів'),
-  confirmPassword: Yup.string()
-    .required("Підтвердження паролю обов'язкове")
-    .oneOf([Yup.ref('password')], 'Паролі не співпадають'),
-});
-
 export default function ResetPasswordPage() {
+  const t = useTranslations('ResetPassword');
+  
+  // Схема валідації
+  const validationSchema = Yup.object({
+    confirmationCode: Yup.string()
+      .required(t('requiredField'))
+      .min(4, 'minCode'),
+    password: Yup.string()
+      .required(t('requiredField'))
+      .min(6, t('minPassword')),
+    confirmPassword: Yup.string()
+      .required(t('requiredField'))
+      .oneOf([Yup.ref('password')], t('passwordsMismatch')),
+  });
+
   const { phone: phoneURI } = useParams<{ phone: string }>();
   decodeURIComponent(phoneURI);
   const phone = decodeURIComponent(phoneURI);
@@ -69,7 +73,7 @@ export default function ResetPasswordPage() {
       setError(
         (error as ApiError).response?.data?.error ??
           (error as ApiError).message ??
-          'Сталася помилка'
+          t('unknownError')
       );
     } finally {
       setSubmitting(false);
@@ -81,13 +85,12 @@ export default function ResetPasswordPage() {
       <section className={css.page}>
         <div className={css.card}>
           <div className={css.center}>
-            <h1 className={css.title}>Пароль успішно змінено!</h1>
+            <h1 className={css.title}>{t('successTitle')}</h1>
             <p className={css.description}>
-              Тепер ви можете увійти до свого облікового запису з новим паролем.
-              Перенаправлення на сторінку входу...
+              {t('successDescription')}
             </p>
             <Link href="/auth/login" className={css.mainButton}>
-              Перейти до входу
+              {t('loginButton')}
             </Link>
           </div>
         </div>
@@ -98,7 +101,7 @@ export default function ResetPasswordPage() {
   return (
     <section className={css.page}>
       <div className={css.card}>
-        <h1 className={css.title}>Введіть новий пароль</h1>
+        <h1 className={css.title}>{t('title')}</h1>
 
         <Formik
           initialValues={initialValues}
@@ -109,7 +112,7 @@ export default function ResetPasswordPage() {
             <Form className={css.form}>
               <div className={css.fieldWrapper}>
                 <label htmlFor="confirmationCode" className={css.label}>
-                  Код підтвердження з Telegram
+                  {t('confirmationCodeLabel')}
                 </label>
                 <TextField
                   name="confirmationCode"
@@ -126,7 +129,7 @@ export default function ResetPasswordPage() {
 
               <div className={css.fieldWrapper}>
                 <label htmlFor="password" className={css.label}>
-                  Новий пароль
+                  {t('passwordLabel')}
                 </label>
                 <TextField
                   name="password"
@@ -143,7 +146,7 @@ export default function ResetPasswordPage() {
 
               <div className={css.fieldWrapper}>
                 <label htmlFor="confirmPassword" className={css.label}>
-                  Повторіть пароль
+                  {t('confirmPasswordLabel')}
                 </label>
                 <TextField
                   name="confirmPassword"
@@ -165,7 +168,7 @@ export default function ResetPasswordPage() {
                 className={css.mainButton}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Збереження...' : 'Скинути пароль'}
+                {isSubmitting ? t('sending') : t('submitButton')}
               </button>
             </Form>
           )}
@@ -173,7 +176,7 @@ export default function ResetPasswordPage() {
 
         <div className={css.smallTextWrapper}>
           <Link href="/auth/login" className={css.smallLink}>
-            ← Повернутися до входу
+            {t('backToLogin')}
           </Link>
         </div>
       </div>
