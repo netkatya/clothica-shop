@@ -1,6 +1,9 @@
 .section {
   background-color: var(--color-scheme-6-background);
   padding: 48px 0px;
+  position: static;
+  left: 0;
+  bottom: 0;
 }
 .logo {
   margin-bottom: 40px;
