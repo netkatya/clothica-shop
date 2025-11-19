@@ -6,7 +6,6 @@ import styles from './UserInfoForm.module.css';
 import { useTranslations } from 'next-intl';
 import { CITIES, LanguageKey } from '@/constants/orders';
 import { useEffect, useState, useCallback } from 'react';
-// import { FiChevronDown } from 'react-icons/fi';
 
 interface Props<T> {
   formik: FormikProps<T>;
@@ -121,7 +120,6 @@ export default function UserInfoForm<
               </option>
             ))}
           </select>
-          {/* <FiChevronDown className={styles.icon} /> */}
         </div>
         <ErrorMessage name="city" component="span" className={styles.error} />
       </div>
