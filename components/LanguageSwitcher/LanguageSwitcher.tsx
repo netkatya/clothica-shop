@@ -18,6 +18,11 @@ export default function LanguageToggleButton() {
     setLocale(newLocale);
     localStorage.setItem('locale', newLocale);
     document.cookie = `locale=${newLocale}; path=/;`;
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('localeChange'));
+    }
+
     router.refresh();
   };
 
@@ -31,4 +36,3 @@ export default function LanguageToggleButton() {
     </button>
   );
 }
-

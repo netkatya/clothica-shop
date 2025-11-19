@@ -4,6 +4,9 @@ import { FormikProps, ErrorMessage } from 'formik';
 import styles from './UserInfoForm.module.css';
 
 import { useTranslations } from 'next-intl';
+import { CITIES, LanguageKey } from '@/constants/orders';
+import { useEffect, useState, useCallback } from 'react';
+// import { FiChevronDown } from 'react-icons/fi';
 
 interface Props<T> {
   formik: FormikProps<T>;
@@ -19,6 +22,33 @@ export default function UserInfoForm<
   },
 >({ formik }: Props<T>) {
   const t = useTranslations('UserInfoForm');
+
+  const [language, setLanguage] = useState<LanguageKey>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('locale') ?? 'uk') as LanguageKey;
+    }
+    return 'uk';
+  });
+
+  const updateLanguage = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      const storedLang = localStorage.getItem('locale') ?? 'uk';
+      setLanguage(storedLang as LanguageKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateLanguage();
+
+    window.addEventListener('storage', updateLanguage);
+
+    window.addEventListener('localeChange', updateLanguage);
+
+    return () => {
+      window.removeEventListener('storage', updateLanguage);
+      window.removeEventListener('localeChange', updateLanguage);
+    };
+  }, [updateLanguage]);
 
   return (
     <div className={styles.formWrapper}>
@@ -67,14 +97,32 @@ export default function UserInfoForm<
 
       <div className={styles.field}>
         <label className={styles.label}>{t('cityLabel')}</label>
-        <input
+        {/* <input
           name="city"
           className={styles.input}
           value={formik.values.city}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder={t('cityPlaceholder')}
-        />
+        /> */}
+        <div className="selectWrapper">
+          {' '}
+          <select
+            name="city"
+            className={styles.input}
+            value={formik.values.city}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            key={language}
+          >
+            {CITIES.map(cityObj => (
+              <option key={cityObj[language]} value={cityObj[language]}>
+                {cityObj[language]}
+              </option>
+            ))}
+          </select>
+          {/* <FiChevronDown className={styles.icon} /> */}
+        </div>
         <ErrorMessage name="city" component="span" className={styles.error} />
       </div>
 
