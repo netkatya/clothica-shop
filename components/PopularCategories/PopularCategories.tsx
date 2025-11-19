@@ -87,12 +87,33 @@ export default function PopularCategories() {
               prevEl: `.${css.btnPrev}`,
             }}
             keyboard={{ enabled: true }}
-            spaceBetween={34}
+            // spaceBetween={34}
+            spaceBetween={16}
             slidesPerView={1}
             slidesPerGroup={1}
+            // breakpoints={{
+            //   768: { slidesPerView: 2, slidesPerGroup: 1 },
+            //   1024: { slidesPerView: 3, slidesPerGroup: 1 },
+            // }}
             breakpoints={{
-              768: { slidesPerView: 2, slidesPerGroup: 1 },
-              1024: { slidesPerView: 3, slidesPerGroup: 1 },
+              // Mobile адаптивна версія з 375px
+              375: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: 20,
+              },
+              // Tablet з 768px
+              768: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+                spaceBetween: 24,
+              },
+              // Desktop з 1440px - ⬇️ ЗМІНЕНО: 4 слайди замість 3
+              1440: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: 32,
+              },
             }}
             className={css.swiper}
             a11y={{ enabled: true }}
