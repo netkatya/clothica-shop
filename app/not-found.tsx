@@ -1,6 +1,8 @@
 import css from './NotFound.module.css';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: '404 — Сторінку не знайдено | Clothica',
@@ -36,17 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NotFound() {
+export default async function NotFound() {
+  const messages = await getMessages({locale: 'uk'});
+  const t = (key: string) => messages['NotFound'][key];
+
   return (
     <div className={css.wrapper}>
       <div className="container">
         <div className={css.content}>
-          <h1 className={css.code}>404</h1>
-          <p className={css.message}>Упс! Схоже, ти заблукав, друже</p>
-          <p className={css.text}>Сторінка, яку ти шукаєш - не існує</p>
-          <Link href="/" className={css.button}>
-            Повернутися на головну
-          </Link>
+          <NextIntlClientProvider messages={messages}>
+            <h1 className={css.code}>{t('h1')}</h1>
+            <p className={css.message}>{t('oops')}</p>
+            <p className={css.text}>{t('text')}</p>
+            <Link href="/" className={css.button}>
+              {t('button')}
+            </Link>
+          </NextIntlClientProvider>
         </div>
       </div>
     </div>
