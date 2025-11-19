@@ -80,14 +80,23 @@ export default function UserInfoForm<
 
       <div className={styles.field}>
         <label className={styles.label}>{t('branchLabel')}</label>
-        <input
-          name="branchnum_np"
-          className={styles.input}
-          value={formik.values.branchnum_np}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="1"
-        />
+        <div className="selectWrapper">
+          {' '}
+          <select
+            name="branchnum_np"
+            className={styles.input}
+            value={formik.values.branchnum_np}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            {Array.from({ length: 20 }, (_, i) => i + 1).map(num => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <ErrorMessage
           name="branchnum_np"
           component="span"
