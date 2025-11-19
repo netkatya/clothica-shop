@@ -37,18 +37,12 @@ export default function ProfilePage() {
   const t = useTranslations('ProfilePage');
 
   const UserSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, t('minName'))
-      .max(32, t('maxName')),
+    name: Yup.string().min(3, t('minName')).max(32, t('maxName')),
     phone: Yup.string()
       .matches(/^\+380\d{9}$/, t('invalidPhone'))
       .required(t('requiredField')),
-    lastname: Yup.string()
-      .min(2, t('minLastname'))
-      .max(128, t('maxLastname')),
-    city: Yup.string()
-      .min(2, t('minCity'))
-      .max(100, t('maxCity')),
+    lastname: Yup.string().min(2, t('minLastname')).max(128, t('maxLastname')),
+    city: Yup.string().min(2, t('minCity')).max(100, t('maxCity')),
     branchnum_np: Yup.string()
       .min(1, t('minBranchNum'))
       .max(10, t('maxBranchNum')),
@@ -182,7 +176,7 @@ export default function ProfilePage() {
               <MessageNoInfo
                 text="У вас ще не було жодних замовлень! Мерщій до покупок!"
                 buttonText="До покупок"
-                route="/goods"
+                onClick={() => router.push('/goods')}
               />
             )}
           </div>
