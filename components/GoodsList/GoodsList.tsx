@@ -49,12 +49,33 @@ export default function GoodsList() {
           dynamicBullets: true,
           dynamicMainBullets: 1,
         }}
-        spaceBetween={32}
+        spaceBetween={16}
+        // spaceBetween={32}
         slidesPerView={1}
         slidesPerGroup={1}
+        // breakpoints={{
+        //   768: { slidesPerView: 2, slidesPerGroup: 1 },
+        //   1024: { slidesPerView: 4, slidesPerGroup: 1 },
+        // }}
         breakpoints={{
-          768: { slidesPerView: 2, slidesPerGroup: 1 },
-          1024: { slidesPerView: 4, slidesPerGroup: 1 },
+          // Mobile адаптивна версія з 375px
+          375: {
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 20,
+          },
+          // Tablet з 768px
+          768: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            spaceBetween: 24,
+          },
+          // Desktop з 1440px - ⬇️ ЗМІНЕНО: 4 слайди замість 3
+          1440: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+            spaceBetween: 32,
+          },
         }}
         observer={true}
         observeParents={true}
