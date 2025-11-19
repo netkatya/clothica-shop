@@ -30,7 +30,7 @@ export default function ReviewsSlider({
     queryFn: async () => {
       const response = await fetchFeedbacksClient({
         page: '1',
-        perPage: '9',
+        perPage: '10',
         good: goodId || undefined,
       });
 
