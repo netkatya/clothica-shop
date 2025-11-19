@@ -46,8 +46,8 @@
   height: 2em;
   width: 1px;
   background-color: rgba(0, 0, 0, 0.2);
-  margin-right: 16px;
-  margin-left: 16px;
+  margin-right: 8px;
+  margin-left: 8px;
 }
 
 .reviews {
@@ -71,6 +71,11 @@
   margin-bottom: 8px;
 }
 
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .size {
   border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 16px;
@@ -78,8 +83,21 @@
   width: 100%;
   height: 40px;
   background: var(--opacity-transparent);
-  background-position: right 20px center;
-  color: var(--color-neutral-darkest)
+  color: var(--color-neutral-darkest);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  color: var(--color-neutral-darkest);
 }
 
 .inputContainer {

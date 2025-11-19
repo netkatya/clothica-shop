@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { useTranslations } from 'next-intl';
+import { ChevronDown } from 'lucide-react';
 
 interface ProductProps {
   good: Good;
@@ -116,7 +117,8 @@ export default function Product({ good }: ProductProps) {
                       <Stars rating={good.averageRate} />
                       <Link href={`/goods/${good._id}#reviews`}>
                         <span className={css.ratingText}>
-                          ({good.averageRate}) • {good.feedbackCount} {t('reviewsSuffix')}
+                          ({good.averageRate}) • {good.feedbackCount}{' '}
+                          {t('reviewsSuffix')}
                         </span>
                       </Link>
                     </>
@@ -129,15 +131,19 @@ export default function Product({ good }: ProductProps) {
               <p className={css.text}>{good.prevDescription}</p>
               <div className={css.sizeSelect}>
                 <label className={css.label}>{t('sizeLabel')}</label>
-                <select
-                  className={css.size}
-                  value={selectedSize}
-                  onChange={e => setSelectedSize(e.target.value as Size)}
-                >
-                  {good.size.map(item => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
+                <div className={css.selectWrapper}>
+                  <select
+                    className={css.size}
+                    value={selectedSize}
+                    onChange={e => setSelectedSize(e.target.value as Size)}
+                  >
+                    {good.size.map(item => (
+                      <option key={item}>{item}</option>
+                    ))}
+                  </select>
+
+                  <ChevronDown className={css.icon} />
+                </div>
               </div>
               <div className={css.inputContainer}>
                 <button className={css.addToBucket} onClick={handleAddToCart}>
@@ -155,9 +161,7 @@ export default function Product({ good }: ProductProps) {
             <button className={css.buyNow} onClick={handleBuyNow}>
               {t('buyNow')}
             </button>
-            <p className={css.freeDelivery}>
-              {t('freeDelivery')}
-            </p>
+            <p className={css.freeDelivery}>{t('freeDelivery')}</p>
             <div>
               <h2 className={css.descTitle}>{t('descriptionTitle')}</h2>
               <p className={css.descText}>{good.description}</p>
