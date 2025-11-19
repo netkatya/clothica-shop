@@ -1,8 +1,18 @@
-.image {
+/* .image {
   border-radius: 16px;
   max-width: 335px;
   max-height: 335px;
   margin-bottom: 16px;
+} */
+
+.image {
+  border-radius: 16px;
+  width: 100%;
+  height: auto;
+  max-width: 335px;
+  max-height: 335px;
+  margin-bottom: 16px;
+  object-fit: cover;
 }
 
 .info {
@@ -58,8 +68,6 @@
   transition: all 250ms ease-in-out;
 }
 
-
-
 .detail {
   cursor: pointer;
   outline: none;
@@ -85,6 +93,13 @@
 
 .swiper {
   margin-bottom: 40px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.item {
+  height: auto;
+  box-sizing: border-box;
 }
 
 .controls {
@@ -153,8 +168,10 @@
 
   .image {
     border-radius: 16px;
-    max-width: 336px;
-    max-height: 336px;
+    /* max-width: 336px;
+    max-height: 336px; */
+    width: 100%;
+    height: auto;
   }
 
   .buttonControls {
@@ -173,17 +190,19 @@
     pointer-events: auto;
   }
 
-    .favorites:hover,
-    .favorites:focus {
-      scale: 1.3;
-    }
+  .favorites:hover,
+  .favorites:focus {
+    scale: 1.3;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .image {
     border-radius: 16px;
-    max-width: 304px;
-    max-height: 304px;
+    /* max-width: 304px;
+    max-height: 304px; */
+    width: 100%;
+    height: auto;
   }
 
   .name {
@@ -200,7 +219,8 @@
     z-index: 10;
   }
   .detail {
-    width: 304px;
+    /* width: 304px; */
+    width: 100%;
     height: 40px;
   }
 }
