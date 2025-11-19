@@ -62,6 +62,8 @@ export default function ReviewsSlider({
           768: { slidesPerView: 2, slidesPerGroup: 2 },
           1024: { slidesPerView: 3, slidesPerGroup: 3 },
         }}
+        observer={true}
+        observeParents={true}
         className={css.swiper}
         a11y={{ enabled: true }}
       >

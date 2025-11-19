@@ -56,6 +56,8 @@ export default function GoodsList() {
           768: { slidesPerView: 2, slidesPerGroup: 1 },
           1024: { slidesPerView: 4, slidesPerGroup: 1 },
         }}
+        observer={true}
+        observeParents={true}
         className={css.swiper}
         a11y={{ enabled: true }}
       >
