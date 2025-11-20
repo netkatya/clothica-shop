@@ -121,7 +121,7 @@ export default function PopularCategories() {
             {categoriesData.map((item, index) => (
               <SwiperSlide key={index} className={css.item}>
                 <Link
-                  href={`/goods?category=${encodeURIComponent(item.name)}`}
+                  href={`/goods?category=${encodeURIComponent(item.name.trim())}`}
                   className={css.card}
                 >
                   <Image

@@ -139,7 +139,7 @@ export default function CategoriesList() {
                 >
                   <Link
                     //me
-                    href={`/goods?category=${encodeURIComponent(item.name)}`}
+                    href={`/goods?category=${encodeURIComponent(item.name.trim())}`}
                     className={css.card}
                   >
                     <Image
