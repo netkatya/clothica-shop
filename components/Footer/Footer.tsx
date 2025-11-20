@@ -3,18 +3,18 @@ import Link from 'next/link';
 import css from './Footer.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { createSubscriptionClient } from '@/lib/api/clientApi';
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function Footer() {
   const t = useTranslations('Footer');
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const [email, setEmail] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const emailInput = form.elements.namedItem('email') as HTMLInputElement;
-    const email = emailInput.value;
+
     if (!email) {
       return toast.error(t('subscribeError'));
     }
@@ -26,6 +26,7 @@ export default function Footer() {
       toast.error(t('subscribeFail'));
     } finally {
       setIsLoading(false);
+      setEmail('');
     }
   }
   return (
@@ -56,9 +57,7 @@ export default function Footer() {
           </div>
           <div className={css.subscribeContainer}>
             <h3 className={css.subscribe}>{t('subscribe')}</h3>
-            <p className={css.text}>
-              {t('subscribeText')}
-            </p>
+            <p className={css.text}>{t('subscribeText')}</p>
             <div className={css.containerSubscribe}>
               <form onSubmit={handleSubmit} className={css.containerSubscribe}>
                 <input
@@ -66,6 +65,10 @@ export default function Footer() {
                   name="email"
                   placeholder={t('emailPlaceholder')}
                   className={css.input}
+                  value={email}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
                   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                 />
                 <button
