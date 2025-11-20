@@ -126,6 +126,7 @@ export interface FetchGoodsParam {
   perPage?: string;
   gender?: Gender;
   category?: string;
+  good?: string[];
   size?: Size[];
   colors?: ColorOfGood[];
   minPrice?: string;
@@ -152,6 +153,7 @@ export async function fetchGoodsClient(
     perPage = 12,
     gender,
     category,
+    good,
     size,
     colors,
     minPrice,
@@ -166,6 +168,7 @@ export async function fetchGoodsClient(
     };
     if (gender) params.gender = gender;
     if (category) params.category = category;
+    if (good) params.good = good;
     if (size) params.size = size;
     if (colors) params.colors = colors;
     if (minPrice) params.minPrice = String(minPrice);

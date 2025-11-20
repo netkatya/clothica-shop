@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
     const category = request.nextUrl.searchParams.get('category') ?? '';
     const gender = request.nextUrl.searchParams.get('gender') ?? '';
     const size = request.nextUrl.searchParams.get('size') ?? '';
+    const good = request.nextUrl.searchParams.get('good') ?? '';
     const colors = request.nextUrl.searchParams.get('colors') ?? '';
     const minPrice = request.nextUrl.searchParams.get('minPrice') ?? '';
     const maxPrice = request.nextUrl.searchParams.get('maxPrice') ?? '';
@@ -23,6 +24,7 @@ export async function GET(request: NextRequest) {
         ...(gender && { gender }),
         ...(category && { category }),
         ...(size && { size: size.split(',') }),
+        ...(good && { good: good.split(',') }),
         ...(colors && { color: colors.split(',') }),
         ...(minPrice && { minPrice }),
         ...(maxPrice && { maxPrice }),
