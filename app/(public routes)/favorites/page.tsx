@@ -19,7 +19,8 @@ export default function FavoritesPage() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['goods'],
-    queryFn: () => fetchGoodsClient({}),
+    queryFn: async () =>
+      await fetchGoodsClient({ good: useFavoritesStore.getState().favorites }),
   });
   const goods = data?.data ?? [];
 
